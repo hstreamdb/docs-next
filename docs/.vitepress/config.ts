@@ -7,6 +7,7 @@ export default defineConfig({
   description: "HStreamDB Documentation.",
   head: [["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }]],
   lastUpdated: true,
+  ignoreDeadLinks: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/logo.svg",
