@@ -39,13 +39,20 @@ async function* getFiles(dir: string, rootDir = dir) {
       const items: any[] = []
 
       for await (const f of getFiles(res, rootDir)) {
+        if (f.link && f.link.endsWith('index.md')) continue
+
         items.push(f)
       }
 
-      const title = await getFirstLine(join(res, '/_index.md'))
+      const title = await getFirstLine(join(res, '_index.md'))
+      const hasIndex = await fs
+        .access(join(res, 'index.md'), fs.constants.F_OK)
+        .then(() => true)
+        .catch(() => false)
 
       yield {
         text: title,
+        ...(hasIndex && { link: join(res.replace(rootDir, ''), 'index.md') }),
         items: items.sort((a, b) => a.order - b.order),
         collapsed: true,
         order: order[name],
