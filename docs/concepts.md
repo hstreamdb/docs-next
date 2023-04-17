@@ -2,7 +2,7 @@
 
 This page explains key concepts in HStream, which we recommend you to understand before you start.
 
-## Record 
+## Record
 
 In HStream, a record is a unit of data that may contain arbitrary user data and is immutable. Each record is assigned a unique recordID in a stream. Additionally, a partition key is included in every record, represented as a string, and used to determine the stream shard where the record is stored.
 

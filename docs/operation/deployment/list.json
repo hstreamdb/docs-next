@@ -1,0 +1,6 @@
+{
+  "deploy-helm": 1,
+  "deploy-k8s": 2,
+  "deploy-docker": 3,
+  "quick-deploy-ssh": 4
+}

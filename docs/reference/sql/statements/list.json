@@ -1,0 +1,13 @@
+{
+  "create-stream.md": 1,
+  "create-view.md": 2,
+  "create-connector.md": 3,
+  "drop-stream.md": 4,
+  "drop-view.md": 5,
+  "drop-connector.md": 6,
+  "select-stream.md": 7,
+  "insert.md": 8,
+  "show.md": 9,
+  "pause.md": 10,
+  "resume.md": 11
+}
