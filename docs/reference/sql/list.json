@@ -1,6 +1,1 @@
-{
-  "sql-overview.md": 1,
-  "sql-quick-reference.md": 2,
-  "statements": 3,
-  "functions": 4
-}
+["sql-overview.md", "sql-quick-reference.md", "statements", "functions"]

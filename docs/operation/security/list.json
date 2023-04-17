@@ -1,5 +1,1 @@
-{
-  "overview.md": 1,
-  "encryption.md": 2,
-  "authentication.md": 3
-}
+["overview.md", "encryption.md", "authentication.md"]

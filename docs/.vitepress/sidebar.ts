@@ -22,7 +22,11 @@ async function getFirstLine(file: string): Promise<string> {
 
 async function* getFiles(dir: string, rootDir = dir) {
   const dirents = await fs.readdir(dir, { withFileTypes: true })
-  const order = JSON.parse(await fs.readFile(join(dir, 'list.json'), 'utf8'))
+  const order = JSON.parse(await fs.readFile(join(dir, 'list.json'), 'utf8')).reduce((acc, cur, i) => {
+    acc[cur] = i
+
+    return acc
+  }, {})
 
   for (const dirent of dirents) {
     const name = dirent.name

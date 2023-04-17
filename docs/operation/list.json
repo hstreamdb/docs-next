@@ -1,7 +1,1 @@
-{
-  "cluster.md": 1,
-  "advertised_listeners": 2,
-  "deploymen": 3,
-  "security": 4,
-  "monitoring": 5
-}
+["cluster.md", "advertised_listeners", "deploymen", "security", "monitoring"]

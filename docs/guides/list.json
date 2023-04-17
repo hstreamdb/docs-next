@@ -1,9 +1,1 @@
-{
-  "write.md": 1,
-  "consume.md": 2,
-  "stream.md": 3,
-  "subscription.md": 4,
-  "shards.md": 5,
-  "reader.md": 6,
-  "sql.md": 7
-}
+["write.md", "consume.md", "stream.md", "subscription.md", "shards.md", "reader.md", "sql.md"]

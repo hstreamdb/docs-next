@@ -1,5 +1,1 @@
-{
-  "overview.md": 1,
-  "hstore.md": 2,
-  "hserver.md": 3
-}
+["overview.md", "hstore.md", "hserver.md"]
