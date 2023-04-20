@@ -12,10 +12,10 @@ requirements:
   dashes `-`, underscores `_`
 
 \*For the cases where the resource name is used as a part of a SQL statement,
-  such as in [HStream SQL Shell](../reference/cli.md#hstream-sql-shell), there
-  will be situations where the resource name cannot be parsed properly (such as
-  conflicts with Keywords etc.), enclose the resource name with backticks `` ` ``.
-  With the enhancements of the SQL parser, the constriction may be removed in the future.
+such as in [HStream SQL Shell](../reference/cli.md#hstream-sql-shell), there
+will be situations where the resource name cannot be parsed properly (such as
+conflicts with Keywords etc.), enclose the resource name with backticks `` ` ``.
+With the enhancements of the SQL parser, the constriction may be removed in the future.
 
 ## Attributes of a Stream
 
@@ -33,9 +33,9 @@ requirements:
   being appended. HStreamDB will discard the message regardless of whether it is
   consumed when it exceeds the backlog retention duration.
 
-  + Default = 7 days
-  + Minimum value = 1 seconds
-  + Maximum value = 21 days
+  - Default = 7 days
+  - Minimum value = 1 seconds
+  - Maximum value = 21 days
 
 - Shard Count
 
@@ -45,114 +45,29 @@ requirements:
 
 Create a stream before you write records or create a subscription.
 
-::: code-group
+:::: tabs
+
+::: tab Java
 
 ```java
 // CreateStreamExample.java
-
-package docs.code.examples;
-
-import io.hstream.HStreamClient;
-
-public class CreateStreamExample {
-  public static void main(String[] args) throws Exception {
-    // TODO(developer): Replace these variables before running the sample.
-    String serviceUrl = "hstream://127.0.0.1:6570";
-    if (System.getenv("serviceUrl") != null) {
-      serviceUrl = System.getenv("serviceUrl");
-    }
-
-    String streamName1 = "your_h_records_stream_name";
-    String streamName2 = "your_raw_records_stream_name";
-
-    HStreamClient client = HStreamClient.builder().serviceUrl(serviceUrl).build();
-    createStreamExample(client, streamName1);
-    createStreamWithAttrsExample(client, streamName2);
-    client.close();
-  }
-
-  public static void createStreamExample(HStreamClient client, String streamName) {
-    client.createStream(streamName);
-  }
-
-  public static void createStreamWithAttrsExample(HStreamClient client, String streamName) {
-    client.createStream(
-        streamName,
-        (short) 1 // replication factor
-        ,
-        10 // Number of shards
-        ,
-        7 * 24 * 3600 // backlog retention time in seconds
-        );
-  }
-}
-
-```
-
-```go
-// ExampleCreateStream.go
-
-package examples
-
-import (
-	"log"
-
-	"github.com/hstreamdb/hstreamdb-go/hstream"
-)
-
-func ExampleCreateStream() error {
-	client, err := hstream.NewHStreamClient(YourHStreamServiceUrl)
-	if err != nil {
-		log.Fatalf("Creating client error: %s", err)
-	}
-	defer client.Close()
-
-	// Create a stream, only specific streamName
-	if err = client.CreateStream("testDefaultStream"); err != nil {
-		log.Fatalf("Creating stream error: %s", err)
-	}
-
-	// Create a new stream with 1 replica, 5 shards, set the data retention to 1800s.
-	err = client.CreateStream("testStream",
-		hstream.WithReplicationFactor(1),
-		hstream.EnableBacklog(1800),
-		hstream.WithShardCount(5))
-	if err != nil {
-		log.Fatalf("Creating stream error: %s", err)
-	}
-
-	return nil
-}
-
-```
-
-```python
-# https://github.com/hstreamdb/hstreamdb-py/blob/main/examples/snippets/guides.py
-import asyncio
-import hstreamdb
-import os
-
-# NOTE: Replace with your own host and port
-host = os.getenv("GUIDE_HOST", "127.0.0.1")
-port = os.getenv("GUIDE_PORT", 6570)
-stream_name = "your_stream"
-subscription = "your_subscription"
-
-
-# Run: asyncio.run(main(your_async_function))
-async def main(*funcs):
-    async with await hstreamdb.insecure_client(host=host, port=port) as client:
-        for f in funcs:
-            await f(client)
-
-
-async def create_stream(client):
-    await client.create_stream(
-        stream_name, replication_factor=1, backlog=24 * 60 * 60, shard_count=1
-    )
 ```
 
 :::
+
+::: tab Go
+
+```go
+// ExampleCreateStream.go
+```
+
+:::
+
+::: tab Python3
+@snippet examples/py/snippets/guides.py common create-stream
+:::
+
+::::
 
 ## Delete a Stream
 
@@ -172,96 +87,13 @@ stream.
 
 ```java
 // DeleteStreamExample.java
-
-package docs.code.examples;
-
-import io.hstream.HStreamClient;
-
-public class DeleteStreamExample {
-  public static void main(String[] args) throws Exception {
-    // TODO(developer): Replace these variables before running the sample.
-    // String serviceUrl = "your-service-url-address";
-    String serviceUrl = "hstream://127.0.0.1:6570";
-    if (System.getenv("serviceUrl") != null) {
-      serviceUrl = System.getenv("serviceUrl");
-    }
-
-    String streamName1 = "your_h_records_stream_name";
-    String streamName2 = "your_raw_records_stream_name";
-
-    HStreamClient client = HStreamClient.builder().serviceUrl(serviceUrl).build();
-    deleteStreamExample(client, streamName1);
-    deleteStreamForceExample(client, streamName2);
-    client.close();
-  }
-
-  public static void deleteStreamExample(HStreamClient client, String streamName) {
-    client.deleteStream(streamName);
-  }
-
-  public static void deleteStreamForceExample(HStreamClient client, String streamName) {
-    client.deleteStream(streamName, true);
-  }
-}
-
 ```
 
 ```go
 // ExampleDeleteStream.go
-
-package examples
-
-import (
-	"github.com/hstreamdb/hstreamdb-go/hstream"
-	"log"
-)
-
-func ExampleDeleteStream() error {
-	client, err := hstream.NewHStreamClient(YourHStreamServiceUrl)
-	if err != nil {
-		log.Fatalf("Creating client error: %s", err)
-	}
-	defer client.Close()
-
-	// force delete stream and ignore none exist stream
-	if err := client.DeleteStream("testStream",
-		hstream.EnableForceDelete,
-		hstream.EnableIgnoreNoneExist); err != nil {
-		log.Fatalf("Deleting stream error: %s", err)
-	}
-
-	if err := client.DeleteStream("testDefaultStream"); err != nil {
-		log.Fatalf("Deleting stream error: %s", err)
-	}
-
-	return nil
-}
-
 ```
 
-```python
-# https://github.com/hstreamdb/hstreamdb-py/blob/main/examples/snippets/guides.py
-import asyncio
-import hstreamdb
-import os
-
-# NOTE: Replace with your own host and port
-host = os.getenv("GUIDE_HOST", "127.0.0.1")
-port = os.getenv("GUIDE_PORT", 6570)
-stream_name = "your_stream"
-subscription = "your_subscription"
-
-
-# Run: asyncio.run(main(your_async_function))
-async def main(*funcs):
-    async with await hstreamdb.insecure_client(host=host, port=port) as client:
-        for f in funcs:
-            await f(client)
-
-
-async def delete_stream(client):
-    await client.delete_stream(stream_name, ignore_non_exist=True, force=True)
-```
+@snippet examples/py/snippets/guides.py common delete-stream
 
 :::
 
@@ -273,92 +105,12 @@ To get all streams in HStreamDB:
 
 ```java
 // ListStreamsExample.java
-
-package docs.code.examples;
-
-import io.hstream.HStreamClient;
-import io.hstream.Stream;
-import java.util.List;
-
-public class ListStreamsExample {
-  public static void main(String[] args) throws Exception {
-    // TODO(developer): Replace these variables before running the sample.
-    String serviceUrl = "hstream://127.0.0.1:6570";
-    if (System.getenv("serviceUrl") != null) {
-      serviceUrl = System.getenv("serviceUrl");
-    }
-
-    HStreamClient client = HStreamClient.builder().serviceUrl(serviceUrl).build();
-    listStreamExample(client);
-    client.close();
-  }
-
-  public static void listStreamExample(HStreamClient client) {
-    List<Stream> streams = client.listStreams();
-    for (Stream stream : streams) {
-      System.out.println(stream.getStreamName());
-    }
-  }
-}
-
 ```
 
 ```go
 // ExampleListStreams.go
-
-package examples
-
-import (
-	"fmt"
-	"github.com/hstreamdb/hstreamdb-go/hstream"
-	"log"
-)
-
-func ExampleListStreams() error {
-	client, err := hstream.NewHStreamClient(YourHStreamServiceUrl)
-	if err != nil {
-		log.Fatalf("Creating client error: %s", err)
-	}
-	defer client.Close()
-
-	streams, err := client.ListStreams()
-	if err != nil {
-		log.Fatalf("Listing streams error: %s", err)
-	}
-
-	for _, stream := range streams {
-		fmt.Printf("%+v\n", stream)
-	}
-
-	return nil
-}
-
 ```
 
-```python
-# https://github.com/hstreamdb/hstreamdb-py/blob/main/examples/snippets/guides.py
-import asyncio
-import hstreamdb
-import os
-
-# NOTE: Replace with your own host and port
-host = os.getenv("GUIDE_HOST", "127.0.0.1")
-port = os.getenv("GUIDE_PORT", 6570)
-stream_name = "your_stream"
-subscription = "your_subscription"
-
-
-# Run: asyncio.run(main(your_async_function))
-async def main(*funcs):
-    async with await hstreamdb.insecure_client(host=host, port=port) as client:
-        for f in funcs:
-            await f(client)
-
-
-async def list_streams(client):
-    ss = await client.list_streams()
-    for s in ss:
-        print(s)
-```
+@snippet examples/py/snippets/guides.py common list-streams
 
 :::

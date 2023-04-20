@@ -59,85 +59,6 @@ Create a docker-compose.yaml file for docker compose, you can
 
 ```yaml
 # quick-start.yaml
-
-version: "3.5"
-
-services:
-  hserver:
-    image: hstreamdb/hstream:latest
-    depends_on:
-      - zookeeper
-      - hstore
-    ports:
-      - "127.0.0.1:6570:6570"
-    expose:
-      - 6570
-    networks:
-      - hstream-quickstart
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /tmp:/tmp
-      - data_store:/data/store
-    command:
-      - bash
-      - "-c"
-      - |
-        set -e
-        /usr/local/script/wait-for-storage.sh hstore 6440 zookeeper 2181 600 \
-        /usr/local/bin/hstream-server \
-        --bind-address 0.0.0.0 --port 6570 \
-        --internal-port 6571 \
-        --server-id 100 \
-        --seed-nodes "$$(hostname -I | awk '{print $$1}'):6571" \
-        --advertised-address $$(hostname -I | awk '{print $$1}') \
-        --metastore-uri zk://zookeeper:2181 \
-        --store-config /data/store/logdevice.conf \
-        --store-admin-host hstore --store-admin-port 6440 \
-        --store-log-level warning \
-        --io-tasks-path /tmp/io/tasks \
-        --io-tasks-network hstream-quickstart
-
-  hstore:
-    image: hstreamdb/hstream:latest
-    networks:
-      - hstream-quickstart
-    volumes:
-      - data_store:/data/store
-    command:
-      - bash
-      - "-c"
-      - |
-        set -ex
-        # N.B. "enable-dscp-reflection=false" is required for linux kernel which
-        # doesn't support dscp reflection, e.g. centos7.
-        /usr/local/bin/ld-dev-cluster --root /data/store \
-        --use-tcp --tcp-host $$(hostname -I | awk '{print $$1}') \
-        --user-admin-port 6440 \
-        --param enable-dscp-reflection=false \
-        --no-interactive \
-
-  zookeeper:
-    image: zookeeper
-    expose:
-      - 2181
-    networks:
-      - hstream-quickstart
-    volumes:
-      - data_zk_data:/data
-      - data_zk_datalog:/datalog
-
-networks:
-  hstream-quickstart:
-    name: hstream-quickstart
-
-volumes:
-  data_store:
-    name: quickstart_data_store
-  data_zk_data:
-    name: quickstart_data_zk_data
-  data_zk_datalog:
-    name: quickstart_data_zk_datalog
-
 ```
 
 then run:
@@ -148,7 +69,7 @@ docker-compose -f quick-start.yaml up
 
 If you see some thing like this, then you have a running hstream:
 
-```
+```txt
 hserver_1    | [INFO][2021-11-22T09:15:18+0000][app/server.hs:137:3][thread#67]************************
 hserver_1    | [INFO][2021-11-22T09:15:18+0000][app/server.hs:145:3][thread#67]Server started on port 6570
 hserver_1    | [INFO][2021-11-22T09:15:18+0000][app/server.hs:146:3][thread#67]*************************
@@ -177,7 +98,7 @@ docker run -it --rm --name some-hstream-cli --network host hstreamdb/hstream:lat
 If everything works fine, you will enter an interactive CLI and see help
 information like
 
-```
+```txt
       __  _________________  _________    __  ___
      / / / / ___/_  __/ __ \/ ____/   |  /  |/  /
     / /_/ /\__ \ / / / /_/ / __/ / /| | / /|_/ /
@@ -259,7 +180,5 @@ real time:
 {"temperature":28,"humidity":86}
 ```
 
-[non-root-docker]:
-  https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
-[quick-start.yaml]:
-  https://raw.githubusercontent.com/hstreamdb/docs/main/assets/quick-start.yaml
+[non-root-docker]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+[quick-start.yaml]: https://raw.githubusercontent.com/hstreamdb/docs/main/assets/quick-start.yaml
