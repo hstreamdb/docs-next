@@ -37,36 +37,166 @@ that does not require your application to block for new messages. Messages can
 be received in your application using a long-running message receiver and
 acknowledged one at a time, as shown in the example below.
 
-:::: tabs
-
-::: tab Java
+::: code-group
 
 ```java
 // ConsumeDataSimpleExample.java
+
+package docs.code.examples;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
+
+import io.hstream.Consumer;
+import io.hstream.HRecordReceiver;
+import io.hstream.HStreamClient;
+import java.util.concurrent.TimeoutException;
+
+public class ConsumeDataSimpleExample {
+  public static void main(String[] args) throws Exception {
+    String serviceUrl = "hstream://127.0.0.1:6570";
+    if (System.getenv("serviceUrl") != null) {
+      serviceUrl = System.getenv("serviceUrl");
+    }
+
+    String subscriptionId = "your_subscription_id";
+    HStreamClient client = HStreamClient.builder().serviceUrl(serviceUrl).build();
+    consumeDataFromSubscriptionExample(client, subscriptionId);
+    client.close();
+  }
+
+  public static void consumeDataFromSubscriptionExample(
+      HStreamClient client, String subscriptionId) {
+    HRecordReceiver receiver =
+        ((hRecord, responder) -> {
+          System.out.println("Received a record :" + hRecord.getHRecord());
+          responder.ack();
+        });
+    // Consumer is a Service(ref:
+    // https://guava.dev/releases/19.0/api/docs/com/google/common/util/concurrent/Service.html)
+    Consumer consumer =
+        client
+            .newConsumer()
+            .subscription(subscriptionId)
+            // optional, if it is not set, client will generate a unique id.
+            .name("consumer_1")
+            .hRecordReceiver(receiver)
+            .build();
+    // start Consumer as a background service and return
+    consumer.startAsync().awaitRunning();
+    try {
+      // sleep 5s for consuming records
+      consumer.awaitTerminated(5, SECONDS);
+    } catch (TimeoutException e) {
+      // stop consumer
+      consumer.stopAsync().awaitTerminated();
+    }
+  }
+}
+
 ```
-
-:::
-
-::: tab Go
 
 ```go
 // ExampleConsumer.go
+
+package examples
+
+import (
+	"github.com/hstreamdb/hstreamdb-go/hstream"
+	"log"
+	"time"
+)
+
+func ExampleConsumer() error {
+	client, err := hstream.NewHStreamClient(YourHStreamServiceUrl)
+	if err != nil {
+		log.Fatalf("Creating client error: %s", err)
+	}
+	defer client.Close()
+
+	subId := "SubscriptionId0"
+	consumer := client.NewConsumer("consumer-1", subId)
+	defer consumer.Stop()
+
+	dataChan := consumer.StartFetch()
+	timer := time.NewTimer(3 * time.Second)
+	defer timer.Stop()
+
+	for {
+		select {
+		case <-timer.C:
+			log.Println("[consumer]: Streaming fetch stopped")
+			return nil
+		case recordMsg := <-dataChan:
+			if recordMsg.Err != nil {
+				log.Printf("[consumer]: Streaming fetch error: %s", err)
+				continue
+			}
+
+			for _, record := range recordMsg.Result {
+				log.Printf("[consumer]: Receive %s record: record id = %s, payload = %+v",
+					record.GetRecordType(), record.GetRecordId().String(), record.GetPayload())
+				record.Ack()
+			}
+		}
+	}
+
+	return nil
+}
+
+```
+
+```python
+# https://github.com/hstreamdb/hstreamdb-py/blob/main/examples/snippets/guides.py
+import asyncio
+import hstreamdb
+import os
+
+# NOTE: Replace with your own host and port
+host = os.getenv("GUIDE_HOST", "127.0.0.1")
+port = os.getenv("GUIDE_PORT", 6570)
+stream_name = "your_stream"
+subscription = "your_subscription"
+
+
+# Run: asyncio.run(main(your_async_function))
+async def main(*funcs):
+    async with await hstreamdb.insecure_client(host=host, port=port) as client:
+        for f in funcs:
+            await f(client)
+
+
+class Processing:
+    count = 0
+    max_count: int
+
+    def __init__(self, max_count):
+        self.max_count = max_count
+
+    async def __call__(self, ack_fun, stop_fun, rs_iter):
+        print("max_count", self.max_count)
+        rs = list(rs_iter)
+        for r in rs:
+            self.count += 1
+            print(f"[{self.count}] Receive: {r}")
+            if self.max_count > 0 and self.count >= self.max_count:
+                await stop_fun()
+                break
+
+        await ack_fun(r.id for r in rs)
+
+
+async def subscribe_records(client):
+    consumer = client.new_consumer("new_consumer", subscription, Processing(10))
+    await consumer.start()
 ```
 
 :::
-
-::: tab Python3
-@snippet examples/py/snippets/guides.py common subscribe-records
-:::
-
-::::
 
 For better performance, Batched Ack is enabled by default with settings
 `ackBufferSize` = 100 and `ackAgeLimit` = 100, which you can change when
 initiating your consumers.
 
-:::: tabs
-::: tab Java
+::: code-group
 
 ```java
 Consumer consumer =
@@ -84,7 +214,6 @@ Consumer consumer =
 ```
 
 :::
-::::
 
 ## Multiple consumers and shared consumption progress
 
@@ -95,25 +224,159 @@ have a new consumer join the existing subscription. The code is for
 demonstration of how consumers can join the consumer group. Usually, the case is
 that users would have consumers from different clients.
 
-:::: tabs
-
-::: tab Java
+::: code-group
 
 ```java
 // ConsumeDataSharedExample.java
+
+package docs.code.examples;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
+
+import io.hstream.Consumer;
+import io.hstream.HRecordReceiver;
+import io.hstream.HStreamClient;
+import java.util.concurrent.TimeoutException;
+
+public class ConsumeDataSharedExample {
+  public static void main(String[] args) throws Exception {
+    String serviceUrl = "hstream://127.0.0.1:6570";
+    if (System.getenv("serviceUrl") != null) {
+      serviceUrl = System.getenv("serviceUrl");
+    }
+
+    String subscription = "your_subscription_id";
+    String consumer1 = "your_consumer1_name";
+    String consumer2 = "your_consumer2-name";
+    HStreamClient client = HStreamClient.builder().serviceUrl(serviceUrl).build();
+
+    // create two consumers to consume records with several partition keys.
+    Thread t1 =
+        new Thread(() -> consumeDataFromSubscriptionSharedExample(client, subscription, consumer1));
+    Thread t2 =
+        new Thread(() -> consumeDataFromSubscriptionSharedExample(client, subscription, consumer2));
+    t1.start();
+    t2.start();
+    t1.join();
+    t2.join();
+    client.close();
+  }
+
+  public static void consumeDataFromSubscriptionSharedExample(
+      HStreamClient client, String subscription, String consumerName) {
+    HRecordReceiver receiver =
+        ((hRecord, responder) -> {
+          System.out.println("Received a record :" + hRecord.getHRecord());
+          responder.ack();
+        });
+    Consumer consumer =
+        client
+            .newConsumer()
+            .subscription(subscription)
+            .name(consumerName)
+            .hRecordReceiver(receiver)
+            .build();
+    try {
+      // sleep 5s for consuming records
+      consumer.startAsync().awaitRunning();
+      consumer.awaitTerminated(5, SECONDS);
+    } catch (TimeoutException e) {
+      // stop consumer
+      consumer.stopAsync().awaitTerminated();
+    }
+  }
+}
+
 ```
-
-:::
-
-::: tab Go
 
 ```go
 // ExampleConsumerGroup.go
+
+package examples
+
+import (
+	"github.com/hstreamdb/hstreamdb-go/hstream"
+	"log"
+	"sync"
+	"time"
+)
+
+func ExampleConsumerGroup() error {
+	client, err := hstream.NewHStreamClient(YourHStreamServiceUrl)
+	if err != nil {
+		log.Fatalf("Creating client error: %s", err)
+	}
+	defer client.Close()
+
+	subId1 := "SubscriptionId1"
+
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	go func() {
+		consumer := client.NewConsumer("consumer-1", subId1)
+		defer consumer.Stop()
+		timer := time.NewTimer(5 * time.Second)
+		defer timer.Stop()
+		defer wg.Done()
+
+		dataChan := consumer.StartFetch()
+		for {
+			select {
+			case <-timer.C:
+				log.Println("[consumer-1]: Stream fetching stopped")
+				return
+			case recordMsg := <-dataChan:
+				if recordMsg.Err != nil {
+					log.Printf("[consumer-1]: Stream fetching error: %s", err)
+					continue
+				}
+
+				for _, record := range recordMsg.Result {
+					log.Printf("[consumer-1]: Receive %s record: record id = %s, payload = %+v",
+						record.GetRecordType(), record.GetRecordId().String(), record.GetPayload())
+					record.Ack()
+				}
+			}
+		}
+	}()
+
+	go func() {
+		consumer := client.NewConsumer("consumer-2", subId1)
+		defer consumer.Stop()
+		timer := time.NewTimer(5 * time.Second)
+		defer timer.Stop()
+		defer wg.Done()
+
+		dataChan := consumer.StartFetch()
+		for {
+			select {
+			case <-timer.C:
+				log.Println("[consumer-2]: Stream fetching stopped")
+				return
+			case recordMsg := <-dataChan:
+				if recordMsg.Err != nil {
+					log.Printf("[consumer-2]: Stream fetching error: %s", err)
+					continue
+				}
+
+				for _, record := range recordMsg.Result {
+					log.Printf("[consumer-2]: Receive %s record: record id = %s, payload = %+v",
+						record.GetRecordType(), record.GetRecordId().String(), record.GetPayload())
+					record.Ack()
+				}
+			}
+		}
+	}()
+
+	wg.Wait()
+
+	return nil
+}
+
 ```
 
 :::
-
-::::
 
 ## Flow Control with `maxUnackedRecords`
 
@@ -154,8 +417,7 @@ Consumers could fail in other scenarios, such as network, deleted subscriptions,
 etc. However, as a service, you may want the consumer to keep running, so you
 can register a listener to handle a failed consumer:
 
-:::: tabs
-::: tab Java
+::: code-group
 
 ```java
 // add Listener for handling failed consumer
@@ -170,4 +432,3 @@ consumer.addListener(
 ```
 
 :::
-::::
