@@ -466,7 +466,7 @@ HStreamDB end-users.
 - Support config HStreamDB with a configuration file, see:
   [HStreamDB Configuration](../reference/config.md)
 - Support one-step docker-compose for quick-start:
-  [Quick Start With Docker Compose](../start/quickstart-with-docker.md)
+  [Quick Start With Docker Compose](../quickstart-with-docker.md)
 
 **To make use of HStreamDB v0.7, please use
 [hstreamdb-java v0.7.0](https://github.com/hstreamdb/hstreamdb-java) and above**
