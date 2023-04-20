@@ -6,12 +6,10 @@ deployment of Grafana and related tools with a running HStreamDB instance.
 
 ## Installations and Set-up
 
-Now user can use the deployment tool `hdt` to set up HStreamDB monitor stack quickly. Refer to [Deployment with Hdt](../deployment/quick-deploy-ssh.md). 
+Now user can use the deployment tool `hdt` to set up HStreamDB monitor stack quickly. Refer to [Deployment with Hdt](../../deployment/quick-deploy-ssh.md).
 
 With monitor stack components all set up, we can now monitor HStreamDB metrics with dashboard.
 
-![](./grafana/dashboard1.png)
+![](./dashboard1.png)
 
-![](./grafana/dashboard2.png)
-
-
+![](./dashboard2.png)
