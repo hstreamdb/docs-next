@@ -22,9 +22,7 @@ For the subscription name, please refer to the [guidelines to name a resource](.
 When creating a subscription, you can provide the attributes mentioned like
 this:
 
-:::: tabs
-
-::: tab Java
+::: code-
 
 ```java
 // CreateSubscriptionExample.java

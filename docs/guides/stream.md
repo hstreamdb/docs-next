@@ -45,29 +45,19 @@ With the enhancements of the SQL parser, the constriction may be removed in the 
 
 Create a stream before you write records or create a subscription.
 
-:::: tabs
-
-::: tab Java
+::: code-group
 
 ```java
 // CreateStreamExample.java
 ```
 
-:::
-
-::: tab Go
-
 ```go
 // ExampleCreateStream.go
 ```
 
-:::
-
-::: tab Python3
 @snippet examples/py/snippets/guides.py common create-stream
-:::
 
-::::
+:::
 
 ## Delete a Stream
 

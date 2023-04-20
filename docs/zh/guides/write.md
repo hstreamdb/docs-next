@@ -36,29 +36,19 @@ batch 发送到服务器。每一条 record 被写入 stream 时，HServer 将�
 
 ## 使用 Producer
 
-:::: tabs
-
-::: tab Java
+::: code-group
 
 ```java
 // WriteDataSimpleExample.java
 ```
 
-:::
-
-::: tab Go
-
 ```go
 // ExampleWriteProducer.go
 ```
 
-:::
-
-::: tab Python3
 @snippet examples/py/snippets/guides.py common append-records
-:::
 
-::::
+:::
 
 ## 使用 BufferedProducer
 
@@ -71,29 +61,19 @@ batch 发送到服务器。每一条 record 被写入 stream 时，HServer 将�
 响应的 trigger，以通知 producers 何时应该刷新，以及 `FlowControlSetting` 来限制
 `BufferedProducer` 中的 buffer 的最大字节数。
 
-:::: tabs
-
-::: tab Java
+::: code-group
 
 ```java
 // WriteDataBufferedExample.java
 ```
 
-:::
-
-::: tab Go
-
 ```go
 // ExampleWriteBatchProducer.go
 ```
 
-:::
-
-::: tab Python3
 @snippet examples/py/snippets/guides.py common buffered-append-records
-:::
 
-::::
+:::
 
 ## 使用分区键（Partition Key）
 
@@ -103,22 +83,14 @@ batch 发送到服务器。每一条 record 被写入 stream 时，HServer 将�
 
 参考下面的例子，你可以很容易地写入带有分区键的 records。
 
-:::: tabs
-
-::: tab Java
+::: code-group
 
 ```java
 // WriteDataWithKeyExample.java
 ```
-
-:::
-
-::: tab Go
 
 ```go
 // ExampleWriteBatchProducerMultiKey.go
 ```
 
 :::
-
-::::
