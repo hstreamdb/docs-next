@@ -10,7 +10,7 @@ For ease of illustration, we execute an interactive bash shell in the HStream
 container to use HStream admin,
 
 The following example usage is based on the cluster started in
-[quick start](../start/quickstart-with-docker.md), please adjust
+[quick start](../quickstart-with-docker.md), please adjust
 correspondingly.
 
 ```sh
