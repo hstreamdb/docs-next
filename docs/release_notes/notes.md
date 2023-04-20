@@ -294,7 +294,7 @@ details.
 We provide a basic monitoring solution based on Prometheus and Grafana. Metrics
 collected by HStreamDB will be stored in Prometheus by the exporter and
 displayed on the Grafana board. For details, refer to
-[the documentation](../operation/monitoring/grafana.md).
+[the documentation](../operation/monitoring/grafana/grafana.md).
 
 #### Deployment on K8s with Helm
 
