@@ -75,10 +75,10 @@ async function* getFiles(dir: string, rootDir = dir) {
   }
 }
 
-export async function genSidebar(dir: string) {
+export async function genSidebar(dir: string, rootDir = dir) {
   const sidebar: any[] = []
 
-  for await (const f of getFiles(dir)) {
+  for await (const f of getFiles(dir, rootDir)) {
     sidebar.push(f)
   }
 
