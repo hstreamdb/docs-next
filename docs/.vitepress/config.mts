@@ -7,9 +7,9 @@ const sidebarZh = await genSidebar('docs/zh', 'docs')
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'HStreamDB Docs',
-  titleTemplate: ':title | HStreamDB Docs',
-  description: 'HStreamDB Documentation.',
+  title: 'HStream Docs',
+  titleTemplate: ':title | HStream Docs',
+  description: 'HStream Documentation.',
   head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }]],
   lastUpdated: true,
   ignoreDeadLinks: true,
@@ -32,9 +32,9 @@ export default defineConfig({
     zh: {
       label: 'Chinese',
       lang: 'zh',
-      title: 'HStreamDB 文档',
-      titleTemplate: ':title | HStreamDB 文档',
-      description: 'HStreamDB 文档。',
+      title: 'HStream 文档',
+      titleTemplate: ':title | HStream 文档',
+      description: 'HStream 文档。',
       themeConfig: {
         sidebar: sidebarZh,
       },
