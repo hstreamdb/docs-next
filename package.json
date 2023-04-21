@@ -7,6 +7,6 @@
   "devDependencies": {
     "@types/node": "^18.15.11",
     "embedme": "^1.22.1",
-    "vitepress": "1.0.0-alpha.65"
+    "vitepress": "1.0.0-alpha.73"
   }
 }

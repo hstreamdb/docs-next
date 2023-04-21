@@ -19,6 +19,9 @@ export default defineConfig({
 
     sidebar: sidebarEn,
 
+    search: {
+      provider: 'local',
+    },
     socialLinks: [{ icon: 'github', link: 'https://github.com/hstreamdb/hstream' }],
   },
   locales: {
