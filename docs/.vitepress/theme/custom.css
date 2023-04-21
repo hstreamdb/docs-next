@@ -4,6 +4,8 @@
   --vp-c-brand: #613eda;
   --vp-c-brand-dark: #5029d6;
   --vp-c-brand-darker: #4825c0;
+
+  --vp-sidebar-bg-color: var(--vp-c-bg);
 }
 
 .dark {
@@ -12,4 +14,27 @@
   --vp-c-brand: #8469e2;
   --vp-c-brand-dark: #7353de;
   --vp-c-brand-darker: #613eda;
+}
+
+.VPNavBar {
+  border-bottom-color: var(--vp-c-divider) !important;
+}
+
+.VPNavBar .curtain:before {
+  display: none !important;
+}
+
+.VPNavBarTitle .title {
+  border-bottom: none;
+}
+
+.VPSidebar:after {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-color: var(--vp-c-divider);
 }
