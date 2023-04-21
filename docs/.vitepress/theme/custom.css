@@ -1,10 +1,15 @@
 :root {
-  --vp-c-brand-light: #8165e1;
+  --vp-c-brand-lighter: #8469e2;
+  --vp-c-brand-light: #7353de;
   --vp-c-brand: #613eda;
-  --vp-c-brand-dark: #3d20a4;
+  --vp-c-brand-dark: #5029d6;
+  --vp-c-brand-darker: #4825c0;
 }
 
-:root.dark {
-  --vp-c-brand: #8165e1;
-  --vp-c-brand-dark: #613eda;
+.dark {
+  --vp-c-brand-lighter: #a794ea;
+  --vp-c-brand-light: #967ee6;
+  --vp-c-brand: #8469e2;
+  --vp-c-brand-dark: #7353de;
+  --vp-c-brand-darker: #613eda;
 }
