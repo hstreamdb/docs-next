@@ -1,4 +1,4 @@
-# HStreamDB release notes
+# 发布说明
 
 ## v0.14.0 [2023-02-28]
 
@@ -6,8 +6,7 @@
 - Add deployment support for CentOS 7
 - Add stats for failed record delivery in subscriptions
 - Remove `pushQuery` RPC from the protocol
-- Fix the issue causing client stalls when multiple clients consume the same
-  subscription, and one fails to acknowledge
+- Fix the issue causing client stalls when multiple clients consume the same subscription, and one fails to acknowledge
 - Fix possible memory leaks caused by STM
 - Fix cluster bootstrap issue causing incorrect status display
 - Fix the issue that allows duplicate consumer names on the same subscription
@@ -18,25 +17,20 @@
 
 - hserver is built with ghc 9.2 by default now
 - Add support for getting the IP of the proxied client
-- Add support for overloading the client's `user-agent` by setting `proxy-agent`
+- Add support for overloading the client's ``user-agent`` by setting ``proxy-agent``
 - Fix the statistics of retransmission and response metrics of subscriptions
 - Fix some issues of the processing engine
-- CLI: add `service-url` option
+- CLI: add ``service-url`` option
 
 ## v0.12.0 [2022-12-29]
 
-- Add a new RPC interface for getting information about clients connected to the
-  subscription (including IP, type and version of client SDK, etc.)
-- Add a new RPC interface for getting the progress of consumption on a
-  subscription
-- Add a new RPC interface for listing the current `ShardReader`s
-- Add TLS support for `advertised-listener`s
-- Add support for file-based metadata storage, mainly for simplifying deployment
-  in local development and testing environments
-- Add support for configuring the number of copies of the internal stream that
-  stores consumption progress
-- Fix the problem that the consumption progress of subscriptions was not saved
-  correctly in some cases
+- Add a new RPC interface for getting information about clients connected to the subscription (including IP, type and version of client SDK, etc.)
+- Add a new RPC interface for getting the progress of consumption on a subscription
+- Add a new RPC interface for listing the current ``ShardReader``s
+- Add TLS support for ``advertised-listener``s
+- Add support for file-based metadata storage, mainly for simplifying deployment in local development and testing environments
+- Add support for configuring the number of copies of the internal stream that stores consumption progress
+- Fix the problem that the consumption progress of subscriptions was not saved correctly in some cases
 - Improve the CLI tool:
   - simplify some command options
   - improve cluster interaction
@@ -45,23 +39,20 @@
 - Switch to a new planner implementation for HStream SQL
   - Improve stability and performance
   - Improve the support for subqueries in the FROM clause
-  - add a new `EXPLAIN` statement for viewing logical execution plans
+  - add a new ``EXPLAIN`` statement for viewing logical execution plans
   - more modular design for easy extension and optimization
 
 ## v0.11.0 [2022-11-25]
 
 - Add support for getting the creation time of streams and subscriptions
-- Add `subscription` subcommand in hstream CLI
-- [**Breaking change**]Remove the compression option on the hserver side(should
-  use end-to-end compression instead)
+- Add ``subscription`` subcommand in hstream CLI
+- [**Breaking change**]Remove the compression option on the hserver side(should use end-to-end compression instead)
 - Remove logid cache
-- Unify resource naming rules and improve the corresponding resource naming
-  checks
-- [**Breaking change**]Rename hserver's startup parameters `host` and `address`
-  to `bind-address` and `advertised-address`
+- Unify resource naming rules and improve the corresponding resource naming checks
+- [**Breaking change**]Rename hserver's startup parameters ``host`` and ``address`` to ``bind-address`` and ``advertised-address``
 - Fix routing validation for some RPC requests
 - Fix a possible failure when saving the progress of a subscription
-- Fix incorrect results of `JOIN .. ON`
+- Fix incorrect results of ``JOIN .. ON``
 - Fix the write operation cannot be retried after got a timeout error
 
 ## v0.10.0 [2022-10-28]
@@ -70,35 +61,21 @@
 
 #### End-to-end compression
 
-In this release we have introduced a new feature called end-to-end compression,
-which means data will be compressed in batches at the client side when it is
-written, and the compressed data will be stored directly by HStore. In addition,
-the client side can automatically decompress the data when it is consumed, and
-the whole process is not perceptible to the user.
+In this release we have introduced a new feature called end-to-end compression, which means data will be compressed in batches at the client side when it is written, and the compressed data will be stored directly by HStore. In addition, the client side can automatically decompress the data when it is consumed, and the whole process is not perceptible to the user.
 
-In high-throughput scenarios, enabling end-to-end data compression can
-significantly alleviate network bandwidth bottlenecks and improve read and write
-performance.Our benchmark shows more than 4x throughput improvement in this
-scenario, at the cost of increased CPU consumption on the client side.
+In high-throughput scenarios, enabling end-to-end data compression can significantly alleviate network bandwidth bottlenecks and improve read and write performance.Our benchmark shows more than 4x throughput improvement in this scenario, at the cost of increased CPU consumption on the client side.
 
 #### HStream SQL Enhancements
 
-In this release we have introduced many enhancements for HStream SQL, see
-[here](#hstream-sql) for details.
+In this release we have introduced many enhancements for HStream SQL, see [here](#hstream-sql) for details.
 
 #### HServer based on a new gRPC library
 
-In this release we replaced the gRPC-haskell library used by HServer with a new
-self-developed gRPC library, which brings not only better performance but also
-improved long-term stability.
+In this release we replaced the gRPC-haskell library used by HServer with a new self-developed gRPC library, which brings not only better performance but also improved long-term stability.
 
 #### Rqlite Based MetaStore
 
-In this release we have refactored the MetaStore component of HStreamDB to make
-it more scalable and easier to use. We also **experimentally** support the use
-of Rqlite instead of Zookeeper as the default MetaStore implementation, which
-will make the deployment and maintenance of HStreamDB much easier. Now HServer,
-HStore and HStream IO all use a unified MetaStore to store metadata.
+In this release we have refactored the MetaStore component of HStreamDB to make it more scalable and easier to use. We also **experimentally** support the use of Rqlite instead of Zookeeper as the default MetaStore implementation, which will make the deployment and maintenance of HStreamDB much easier. Now HServer, HStore and HStream IO  all use a unified MetaStore to store metadata.
 
 ### HServer
 
@@ -121,22 +98,16 @@ HStore and HStream IO all use a unified MetaStore to store metadata.
 - Add existence check for dependent streams when creating a view
 - Fix an issue where new nodes could fail when joining a cluster
 - Fix may overflow while decoding batchedRecord
-- Check metadata first before initializing sub when recving fetch request to
-  avoid inconsistency
+- Check metadata first before initializing sub when recving fetch request to avoid inconsistency
 - Fix max-record-size option validation
 
 ### HStream SQL
 
 - Full support of subqueries. A subquery can replace almost any expression now.
-- Refinement of data types. It supports new types such as date, time, array and
-  JSON. It also supports explicit type casting and JSON-related operators.
-- Adjustment of time windows. Now every source stream can have its own time
-  window rather than a global one.
-- More general queries on materialized views. Now any SQL clauses applicable to
-  a stream can be performed on a materialized view, including nested subqueries
-  and time windows.
-- Optimized JOIN clause. It supports standard JOINs such as CROSS, INNER, OUTER
-  and NATURAL. It also allows JOIN between streams and materialized views.
+- Refinement of data types. It supports new types such as date, time, array and JSON. It also supports explicit type casting and JSON-related operators.
+- Adjustment of time windows. Now every source stream can have its own time window rather than a global one.
+- More general queries on materialized views.  Now any SQL clauses applicable to a stream can be performed on a materialized view, including nested subqueries and time windows.
+- Optimized JOIN clause. It supports standard JOINs such as CROSS, INNER, OUTER and NATURAL. It also allows JOIN between streams and materialized views.
 
 ### HStream IO
 
@@ -145,28 +116,26 @@ HStore and HStream IO all use a unified MetaStore to store metadata.
 
 ### Java Client
 
-[hstream-java v0.10.0](https://github.com/hstreamdb/hstreamdb-java/releases/tag/v0.10.0)
-has been released:
+[hstream-java v0.10.0](https://github.com/hstreamdb/hstreamdb-java/releases/tag/v0.10.0) has been released:
 
 #### New Features
 
 - Add support for e2e compression: zstd, gzip
-- Add `StreamBuilder `
+- Add ``StreamBuilder ``
 
 #### Enhancements
 
-- Use `directExecutor` as default executor for `grpcChannel`
+- Use ``directExecutor`` as default executor for ``grpcChannel``
 
 #### Bug fixes
 
-- Fix `BufferedProducer` memory is not released in time
-- Fix missing `RecordId` in `Reader`'s results
+- Fix ``BufferedProducer`` memory is not released in time
+- Fix missing ``RecordId`` in ``Reader``'s results
 - Fix dependency conflicts when using hstreamdb-java via maven
 
 ### Go Client
 
-[hstream-go v0.3.0](https://github.com/hstreamdb/hstreamdb-go/releases/tag/v0.3.0)
-has been released:
+[hstream-go v0.3.0](https://github.com/hstreamdb/hstreamdb-go/releases/tag/v0.3.0) has been released:
 
 - Add support for TLS
 - Add support for e2e compression: zstd, gzip
@@ -174,8 +143,7 @@ has been released:
 
 ### Python Client
 
-[hstream-py v0.3.0](https://github.com/hstreamdb/hstreamdb-py/releases/tag/v0.3.0)
-has been released:
+[hstream-py v0.3.0](https://github.com/hstreamdb/hstreamdb-py/releases/tag/v0.3.0) has been released:
 
 - Add support for e2e compression: gzip
 - Add support for hrecord in BufferedProducer
@@ -194,8 +162,8 @@ Add a new [rust client](https://github.com/hstreamdb/hstreamdb-rust)
 
 ### Other Tools
 
-- Add a new tool [hdt](https://github.com/hstreamdb/deployment-tool) for
-  deployment
+- Add a new tool [hdt](https://github.com/hstreamdb/deployment-tool) for deployment
+
 
 ## v0.9.0 [2022-07-29]
 
@@ -286,8 +254,7 @@ To make CLI more unified and more straightforward, we have migrated the old
 HStream SQL Shell and some other node management functionalities to the new
 HStream CLI. HStream CLI currently supports operations such as starting an
 interacting SQL shell, sending bootstrap initiation and checking server node
-status. You can refer to [the CLI documentation](../reference/cli.md) for
-details.
+status. You can refer to [the CLI documentation](../reference/cli.md) for details.
 
 #### Monitoring with Grafana
 
@@ -299,8 +266,7 @@ displayed on the Grafana board. For details, refer to
 #### Deployment on K8s with Helm
 
 We provide a helm chart to support deploying HStreamDB on k8s using Helm. You
-can refer to [the documentation](../operation/deployment/deploy-helm.md) for
-details.
+can refer to [the documentation](../operation/deployment/deploy-helm.md) for details.
 
 ### Java Client
 

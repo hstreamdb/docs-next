@@ -19,10 +19,23 @@ export default defineConfig({
 
     sidebar: sidebarEn,
 
+    nav: [
+      {
+        text: 'hstream.io',
+        link: 'https://hstream.io/',
+      },
+      {
+        text: 'Latest',
+        items: [{ text: 'Release Notes', link: '/release-notes' }],
+      },
+    ],
     search: {
       provider: 'local',
     },
     socialLinks: [{ icon: 'github', link: 'https://github.com/hstreamdb/hstream' }],
+    editLink: {
+      pattern: 'https://github.com/hstreamdb/docs-next/edit/main/docs/:path',
+    },
   },
   locales: {
     root: {
@@ -37,6 +50,17 @@ export default defineConfig({
       description: 'HStream 文档。',
       themeConfig: {
         sidebar: sidebarZh,
+
+        nav: [
+          {
+            text: 'hstream.io',
+            link: 'https://hstream.io/',
+          },
+          {
+            text: 'Latest',
+            items: [{ text: '发布说明', link: '/zh/release-notes' }],
+          },
+        ],
       },
     },
   },
