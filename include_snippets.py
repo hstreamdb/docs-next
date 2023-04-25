@@ -67,5 +67,5 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    for file in glob.iglob(args.file_pattern):
+    for file in glob.iglob(args.file_pattern, recursive=True):
         run_commands(args.snippets_root, file)
