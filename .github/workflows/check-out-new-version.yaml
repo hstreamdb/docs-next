@@ -37,7 +37,3 @@ jobs:
           labels: |
             documentation
             release
-
-      - name: Delete tag branch
-        run: |
-          git push --delete origin release-${{ github.ref_name }}
