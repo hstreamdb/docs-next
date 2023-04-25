@@ -32,8 +32,6 @@ jobs:
             [1]: https://github.com/peter-evans/create-pull-request
           branch: release-${{ github.ref_name }}
           base: main
-          # reviewers: |
-          #   daleiz
           labels: |
             documentation
             release
