@@ -2,7 +2,7 @@ import { join } from 'path'
 import { createReadStream, promises as fs } from 'fs'
 import readline from 'readline'
 
-const ignoredDirs = ['.vitepress', 'images', 'public', 'zh', '_index.md']
+const ignoredDirs = /^(?:\.vitepress|images|public|zh|_index\.md)/
 
 /**
  * Returns the first line of the file.
@@ -31,11 +31,23 @@ async function* getFiles(dir: string, rootDir = dir) {
   for (const dirent of dirents) {
     const name = dirent.name
 
-    if (ignoredDirs.includes(name)) continue
+    if (ignoredDirs.test(name)) {
+      continue
+    }
 
     const res = join(dir, name)
 
     if (dirent.isDirectory()) {
+      // Generate versioned sidebars.
+      if (/^v[0-9\.]+/.test(name)) {
+        yield {
+          version: name,
+          sidebar: getFiles(res, rootDir),
+        }
+
+        continue
+      }
+
       const items: any[] = []
 
       for await (const f of getFiles(res, rootDir)) {
@@ -75,12 +87,43 @@ async function* getFiles(dir: string, rootDir = dir) {
   }
 }
 
-export async function genSidebar(dir: string, rootDir = dir) {
+export async function genSidebarAndVersions(dir: string, rootDir = dir) {
+  // '/' or '/zh'
+  const relativeDir = join('/', dir.replace(rootDir, ''))
+
   const sidebar: any[] = []
+  const versionedSidebars: Record<string, any[]> = {}
 
   for await (const f of getFiles(dir, rootDir)) {
-    sidebar.push(f)
+    // If `f` has a `version` property, it means it's a versioned sidebar.
+    if (f.version) {
+      const versionSidebar: any[] = []
+
+      for await (const ff of f.sidebar) {
+        versionSidebar.push(ff)
+      }
+
+      versionedSidebars[join(relativeDir, f.version, '/')] = versionSidebar.sort((a, b) => a.order - b.order)
+    } else {
+      sidebar.push(f)
+    }
   }
 
-  return sidebar.sort((a, b) => a.order - b.order)
+  return {
+    sidebar: { '/': sidebar.sort((a, b) => a.order - b.order), ...versionedSidebars },
+    versions: {
+      text: 'Versions',
+      items: [
+        {
+          text: 'Latest',
+          link: join(relativeDir, '/'),
+        },
+        ...Object.keys(versionedSidebars).map((v) => ({
+          text: v.replace(relativeDir, '').replace(/\//g, ''),
+          link: v,
+          activeMatch: v,
+        })),
+      ],
+    },
+  }
 }

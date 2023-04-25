@@ -1,9 +1,9 @@
 import { defineConfig } from 'vitepress'
 
-import { genSidebar } from './sidebar'
+import { genSidebarAndVersions } from './sidebar'
 
-const sidebarEn = await genSidebar('docs')
-const sidebarZh = await genSidebar('docs/zh', 'docs')
+const { sidebar: sidebarEn, versions: versionsEn } = await genSidebarAndVersions('docs')
+const { sidebar: sidebarZh, versions: versionsZh } = await genSidebarAndVersions('docs/zh', 'docs')
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -24,10 +24,7 @@ export default defineConfig({
         text: 'hstream.io',
         link: 'https://hstream.io/',
       },
-      {
-        text: 'Latest',
-        items: [{ text: 'Release Notes', link: '/release-notes' }],
-      },
+      versionsEn,
     ],
     search: {
       provider: 'local',
@@ -56,10 +53,7 @@ export default defineConfig({
             text: 'hstream.io',
             link: 'https://hstream.io/',
           },
-          {
-            text: 'Latest',
-            items: [{ text: '发布说明', link: '/zh/release-notes' }],
-          },
+          versionsZh,
         ],
       },
     },
