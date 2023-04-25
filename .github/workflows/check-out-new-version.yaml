@@ -11,6 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Create tag branch
+        run: |
+          git checkout -b release-${{ github.ref_name }}
+          git push origin release-${{ github.ref_name }}
+
       - name: Check out new version
         run: ./check-out-version.sh --version ${{ github.ref_name }}
 
@@ -26,9 +31,12 @@ jobs:
 
             [1]: https://github.com/peter-evans/create-pull-request
           branch: ${{ github.ref_name }}
-          base: ${{ github.head_ref }}
           # reviewers: |
           #   daleiz
           labels: |
             documentation
             release
+
+      - name: Delete tag branch
+        run: |
+          git push --delete origin release-${{ github.ref_name }}
