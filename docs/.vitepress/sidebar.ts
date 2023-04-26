@@ -1,6 +1,7 @@
 import { join } from 'path'
 import { createReadStream, promises as fsp, constants as fsConstants } from 'fs'
 import readline from 'readline'
+import matter from 'gray-matter'
 
 const ignoredDirs = /^(?:\.vitepress|images|public|zh|_index\.md)/
 
@@ -56,7 +57,9 @@ async function* getFiles(dir: string, rootDir = dir) {
         items.push(f)
       }
 
-      const title = await getFirstLine(join(res, '_index.md'))
+      const _index = matter(await fsp.readFile(join(res, '_index.md'), 'utf8'))
+      const title = _index.data.title ? _index.data.title : _index.content
+
       const hasIndex = await fsp
         .access(join(res, 'index.md'), fsConstants.F_OK)
         .then(() => true)
@@ -66,7 +69,7 @@ async function* getFiles(dir: string, rootDir = dir) {
         text: title,
         ...(hasIndex && { link: join(res.replace(rootDir, ''), 'index.md') }),
         items: items.sort((a, b) => a.order - b.order),
-        collapsed: true,
+        collapsed: _index.data.collapsed !== undefined ? _index.data.collapsed : true,
         order: order[name],
       }
     } else if (dirent.isFile() && res.endsWith('.md')) {
