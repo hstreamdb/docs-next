@@ -20,10 +20,11 @@ if [[ -z "$VERSION" ]]; then
 fi
 
 cp -r docs docs-$VERSION
-rmdir docs-$VERSION/.vitepress
-rmdir docs-$VERSION/v*
-rmdir docs-$VERSION/zh/v*
+rm -rf docs-$VERSION/.vitepress
+rm -rf docs-$VERSION/public
+rm -rf docs-$VERSION/v*
+rm -rf docs-$VERSION/zh/v*
 
 # Move zh docs first.
-mv docs-$VERSION/zh docs/zh/$VERSION
-mv docs-$VERSION docs/$VERSION
+mv "docs-$VERSION/zh" "docs/zh/$VERSION"
+mv "docs-$VERSION" "docs/$VERSION"

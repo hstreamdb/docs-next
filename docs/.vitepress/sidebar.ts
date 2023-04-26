@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { createReadStream, promises as fs } from 'fs'
+import { createReadStream, promises as fsp, constants as fsConstants } from 'fs'
 import readline from 'readline'
 
 const ignoredDirs = /^(?:\.vitepress|images|public|zh|_index\.md)/
@@ -21,8 +21,8 @@ async function getFirstLine(file: string): Promise<string> {
 }
 
 async function* getFiles(dir: string, rootDir = dir) {
-  const dirents = await fs.readdir(dir, { withFileTypes: true })
-  const order = JSON.parse(await fs.readFile(join(dir, 'list.json'), 'utf8')).reduce((acc, cur, i) => {
+  const dirents = await fsp.readdir(dir, { withFileTypes: true })
+  const order = JSON.parse(await fsp.readFile(join(dir, 'list.json'), 'utf8')).reduce((acc, cur, i) => {
     acc[cur] = i
 
     return acc
@@ -57,8 +57,8 @@ async function* getFiles(dir: string, rootDir = dir) {
       }
 
       const title = await getFirstLine(join(res, '_index.md'))
-      const hasIndex = await fs
-        .access(join(res, 'index.md'), fs.constants.F_OK)
+      const hasIndex = await fsp
+        .access(join(res, 'index.md'), fsConstants.F_OK)
         .then(() => true)
         .catch(() => false)
 
