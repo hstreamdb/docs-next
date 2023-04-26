@@ -6,6 +6,7 @@ The next generation of documentation for HStreamDB.
 
 - [Development](#development)
   - [Normal markdown files](#normal-markdown-files)
+  - [`index.md`](#indexmd)
   - [\_index.md](#_indexmd)
   - [list.json](#listjson)
   - [About sidebar](#about-sidebar)
@@ -24,6 +25,7 @@ The rest of the time after that you will most likely be editing the following fi
 
 - `docs/**/*.md`
   - [Normal markdown files](#normal-markdown-files)
+  - [`index.md`](#indexmd)
   - [`_index.md`](#_indexmd)
 - [`docs/**/list.json`](#listjson)
 
@@ -31,16 +33,34 @@ We'll talk about what these files do later.
 
 ### Normal markdown files
 
-Normal markdown files are just markdown files that are not `_index.md`. They are rendered as a single doc page
-based on the file structure of the `docs` folder.
+Normal markdown files are just markdown files that are not `index.md` or `_index.md`. They are rendered as a single doc page based on the file structure of the `docs` folder.
+
+### index.md
+
+`index.md` is a special file that is used to represent a separate directory page. This means that when you click on the group in the sidebar, it won't expand or collapse the group by default, but will display the contents of `index.md` instead.
 
 ### \_index.md
 
-`_index.md` is a special file that is used to generate the [sidebar](#about-sidebar).
+`_index.md` is a special file that is used to generate the [sidebar](#about-sidebar). It contains the metadata of the group and **must exist**.
 
-The folder which contains `_index.md` will be rendered as a group in the sidebar. The content of `_index.md` will be rendered as the description of the group. If it is not present, the group will be rendered as the folder name.
+Currently, it supports the following metadata:
 
-For example, the content of `docs/guides/_index.md` is `User Guides`, so the group `guides` will be rendered as `User Guides` in the sidebar.
+```markdown
+---
+title: <title>
+collapsed: <collapsed:true|false>
+---
+
+<title>
+```
+
+- `<title>` is the name of the group. If it is not present, the group name will be rendered as the folder name.
+
+  > The priority of `<title>` in the front matter is higher than the `<title>` in the content (all of the content will also be treated as the group name).
+
+  For example, if you write `title: User Guides` or the content of `docs/guides/_index.md` is `User Guides`, so the group `guides` will be rendered as `User Guides` in the sidebar.
+
+- `<collapsed>` is used to control whether the group is collapsed by default. If it is not present, the group will be collapsed by default.
 
 ### list.json
 
