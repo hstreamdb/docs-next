@@ -2,4 +2,4 @@
 collapsed: false
 ---
 
-Administration
+Get started
