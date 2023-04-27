@@ -1,5 +1,0 @@
----
-collapsed: false
----
-
-Administration

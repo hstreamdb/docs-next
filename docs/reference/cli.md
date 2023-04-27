@@ -10,7 +10,7 @@ For ease of illustration, we execute an interactive bash shell in the HStream
 container to use HStream admin,
 
 The following example usage is based on the cluster started in
-[quick start](../quickstart-with-docker.md), please adjust
+[quick start](../start/quickstart-with-docker.md), please adjust
 correspondingly.
 
 ```sh
@@ -80,12 +80,12 @@ In the cases where both `--service-url` and the options below are specified, the
 
 ### Security Settings (optional)
 
-If the [security option](../operation/security/overview.md) is enabled, here are
+If the [security option](../security/overview.md) is enabled, here are
 some options that should also be configured for CLI correspondingly.
 
 #### Encryption
 
-If [server encryption](../operation/security/encryption.md) is enabled, the
+If [server encryption](../security/encryption.md) is enabled, the
 `--tls-ca` option should be added to CLI connection options:
 
 ```sh
@@ -94,7 +94,7 @@ hstream --tls-ca "<path to the CA certificate file>"
 
 ### Authentication
 
-If [server authentication](../operation/security/authentication.md) is enabled,
+If [server authentication](../security/authentication.md) is enabled,
 the `--tls-key` and `--tls-cert` options should be added to CLI connection
 options:
 
