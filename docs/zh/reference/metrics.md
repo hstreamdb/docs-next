@@ -1,8 +1,5 @@
 # HStream Metrics
 
-Table of metrics, and for usage, please refer to
-[Monitoring](../operation/monitoring/grafana/grafana.md) chapter.
-
 Note: For metrics with intervals, such as stats in categories like stream and
 subscription, users can specify intervals (default intervals [1min, 5min,
 10min]). The smaller the interval, the closer it gets to the rate in real-time.
