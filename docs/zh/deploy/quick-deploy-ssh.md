@@ -240,10 +240,6 @@ hserver:
 
 The HServer section is used to specify the configuration options for the `hserver` instance.
 
-- `advertised_listener`: please refer to [advertised_listeners](../advertised_listeners.md) for detailed information. 
-
-  
-
 ### HAdmin
 
 ```yaml

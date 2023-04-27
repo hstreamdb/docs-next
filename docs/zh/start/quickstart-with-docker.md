@@ -1,5 +1,4 @@
-<!-- 快速上手 -->
-# 使用 Docker-Compose 快速上手
+# 使用 Docker-Compose 快速开始
 
 ## 前提条件
 

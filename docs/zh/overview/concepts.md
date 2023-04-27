@@ -1,4 +1,4 @@
-# 概念
+# Concepts
 
 This page explains key concepts in HStream, which we recommend you to understand before you start.
 

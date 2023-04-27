@@ -1,4 +1,4 @@
-<!-- 介绍 -->
+<!-- Introduction -->
 # Introduction to HStreamDB
 
 ## Overview

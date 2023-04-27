@@ -25,7 +25,7 @@ streams to get some useful information.
 ## Requirements
 
 Ensure you have deployed HStreamDB successfully. The easiest way is to follow
-[quickstart](../quickstart-with-docker.md) to start a local cluster. Of
+[quickstart](../start/quickstart-with-docker.md) to start a local cluster. Of
 course, you can also try other methods mentioned in the Deployment part.
 
 ## Step 1: Create related streams
@@ -69,9 +69,8 @@ data yet. So let's do that.
 ## Step 3: Insert data into streams
 
 There are multiple ways to insert data into the streams, such as client
-libraries and HStream IO, and the data inserted will all be cheated the same
-while processing. You can refer to [guides](./write.md) for client usage or the
-[overview](../io/overview.md) of HStream IO.
+libraries, and the data inserted will all be cheated the same
+while processing. You can refer to [write data](../write/write.md) for client usage.
 
 For consistency and ease of demonstration, we would use SQL statements.
 
