@@ -21,7 +21,7 @@ group of the subscription specified.
 
 ### Two HStream Record types and corresponding receivers
 
-As we [explained](./write.md#hstream-record), there are two types of records in
+As we [explained](../write/write.md#hstream-record), there are two types of records in
 HStreamDB, HRecord and RawRecord. When initiating a consumer, corresponding
 receivers are required. In the case where only HRecord Receiver is set, when the
 consumer received a raw record, the consumer will ignore it and consume the next

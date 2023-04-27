@@ -248,7 +248,7 @@ In particular, this release provides connectors listed below:
   - [sink-mysql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_mysql_spec.md)
   - [sink-postgresql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_postgresql_spec.md)
 
-You can refer to [the documentation](../ingest-and-distribute/overview.md) to learn more about
+You can refer to [the documentation](./ingest-and-distribute/overview.md) to learn more about
 HStream IO.
 
 #### New Stream Processing Engine
@@ -259,7 +259,7 @@ magnificently. The new engine also supports **multi-way join**, **sub-queries**,
 and **more** general materialized views.
 
 The feature is still experimental. For try-outs, please refer to
-[the SQL guides](../process/sql.md).
+[the SQL guides](./process/sql.md).
 
 #### Gossip-based HServer Clusters
 
@@ -286,7 +286,7 @@ To make CLI more unified and more straightforward, we have migrated the old
 HStream SQL Shell and some other node management functionalities to the new
 HStream CLI. HStream CLI currently supports operations such as starting an
 interacting SQL shell, sending bootstrap initiation and checking server node
-status. You can refer to [the CLI documentation](../reference/cli.md) for
+status. You can refer to [the CLI documentation](./reference/cli.md) for
 details.
 
 #### Monitoring with Grafana
@@ -298,7 +298,7 @@ displayed on the Grafana board.
 #### Deployment on K8s with Helm
 
 We provide a helm chart to support deploying HStreamDB on k8s using Helm. You
-can refer to [the documentation](../deploy/deploy-helm.md) for
+can refer to [the documentation](./deploy/deploy-helm.md) for
 details.
 
 ### Java Client
@@ -325,7 +325,7 @@ has been released, with support for HStreamDB v0.9.
 
 #### New Features
 
-- Add [mutual TLS support](../security/overview.md)
+- Add [mutual TLS support](./security/overview.md)
 - Add `maxUnackedRecords` option in Subscription: The option controls the
   maximum number of unacknowledged records allowed. When the amount of unacked
   records reaches the maximum setting, the server will stop sending records to
@@ -461,11 +461,11 @@ HStreamDB end-users.
 #### Deployment and usage
 
 - Support quick deployment via the script, see:
-  [Manual Deployment with Docker](../deploy/deploy-docker.md)
+  [Manual Deployment with Docker](./deploy/deploy-docker.md)
 - Support config HStreamDB with a configuration file, see:
-  [HStreamDB Configuration](../reference/config.md)
+  [HStreamDB Configuration](./reference/config.md)
 - Support one-step docker-compose for quick-start:
-  [Quick Start With Docker Compose](../start/quickstart-with-docker.md)
+  [Quick Start With Docker Compose](./start/quickstart-with-docker.md)
 
 **To make use of HStreamDB v0.7, please use
 [hstreamdb-java v0.7.0](https://github.com/hstreamdb/hstreamdb-java) and above**
