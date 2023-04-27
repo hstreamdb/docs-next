@@ -22,9 +22,9 @@ starting position with the following options:
 ## Reader Example
 
 To read from the shards, users are required to get the desired shard id with
-[`listShards`](./shards.md#listshards).
+[`listShards`](../write/shards.md#listshards).
 
-The name of a reader should also follow the format specified by the [guidelines](./stream.md#guidelines-to-name-a-resource)
+The name of a reader should also follow the format specified by the [guidelines](../write/stream.md#guidelines-to-name-a-resource)
 
 ::: code-group
 
