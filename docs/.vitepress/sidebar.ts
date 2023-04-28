@@ -22,6 +22,7 @@ async function getFirstLine(file: string): Promise<string> {
 }
 
 async function* getFiles(dir: string, rootDir = dir) {
+  const originalDir = dir
   const dirents = await fsp.readdir(dir, { withFileTypes: true })
   const order = JSON.parse(await fsp.readFile(join(dir, 'list.json'), 'utf8')).reduce((acc, cur, i) => {
     acc[cur] = i
@@ -37,6 +38,11 @@ async function* getFiles(dir: string, rootDir = dir) {
     }
 
     const res = join(dir, name)
+
+    // Ignore the root index.md.
+    if (res === join(originalDir, 'index.md')) {
+      continue
+    }
 
     if (dirent.isDirectory()) {
       // Generate versioned sidebars.
@@ -64,6 +70,14 @@ async function* getFiles(dir: string, rootDir = dir) {
         .access(join(res, 'index.md'), fsConstants.F_OK)
         .then(() => true)
         .catch(() => false)
+
+      // HACK: force the first item in the overview group to be '/'.
+      if (name === 'overview') {
+        items.unshift({
+          text: 'Introduction',
+          link: join(originalDir.replace(rootDir, ''), '/'),
+        })
+      }
 
       yield {
         text: title,
