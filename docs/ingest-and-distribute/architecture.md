@@ -1,4 +1,4 @@
-# HStream IO Overview
+# Architecture
 
 HStream IO is an internal data integration framework for HStreamDB, composed of connectors and IO runtime.
 It allows interconnection with various external systems,
@@ -103,7 +103,7 @@ Airbyte and Pulsar IO inspired us to build a connector plugin as a Docker image 
 and design a protocol between HStream IO Runtime and connectors,
 but it brings more challenges to simplify the connector API,
 you can not implement a couple of Java interfaces to build a connector easily like Kafka Connect,
-you have to care about how to build a Docker image, 
+you have to care about how to build a Docker image,
 handle command line arguments,
 implement the protocol interfaces correctly, etc.
 
