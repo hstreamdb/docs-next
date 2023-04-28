@@ -75,7 +75,7 @@ async function* getFiles(dir: string, rootDir = dir) {
       if (name === 'overview') {
         items.unshift({
           text: 'Introduction',
-          link: '/',
+          link: join(originalDir.replace(rootDir, ''), '/'),
         })
       }
 
