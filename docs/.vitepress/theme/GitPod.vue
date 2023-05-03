@@ -10,7 +10,7 @@ const { theme, page } = useData()
       display: 'block',
       marginBottom: '1rem',
     }"
-    :href="`https://gitpod.io/#${theme.editLink.pattern.replace(':path', page.relativePath)}`"
+    :href="`https://gitpod.io/#${theme.editLink.pattern.replace(':path', page.filePath)}`"
     target="_blank"
     rel="noreferrer noopener"
   >
