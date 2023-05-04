@@ -146,7 +146,7 @@ docker exec zookeeper zkCli.sh get /logdevice.conf
 
 ## 配置 HStore 集群
 
-对于存储在 ZooKeeper 中的配置文件，假设配置文件中 `zookeeper_uri` 字段的值是 `"ip:/10.100.2.11:2181"` ，ZooKeeper中配置文件的路径是 `/logdevice.conf` 。
+对于存储在 ZooKeeper 中的配置文件，假设配置文件中 `zookeeper_uri` 字段的值是 `"ip:/10.100.2.11:2181"` ，ZooKeeper 中配置文件的路径是 `/logdevice.conf` 。
 
 对于存储在每个节点上的配置文件，假设你的文件路径是 `/data/logdevice/logdevice.conf'。
 
@@ -154,16 +154,16 @@ docker exec zookeeper zkCli.sh get /logdevice.conf
 
 - 配置文件存储在 ZooKeeper 中：
 
-  ```shell
+  ```shell-vue
   docker run --rm -d --name storeAdmin --network host -v /data/logdevice:/data/logdevice \
-          hstreamdb/hstream:latest /usr/local/bin/ld-admin-server \
+          hstreamdb/hstream:{{ $version() }} /usr/local/bin/ld-admin-server \
           --config-path zk:10.100.2.11:2181/logdevice.conf \
           --enable-maintenance-manager \
           --maintenance-log-snapshotting \
           --enable-safety-check-periodic-metadata-update
   ```
 
-  + 如果你有一个多节点的 ZooKeeper，请将`--config-path`替换为：
+  - 如果你有一个多节点的 ZooKeeper，请将`--config-path`替换为：
     `--config-path zk:10.100.2.11:2181,10.100.2.12:2181,10.100.2.13:2181/logdevice.conf`
 
 - 存储在每个节点的配置文件：
@@ -174,16 +174,16 @@ docker exec zookeeper zkCli.sh get /logdevice.conf
 
 - 存储在 ZooKeeper 中的配置文件：
 
-  ```shell
+  ```shell-vue
   docker run --rm -d --name hstore --network host -v /data/logdevice:/data/logdevice \
-          hstreamdb/hstream:latest /usr/local/bin/logdeviced \
+          hstreamdb/hstream:{{ $version() }} /usr/local/bin/logdeviced \
           --config-path zk:10.100.2.11:2181/logdevice.conf \
           --name store-0 \
           --address 192.168.0.3 \
           --local-log-store-path /data/logdevice
   ```
 
-  + 对于每个节点，你应该将`--name`更新为一个不同的值，并将`--address`更新为该节点的 IP 地址。
+  - 对于每个节点，你应该将`--name`更新为一个不同的值，并将`--address`更新为该节点的 IP 地址。
 
 - 存储在每个节点的配置文件：
 
@@ -231,9 +231,9 @@ Took 7.745s
 
 要启动一个单一的 `HServer` 实例，你可以修改启动命令以适应你的情况。
 
-```shell
+```shell-vue
 docker run -d --name hstream-server --network host \
-        hstreamdb/hstream:latest /usr/local/bin/hstream-server \
+        hstreamdb/hstream:{{ $version() }} /usr/local/bin/hstream-server \
         --bind-address $SERVER_HOST \
         --advertised-address $SERVER_HOST \
         --seed-nodes $SERVER_HOST \

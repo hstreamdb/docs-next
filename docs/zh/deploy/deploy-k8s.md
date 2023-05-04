@@ -149,8 +149,8 @@ zookeeper-2                                          1/1     Running   0        
 一旦所有的 logdevice pods 运行并准备就绪，你将需要 Bootstrap 集群以启用所有的存
 储节点。要做到这一点，请运行：
 
-```sh
-kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:latest -- \
+```sh-vue
+kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:{{ $version() }} -- \
     hadmin store --host logdevice-admin-server-service \
     nodes-config \
     bootstrap --metadata-replicate-across 'node:3'
@@ -162,21 +162,21 @@ kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:lat
 
 成功后，你应该看到类似如下：
 
-```
+```txt
 Successfully bootstrapped the cluster
 pod "hstream-admin" deleted
 ```
 
 现在，你可以 bootstrap server 节点：
 
-```sh
-kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:latest -- \
+```sh-vue
+kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:{{ $version() }} -- \
     hadmin server --host hstream-server-0.hstream-server init
 ```
 
 成功后，你应该看到类似如下：
 
-```
+```txt
 Cluster is ready!
 pod "hstream-admin" deleted
 ```
@@ -186,13 +186,13 @@ pod "hstream-admin" deleted
 
 ## 管理存储集群
 
-```sh
-kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:latest -- bash
+```sh-vue
+kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:{{ $version() }} -- bash
 ```
 
 现在你可以运行 `hadmin store` 来管理这个集群：
 
-```
+```sh
 hadmin store --help
 ```
 
@@ -202,7 +202,7 @@ hadmin store --help
 hadmin store --host logdevice-admin-server-service status
 ```
 
-```
+```txt
 +----+-------------+-------+---------------+
 | ID |    NAME     | STATE | HEALTH STATUS |
 +----+-------------+-------+---------------+

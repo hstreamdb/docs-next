@@ -2,8 +2,8 @@
 
 We can run the following to use HStream CLI:
 
-```sh
-docker run -it --rm --name some-hstream-admin --network host hstreamdb/hstream:latest hstream --help
+```sh-vue
+docker run -it --rm --name some-hstream-admin --network host hstreamdb/hstream:{{ $version() }} hstream --help
 ```
 
 For ease of illustration, we execute an interactive bash shell in the HStream
@@ -18,7 +18,7 @@ docker exec -it docker_hserver_1 bash
 > hstream --help
 ```
 
-```
+```txt
 ======= HStream CLI =======
 
 Usage: hstream [--host SERVER-HOST] [--port INT] [--tls-ca STRING]

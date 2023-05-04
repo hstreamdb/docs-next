@@ -10,6 +10,7 @@ The next generation of documentation for HStreamDB.
   - [\_index.md](#_indexmd)
   - [list.json](#listjson)
   - [About sidebar](#about-sidebar)
+  - [Special markdown syntaxes](#special-markdown-syntaxes)
 - [Release a new version](#release-a-new-version)
 
 ## Development
@@ -93,6 +94,26 @@ The sidebar is generated base on the file structure of the `docs` folder automat
 - Files in `docs/zh/v*` will be generated as the zh v\* sidebar.
 
 Even though the rules are a little complicated, you don't need to worry about it. [Once a version is released](#release-a-new-version), the sidebar will be generated automatically.
+
+### Special markdown syntaxes
+
+#### {{ $version() }}
+
+`{{ $version() }}` is a special syntax that is used to display the current version of the docs. It will be replaced with the current version when the docs are built. For example:
+
+> It's important to keep in mind that when using vue-style interpolation in code blocks, you should add a suffix of `-vue` to the language, such as `shell-vue`.
+
+Input:
+
+```sh
+docker pull hstreamdb/hstream:{{ $version() }}
+```
+
+Output:
+
+```sh
+docker pull hstreamdb/hstream:v0.15.0
+```
 
 ## Release a new version
 
