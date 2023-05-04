@@ -47,13 +47,9 @@ Create a stream before you write records or create a subscription.
 
 ::: code-group
 
-```java
-// CreateStreamExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/CreateStreamExample.java [Java]
 
-```go
-// ExampleCreateStream.go
-```
+<<< @/../examples/go/examples/ExampleCreateStream.go [Go]
 
 @snippet examples/py/snippets/guides.py common create-stream
 
@@ -75,13 +71,9 @@ stream.
 
 ::: code-group
 
-```java
-// DeleteStreamExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/DeleteStreamExample.java [Java]
 
-```go
-// ExampleDeleteStream.go
-```
+<<< @/../examples/go/examples/ExampleDeleteStream.go [Go]
 
 @snippet examples/py/snippets/guides.py common delete-stream
 
@@ -93,13 +85,9 @@ To get all streams in HStreamDB:
 
 ::: code-group
 
-```java
-// ListStreamsExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ListStreamsExample.java [Java]
 
-```go
-// ExampleListStreams.go
-```
+<<< @/../examples/go/examples/ExampleListStreams.go [Go]
 
 @snippet examples/py/snippets/guides.py common list-streams
 

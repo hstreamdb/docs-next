@@ -160,9 +160,9 @@ For the configuration file stored on each node, assume that your file path is
 
 - Configuration file stored in ZooKeeper：
 
-  ```shell
+  ```shell-vue
   docker run --rm -d --name storeAdmin --network host -v /data/logdevice:/data/logdevice \
-          hstreamdb/hstream:latest /usr/local/bin/ld-admin-server \
+          hstreamdb/hstream:{{ $version() }} /usr/local/bin/ld-admin-server \
           --config-path zk:10.100.2.11:2181/logdevice.conf \
           --enable-maintenance-manager \
           --maintenance-log-snapshotting \
@@ -182,9 +182,9 @@ For the configuration file stored on each node, assume that your file path is
 
 - Configuration file stored in ZooKeeper：
 
-  ```shell
+  ```shell-vue
   docker run --rm -d --name hstore --network host -v /data/logdevice:/data/logdevice \
-          hstreamdb/hstream:latest /usr/local/bin/logdeviced \
+          hstreamdb/hstream:{{ $version() }} /usr/local/bin/logdeviced \
           --config-path zk:10.100.2.11:2181/logdevice.conf \
           --name store-0 \
           --address 192.168.0.3 \
@@ -243,9 +243,9 @@ Now we finish setting up the `HStore` cluster.
 To start a single `HServer` instance, you can modify the start command to fit
 your situation:
 
-```shell
+```shell-vue
 docker run -d --name hstream-server --network host \
-        hstreamdb/hstream:latest /usr/local/bin/hstream-server \
+        hstreamdb/hstream:{{ $version() }} /usr/local/bin/hstream-server \
         --bind-address $SERVER_HOST \
         --advertised-address $SERVER_HOST \
         --seed-nodes $SERVER_HOST \

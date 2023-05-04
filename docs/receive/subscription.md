@@ -22,27 +22,15 @@ For the subscription name, please refer to the [guidelines to name a resource](.
 When creating a subscription, you can provide the attributes mentioned like
 this:
 
-::: code-
+::: code-group
 
-```java
-// CreateSubscriptionExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/CreateSubscriptionExample.java [Java]
 
-:::
+<<< @/../examples/go/examples/ExampleCreateSubscription.go [Go]
 
-::: tab Go
-
-```go
-// ExampleCreateSubscription.go
-```
-
-:::
-
-::: tab Python3
 @snippet examples/py/snippets/guides.py common create-subscription
-:::
 
-::::
+:::
 
 ## Delete a subscription
 
@@ -62,13 +50,9 @@ the deleted subscription.
 
 ::: code-group
 
-```java
-// DeleteSubscriptionExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/DeleteSubscriptionExample.java [Java]
 
-```go
-// ExampleDeleteSubscription.go
-```
+<<< @/../examples/go/examples/ExampleDeleteSubscription.go [Go]
 
 @snippet examples/py/snippets/guides.py common delete-subscription
 
@@ -80,13 +64,9 @@ To list all subscriptions in HStream
 
 ::: code-group
 
-```java
-// ListSubscriptionsExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ListSubscriptionsExample.java [Java]
 
-```go
-// ExampleListSubscriptions.go
-```
+<<< @/../examples/go/examples/ExampleListSubscriptions.go [Go]
 
 @snippet examples/py/snippets/guides.py common list-subscription
 

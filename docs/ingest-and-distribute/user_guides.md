@@ -88,8 +88,8 @@ A connector plugin is a docker image, so before you can set up the connectors,
 you should download and update their plugins with `docker pull`:
 
 ```shell
-docker pull hstreamdb/source-mysql:v0.2.3
-docker pull hstreamdb/sink-postgresql:v0.2.3
+docker pull hstreamdb/source-mysql:latest
+docker pull hstreamdb/sink-postgresql:latest
 ```
 
 [Here](https://hstream.io/docs/en/latest/io/connectors.html) is a table of all
@@ -102,8 +102,8 @@ SQLs to create connectors.
 
 Connect to the HStream server:
 
-```shell
-docker run -it --rm --network host hstreamdb/hstream:latest hstream sql --port 6570
+```shell-vue
+docker run -it --rm --network host hstreamdb/hstream:{{ $version() }} hstream sql --port 6570
 ```
 
 Create a source connector:

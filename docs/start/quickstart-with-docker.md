@@ -57,9 +57,7 @@ Do NOT use this configuration in your production environment!
 Create a docker-compose.yaml file for docker compose, you can
 [download][quick-start.yaml] or paste the following contents:
 
-```yaml
-# quick-start.yaml
-```
+<<< @/../assets/quick-start.yaml{yaml-vue}
 
 then run:
 
@@ -91,8 +89,8 @@ docker-compose -f quick-start.yaml logs -f hserver
 
 ## Start HStreamDB's interactive SQL CLI
 
-```sh
-docker run -it --rm --name some-hstream-cli --network host hstreamdb/hstream:latest hstream --port 6570 sql
+```sh-vue
+docker run -it --rm --name some-hstream-cli --network host hstreamdb/hstream:{{ $version() }} hstream --port 6570 sql
 ```
 
 If everything works fine, you will enter an interactive CLI and see help

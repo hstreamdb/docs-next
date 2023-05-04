@@ -26,7 +26,7 @@ def run_snippet_cmd(snippets_root, snippet_file, *labels):
     extension = os.path.splitext(snippet_file)[1]
     ft = FILE_TYPES[extension]
     blocks = "\n\n\n".join("".join(xs).strip() for xs in lines)
-    return f"```{ft}\n{blocks}\n```\n"
+    return f"```{ft} [Python]\n{blocks}\n```\n"
 
 
 support_commands = [("@snippet", run_snippet_cmd)]

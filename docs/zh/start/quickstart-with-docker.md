@@ -52,9 +52,7 @@ docker-compose -v
 
 创建一个 quick-start.yaml, 可以直接[下载][quick-start.yaml]或者复制以下内容:
 
-```yaml
-# quick-start.yaml
-```
+<<< @/../assets/quick-start.yaml{yaml-vue}
 
 在同一个文件夹中运行：
 
@@ -64,7 +62,7 @@ docker-compose -f quick-start.yaml up
 
 如果出现如下信息，表明现在已经有了一个运行中的 HServer：
 
-```
+```txt
 hserver_1    | [INFO][2021-11-22T09:15:18+0000][app/server.hs:137:3][thread#67]************************
 hserver_1    | [INFO][2021-11-22T09:15:18+0000][app/server.hs:145:3][thread#67]Server started on port 6570
 hserver_1    | [INFO][2021-11-22T09:15:18+0000][app/server.hs:146:3][thread#67]*************************
@@ -80,19 +78,19 @@ docker-compose -f quick-start.yaml up -d
 
 并且可以通过以下命令展示 logs ：
 
-```
+```sh
 docker-compose -f quick-start.yaml logs -f hserver
 ```
 
 ## 启动 HStreamDB 的 SQL 命令行界面
 
-```sh
-docker run -it --rm --name some-hstream-cli --network host hstreamdb/hstream:latest hstream --port 6570 sql
+```sh-vue
+docker run -it --rm --name some-hstream-cli --network host hstreamdb/hstream:{{ $version() }} hstream --port 6570 sql
 ```
 
 如果所有的步骤都正确运行，您将会进入到命令行界面，并且能看见一下帮助信息：
 
-```
+```txt
       __  _________________  _________    __  ___
      / / / / ___/_  __/ __ \/ ____/   |  /  |/  /
     / /_/ /\__ \ / / / /_/ / __/ / /| | / /|_/ /
@@ -170,7 +168,5 @@ INSERT INTO demo (temperature, humidity) VALUES (28, 86);
 {"temperature":28,"humidity":86}
 ```
 
-[non-root-docker]:
-  https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
-[quick-start.yaml]:
-  https://raw.githubusercontent.com/hstreamdb/docs/main/assets/quick-start.yaml
+[non-root-docker]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+[quick-start.yaml]: https://raw.githubusercontent.com/hstreamdb/docs/main/assets/quick-start.yaml

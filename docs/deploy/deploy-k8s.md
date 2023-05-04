@@ -155,8 +155,8 @@ zookeeper-2                                          1/1     Running   0        
 Once all the logdevice pods are running and ready, you'll need to bootstrap the
 cluster to enable all the nodes. To do that, run:
 
-```sh
-kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:latest -- \
+```sh-vue
+kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:{{ $version() }} -- \
   hadmin store --host logdevice-admin-server-service \
     nodes-config bootstrap --metadata-replicate-across 'node:3'
 ```
@@ -166,21 +166,21 @@ invokes the `nodes-config bootstrap` hadmin store command and sets the metadata
 replication property of the cluster to be replicated across three different
 nodes. On success, you should see something like:
 
-```
+```txt
 Successfully bootstrapped the cluster
 pod "hstream-admin" deleted
 ```
 
 Now, you can boostrap hstream server, by running the following command:
 
-```sh
-kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:latest -- \
+```sh-vue
+kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:{{ $version() }} -- \
     hadmin server --host hstream-server-0.hstream-server init
 ```
 
 On success, you should see something like:
 
-```
+```txt
 Cluster is ready!
 pod "hstream-admin" deleted
 ```
@@ -190,13 +190,13 @@ Note that depending on how fast the storage cluster completes bootstrap, running
 
 ## Managing the Storage Cluster
 
-```sh
-kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:latest -- bash
+```sh-vue
+kubectl run hstream-admin -it --rm --restart=Never --image=hstreamdb/hstream:{{ $version() }} -- bash
 ```
 
 Now you can run `hadmin store` to manage the cluster:
 
-```
+```sh
 hadmin store --help
 ```
 
@@ -206,7 +206,7 @@ To check the state of the cluster, you can then run:
 hadmin store --host logdevice-admin-server-service status
 ```
 
-```
+```txt
 +----+-------------+-------+---------------+
 | ID |    NAME     | STATE | HEALTH STATUS |
 +----+-------------+-------+---------------+
