@@ -44,9 +44,9 @@ to the client. The record id is unique in the stream.
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataSimpleExample.java
+<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataSimpleExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleWriteProducer.go
+<<< @/../examples/go/examples/ExampleWriteProducer.go [Go]
 
 @snippet examples/py/snippets/guides.py common append-records
 
@@ -68,9 +68,9 @@ bytes in a BufferedProducer.
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataBufferedExample.java
+<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataBufferedExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleWriteBatchProducer.go
+<<< @/../examples/go/examples/ExampleWriteBatchProducer.go [Go]
 
 @snippet examples/py/snippets/guides.py common buffered-append-records
 
@@ -91,8 +91,8 @@ You can easily write records with keys using the following example:
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataWithKeyExample.java
+<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataWithKeyExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleWriteBatchProducerMultiKey.go
+<<< @/../examples/go/examples/ExampleWriteBatchProducerMultiKey.go [Go]
 
 :::
