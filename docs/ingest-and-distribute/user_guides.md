@@ -102,8 +102,8 @@ SQLs to create connectors.
 
 Connect to the HStream server:
 
-```shell
-docker run -it --rm --network host hstreamdb/hstream:latest hstream sql --port 6570
+```shell-vue
+docker run -it --rm --network host hstreamdb/hstream:{{ $version() }} hstream sql --port 6570
 ```
 
 Create a source connector:
