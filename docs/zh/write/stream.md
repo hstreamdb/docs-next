@@ -37,13 +37,9 @@
 
 ::: code-group
 
-```java
-// CreateStreamExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/CreateStreamExample.java
 
-```go
-// ExampleCreateStream.go
-```
+<<< @/../examples/go/examples/ExampleCreateStream.go
 
 @snippet examples/py/snippets/guides.py common create-stream
 
@@ -62,13 +58,9 @@
 
 ::: code-group
 
-```java
-// DeleteStreamExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/DeleteStreamExample.java
 
-```go
-// ExampleDeleteStream.go
-```
+<<< @/../examples/go/examples/ExampleDeleteStream.go
 
 @snippet examples/py/snippets/guides.py common delete-stream
 
@@ -80,13 +72,9 @@
 
 ::: code-group
 
-```java
-// ListStreamsExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ListStreamsExample.java
 
-```go
-// ExampleListStreams.go
-```
+<<< @/../examples/go/examples/ExampleListStreams.go
 
 @snippet examples/py/snippets/guides.py common list-streams
 

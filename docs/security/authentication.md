@@ -1,4 +1,5 @@
 # Authentication
+
 After enabling TLS, clients can verify connecting servers and keep messages encrypted,
 but servers can not verify clients,
 so authentication is designed to provide a mechanism that servers can authenticate trusted clients.
@@ -13,24 +14,29 @@ then give them to trusted clients,
 clients use the key and certificate(binding to a role) to connect to servers.
 
 ## Create a trusted role
+
 Generate a key:
+
 ```shell
 openssl genrsa -out role01.key.pem 2048
 ```
 
 Convert it to PKCS 8 format(Java client require that):
+
 ```shell
 openssl pkcs8 -topk8 -inform PEM -outform PEM \
       -in role01.key.pem -out role01.key-pk8.pem -nocrypt
 ```
 
 Generate the certificate request(Common Name is the role name):
+
 ```shell
 openssl req -config openssl.cnf \
       -key role01.key.pem -new -sha256 -out role01.csr.pem
 ```
 
 Generate the signed certificate:
+
 ```shell
 openssl ca -config openssl.cnf -extensions usr_cert \
       -days 1000 -notext -md sha256 \
@@ -38,7 +44,9 @@ openssl ca -config openssl.cnf -extensions usr_cert \
 ```
 
 ## Configuration
-For hstream server, you can set ``tls-ca-path`` to enable TLS authentication, e.g.:
+
+For hstream server, you can set `tls-ca-path` to enable TLS authentication, e.g.:
+
 ```yaml
 # TLS options
 #
@@ -58,6 +66,7 @@ tls-ca-path: /path/to/the/ca.cert.pem
 ```
 
 For Java client:
+
 ```java
 HStreamClient.builder()
   .serviceUrl(serviceUrl)

@@ -32,13 +32,9 @@ receiver 来接收，并逐条 ack，如下面的例子中所示。
 
 ::: code-group
 
-```java
-// ConsumeDataSimpleExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ConsumeDataSimpleExample.java
 
-```go
-// ExampleConsumer.go
-```
+<<< @/../examples/go/examples/ExampleConsumer.go
 
 @snippet examples/py/snippets/guides.py common subscribe-records
 
@@ -99,13 +95,9 @@ consumer group 中，可能会有多个消费者，并且他们共享订阅的�
 
 ::: code-group
 
-```java
-// ConsumeDataSharedExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ConsumeDataSharedExample.java
 
-```go
-// ExampleConsumerGroup.go
-```
+<<< @/../examples/go/examples/ExampleConsumerGroup.go
 
 :::
 

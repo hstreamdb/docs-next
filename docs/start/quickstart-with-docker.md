@@ -57,9 +57,7 @@ Do NOT use this configuration in your production environment!
 Create a docker-compose.yaml file for docker compose, you can
 [download][quick-start.yaml] or paste the following contents:
 
-```yaml-vue
-# quick-start.yaml
-```
+<<< @/../assets/quick-start.yaml{yaml-vue}
 
 then run:
 

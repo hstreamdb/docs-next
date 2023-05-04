@@ -30,13 +30,9 @@ To list all the shards of one stream.
 
 ::: code-group
 
-```java
-// ListShardsExample.java
-```
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ListShardsExample.java
 
-```go
-// ExampleListShards.go
-```
+<<< @/../examples/go/examples/ExampleListShards.go
 
 @snippet examples/py/snippets/guides.py common list-shards
 
