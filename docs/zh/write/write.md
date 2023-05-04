@@ -38,9 +38,9 @@ batch 发送到服务器。每一条 record 被写入 stream 时，HServer 将�
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataSimpleExample.java
+<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataSimpleExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleWriteProducer.go
+<<< @/../examples/go/examples/ExampleWriteProducer.go [Go]
 
 @snippet examples/py/snippets/guides.py common append-records
 
@@ -59,9 +59,9 @@ batch 发送到服务器。每一条 record 被写入 stream 时，HServer 将�
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataBufferedExample.java
+<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataBufferedExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleWriteBatchProducer.go
+<<< @/../examples/go/examples/ExampleWriteBatchProducer.go [Go]
 
 @snippet examples/py/snippets/guides.py common buffered-append-records
 
@@ -77,8 +77,8 @@ batch 发送到服务器。每一条 record 被写入 stream 时，HServer 将�
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataWithKeyExample.java
+<<< @/../examples/java/app/src/main/java/docs/code/examples/WriteDataWithKeyExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleWriteBatchProducerMultiKey.go
+<<< @/../examples/go/examples/ExampleWriteBatchProducerMultiKey.go [Go]
 
 :::

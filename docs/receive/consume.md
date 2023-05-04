@@ -39,9 +39,9 @@ acknowledged one at a time, as shown in the example below.
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/ConsumeDataSimpleExample.java
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ConsumeDataSimpleExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleConsumer.go
+<<< @/../examples/go/examples/ExampleConsumer.go [Go]
 
 @snippet examples/py/snippets/guides.py common subscribe-records
 
@@ -81,9 +81,9 @@ that users would have consumers from different clients.
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/ConsumeDataSharedExample.java
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ConsumeDataSharedExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleConsumerGroup.go
+<<< @/../examples/go/examples/ExampleConsumerGroup.go [Go]
 
 :::
 
