@@ -90,9 +90,9 @@ The metrics of the stream include (with last 5 minutes as an example), from left
 
 After clicking the **Subscriptions** tab, you can view the subscriptions of the stream.
 
-<!-- To create a new subscription, please refer to [Create a Subscription](../manage-subscriptions/create-a-subscription.md).
+To create a new subscription, please refer to [Create a Subscription](../receive/subscription-in-platform.md#create-a-subscription).
 
-For more details about the subscription, please refer to [Subscription Details](../manage-subscriptions/subscription-details.md) -->
+For more details about the subscription, please refer to [Subscription Details](../receive/subscription-in-platform.md#subscription-details)
 
 ### View stream shards
 
@@ -105,17 +105,17 @@ For each shard, you can view the following information:
 - The **Range end** of the shard.
 - The current **Status** of the shard.
 
-<!-- You can use the ID to get the records. Please refer to [Search records in a stream](#search-records-in-a-stream) or [Query Records](../data-query/query-records.md). -->
+You can use the ID to get the records. Please refer to [Search records in a stream](#search-records-in-a-stream) or [Query Records](./write-in-platform.md#query-records).
 
 ### Search records in a stream
 
 After clicking the **Records** tab, you can query records in the stream.
 
-<!-- ::: tip
+::: tip
 
-To query records from any streams, please refer to [Data Query](../data-query/query-records.md).
+To query records from any streams, please refer to [Data Query](./write-in-platform.md#query-records).
 
-::: -->
+:::
 
 You can specify the following filters to query records:
 
