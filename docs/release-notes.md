@@ -2,41 +2,41 @@
 
 ## v0.15.0 [2023-04-28]
 
-### HServer 
+### HServer
 
 - Add support for automatic recovery of computing tasks(query, connector) on other nodes when a node in the cluster fails
 - Add support for reading data from a given timestamp
-- Add support for reconnecting nodes that were previously determined to have failed  in the cluster 
+- Add support for reconnecting nodes that were previously determined to have failed  in the cluster
 - Add a new RPC for reading stream shards
 - Add metrics for query, view, connector
-- Add support for fetching logs of connectors 
+- Add support for fetching logs of connectors
 - Add retry read from hstore when the subscription do resend
 - Improve the storage of checkpoints for subscriptions
 - Improve read performance of hstore reader
-- Improve error handling of RPC methods 
+- Improve error handling of RPC methods
 - Improve the process of nodes restart
 - Improve requests validation in handlers
 - Imporve the timestamp of records
 - Improve the deletion of queries
-- Refactor logging modules 
+- Refactor logging modules
 - Fix the load distribution logic in case of cluster members change
 
-### SQL && Processing Engine 
+### SQL && Processing Engine
 
-- The v1 engine is used by default 
-- Add states saving and restoration of a query 
+- The v1 engine is used by default
+- Add states saving and restoration of a query
 - Add validation for select statements with group by clause
 - Add retention time option for ``create stream`` statement
 - Add a window_end column for aggregated results based on time window
-- Add time window columns to the result stream when using time windows 
-- Improve the syntax of time windows in SQL 
+- Add time window columns to the result stream when using time windows
+- Improve the syntax of time windows in SQL
 - Improve the syntax of time interval in SQL
-- Improve the process of creating the result stream of a query 
+- Improve the process of creating the result stream of a query
 - Fix `as` in `join` clause
 - Fix creating a view without a group by clause
 - Fix an issue which can cause incomplete aggregated columns
-- Fix alias of an aggregation expr not work 
-- Fix aggregation queries on views 
+- Fix alias of an aggregation expr not work
+- Fix aggregation queries on views
 - Fix errors when joining multiple streams (3 or more)
 - Disable subqueries temporarily
 
@@ -288,7 +288,7 @@ In particular, this release provides connectors listed below:
   - [sink-mysql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_mysql_spec.md)
   - [sink-postgresql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_postgresql_spec.md)
 
-You can refer to [the documentation](./ingest-and-distribute/overview.md) to learn more about
+You can refer to [the documentation](./ingest-and-distribute/architecture.md) to learn more about
 HStream IO.
 
 #### New Stream Processing Engine
@@ -333,7 +333,7 @@ details.
 
 We provide a basic monitoring solution based on Prometheus and Grafana. Metrics
 collected by HStreamDB will be stored in Prometheus by the exporter and
-displayed on the Grafana board. 
+displayed on the Grafana board.
 
 #### Deployment on K8s with Helm
 
