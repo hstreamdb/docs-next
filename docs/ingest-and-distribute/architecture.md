@@ -97,7 +97,7 @@ and users can use it to build a real-time streaming data synchronization service
 We want to establish a great ecosystem like Kafka Connect and Airbyte,
 so an accessible connector API for deploying new connectors is necessary.
 
-Kafka Connect design a java connector API,
+Kafka Connect designs a java connector API,
 you can not develop connectors in other languages easily,
 Airbyte and Pulsar IO inspired us to build a connector plugin as a Docker image to support multiple languages
 and design a protocol between HStream IO Runtime and connectors,
@@ -116,6 +116,6 @@ Compared with Airbyte's heavy protocol,
 HStream IO Protocol is designed as simple as possible,
 it provides basic management interfaces for launching and stopping connectors,
 does not need to exchange record messages(it will bring more latencies),
-the Connector Toolkit is designed to handle heaviest jobs(e.g. fetch data from source systems, write data into HStreamDB, recorded offsets,  etc.)
+the Connector Toolkit is designed to handle the heaviest jobs(e.g. fetch data from source systems, write data into HStreamDB, record offsets,  etc.)
 to provide the simplest connector API,
 so developers can use Connector Toolkit to implement new connectors easily like Kafka Connect.
