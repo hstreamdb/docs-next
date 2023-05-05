@@ -1,4 +1,4 @@
-# Connectors
+# Configurations
 
 Sources:
 
