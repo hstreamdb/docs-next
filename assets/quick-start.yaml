@@ -52,7 +52,7 @@ services:
         --use-tcp --tcp-host $$(hostname -I | awk '{print $$1}') \
         --user-admin-port 6440 \
         --param enable-dscp-reflection=false \
-        --no-interactive \
+        --no-interactive
 
   zookeeper:
     image: zookeeper
