@@ -10,7 +10,17 @@ export default defineConfig({
   title: 'HStream Docs',
   titleTemplate: ':title | HStream Docs',
   description: 'HStream Documentation.',
-  head: [['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }]],
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+    [
+      'script',
+      {
+        defer: 'defer',
+        src: 'https://static.cloudflareinsights.com/beacon.min.js',
+        'data-cf-beacon': '{"token": "bbd21181c54745aabcb72e188c333ccc"}',
+      },
+    ],
+  ],
   lastUpdated: true,
   ignoreDeadLinks: true,
   themeConfig: {
