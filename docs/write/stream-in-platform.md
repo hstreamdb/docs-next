@@ -4,17 +4,17 @@ This tutorial guides you on how to create and manage streams in HStream Platform
 
 ## Preparation
 
-1. If you do not have an account, please [apply for a trial first](../start/try-out-hstream-platform.md#apply-for-a-trial) and log in. After logging in, click **Streams** on the left sidebar to enter the streams page.
+1. If you do not have an account, please [apply for a trial](../start/try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Streams** on the left sidebar to enter the streams page.
 
 2. If you have already logged in, click **Streams** on the left sidebar to enter the **Streams** page.
 
-3. Click the **New Stream** button to create a stream.
+3. Click the **New stream** button to create a stream.
 
 ## Create a stream
 
-After clicking the **New Stream** button, you will be directed to the **New Stream** page. You need to set some necessary properties for your stream and create it:
+After clicking the **New stream** button, you will be directed to the **New Stream** page. You need to set some necessary properties for your stream and create it:
 
-1. Specify the **Stream Name**. You can refer to the [Guidelines to name a resource](./stream.md#guidelines-to-name-a-resource) to name a stream.
+1. Specify the **stream name**. You can refer to [Guidelines to name a resource](./stream.md#guidelines-to-name-a-resource) to name a stream.
 
 2. Fill in with the number of **shards** you want this stream to have. The default value is **1**.
 
@@ -31,7 +31,7 @@ For more details about **replicas** and **retention**, please refer to [Attribut
 :::
 
 ::: warning
-Currently, the number of **replicas** and **retention** are fixed for each stream in HStream Platform.
+Currently, the number of **replicas** and **retention** are fixed for each stream in HStream Platform. We will gradually adjust these attributes in the future.
 :::
 
 ## View streams
@@ -82,8 +82,7 @@ The metrics of the stream include (with last 5 minutes as an example), from left
 
 - The **Append records throughout** chart shows the number of records to the stream per second in the last 5 minutes.
 - The **Append bytes throughout** chart shows the number of bytes to the stream per second in the last 5 minutes.
-- The **Append requests** chart shows the number of requests to the stream in the last 5 minutes.
-- The **Failed append requests** chart shows the number of failed requests to the stream in the last 5 minutes.
+- The **Total requests** chart shows the number of requests to the stream in the last 5 minutes. Including failed requests.
 - The **Append requests throughout** chart shows the number of requests to the stream per second in the last 5 minutes.
 
 ### View stream subscriptions
@@ -105,24 +104,26 @@ For each shard, you can view the following information:
 - The **Range end** of the shard.
 - The current **Status** of the shard.
 
-You can use the ID to get the records. Please refer to [Search records in a stream](#search-records-in-a-stream) or [Query Records](./write-in-platform.md#query-records).
+You can use the ID to get records. Please refer to [Get records in a stream](#get-records-in-a-stream) or [Get Records](./write-in-platform.md#get-records).
 
-### Search records in a stream
+### Get records in a stream
 
-After clicking the **Records** tab, you can query records in the stream.
+After clicking the **Records** tab, you can get records in the stream.
 
 ::: tip
 
-To query records from any streams, please refer to [Data Query](./write-in-platform.md#query-records).
+To get records from any streams, please refer to [Get Records](./write-in-platform.md#get-records).
 
 :::
 
-You can specify the following filters to query records:
+You can specify the following filters to get records:
 
-- **Shard**: Select one of the shards in the stream you want to query records from.
-- **Starting record ID**: Search from a specified record ID. The default is the first record.
+- **Shard**: Select one of the shards in the stream you want to get records from.
+- Special filters:
+  - **Start record ID**: Get records after a specified record ID. The default is the first record.
+  - **Start date**: Get records after a specified date.
 
-After providing the filters, click the **Search** button to query records. Each record is displayed in a row with the following information:
+After providing the filters (or not), click the **Get records** button to get records. Each record is displayed in a row with the following information:
 
 - The **ID** of the record.
 - The **Key** of the record.
