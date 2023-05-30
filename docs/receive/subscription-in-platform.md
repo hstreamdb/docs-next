@@ -4,15 +4,15 @@ This tutorial guides you on how to create and manage subscriptions in HStream Pl
 
 ## Preparation
 
-1. If you do not have an account, please [apply for a trial first](../start/try-out-hstream-platform.md#apply-for-a-trial) and log in. After logging in, click **Subscriptions** on the left sidebar to enter the subscriptions page.
+1. If you do not have an account, please [apply for a trial](../start/try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Subscriptions** on the left sidebar to enter the subscriptions page.
 
 2. If you have already logged in, click **Subscriptions** on the left sidebar to enter the **Subscriptions** page.
 
-3. Click the **New Subscription** button to create a subscription.
+3. Click the **New subscription** button to create a subscription.
 
 ## Create a subscription
 
-After clicking the **New Subscription** button, you will be directed to the **New Stream** page. You need to set some necessary properties for your stream and create it:
+After clicking the **New subscription** button, you will be directed to the **New subscription** page. You need to set some necessary properties for your stream and create it:
 
 1. Specify the **Subscription ID**. You can refer to [Guidelines to name a resource](../write/stream.md#guidelines-to-name-a-resource) to name a subscription.
 
@@ -29,7 +29,7 @@ For more details about **ACK timeout** and **max unacked records**, please refer
 :::
 
 ::: warning
-Currently, the number of **ACK timeout** and **max unacked records** are fixed for each subscription in HStream Platform.
+Currently, the number of **ACK timeout** and **max unacked records** are fixed for each subscription in HStream Platform. We will gradually adjust these attributes in the future.
 :::
 
 ## View subscriptions
@@ -79,7 +79,6 @@ The metrics of the subscription include (with last 5 minutes as an example), fro
 - The **Outcoming bytes throughput** chart shows the number of bytes sent by the subscription per second in the last 5 minutes.
 - The **Outcoming records throughput** chart shows the number of records sent by the subscription per second in the last 5 minutes.
 - The **Acknowledgements throughput** chart shows the number of acknowledgements received in the subscription per second in the last 5 minutes.
-- The **Received records throughput** chart shows the number of records received in the subscription per second in the last 5 minutes.
 - The **Resent records** chart shows the number of records resent in the subscription in the last 5 minutes.
 
 ### View subscription consumers

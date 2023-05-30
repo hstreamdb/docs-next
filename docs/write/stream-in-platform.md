@@ -62,7 +62,7 @@ The details page displays the detailed information of a stream:
    - [**Metrics**](#view-stream-metrics): View the metrics of the stream.
    - [**Subscriptions**](#view-stream-subscriptions): View the subscriptions of the stream.
    - [**Shards**](#view-stream-shards): View the shard details of the stream.
-   - [**Records**](#search-records-in-a-stream): Search records in the stream.
+   - [**Records**](#get-records-in-a-stream): Search records in the stream.
 
 ### View stream metrics
 
