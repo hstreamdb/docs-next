@@ -45,10 +45,10 @@ The **Streams** page lists all the streams in your account with a high-level ove
 - The **Data retention period** of the records in a stream.
 - **Actions**, which for the extra operations of the stream:
 
-  - View the metrics of the stream.
-  - View the subscriptions of the stream.
-  - View the shard details of the stream.
-  - Delete the stream.
+  - **Metrics**: View the metrics of the stream.
+  - **Subscriptions**: View the subscriptions of the stream.
+  - **Shards**: View the shard details of the stream.
+  - **Delete**: Delete the stream.
 
 To view a specific stream, click the name. [The details page of the stream](#view-stream-details) will be displayed.
 
@@ -56,7 +56,7 @@ To view a specific stream, click the name. [The details page of the stream](#vie
 
 The details page displays the detailed information of a stream:
 
-1. All the information in the [Streams page](#view-streams) is displayed.
+1. All the information in the [streams](#view-streams) page.
 2. Different tabs are provided to display the related information of the stream:
 
    - [**Metrics**](#view-stream-metrics): View the metrics of the stream.
@@ -145,12 +145,12 @@ Deleting a stream is irreversible, and the data cannot be recovered after deleti
 
 ### Delete a stream on the Streams page
 
-1. Go to the **Streams** page.
+1. Navigate to the **Streams** page.
 2. Click the **Delete** icon of the stream you want to delete. A confirmation dialog will pop up.
 3. Confirm the deletion by clicking the **Confirm** button in the dialog.
 
 ### Delete a stream on the Stream Details page
 
-1. Go to the details page of the stream you want to delete.
+1. Navigate to the details page of the stream you want to delete.
 2. Click the **Delete** button. A confirmation dialog will pop up.
 3. Confirm the deletion by clicking the **Confirm** button in the dialog.

@@ -43,9 +43,9 @@ The **Subscriptions** page lists all the subscriptions in your account with a hi
 - The **Creation time** of the subscription.
 - **Actions**, which is used to expand the operations of the subscription:
 
-  - View the metrics of the subscription.
-  - View the consumers of the subscription.
-  - Delete the subscription.
+  - **Metrics**: View the metrics of the subscription.
+  - **Consumers**: View the consumers of the subscription.
+  - **Delete**: Delete the subscription.
 
 To view a specific subscription, click the subscription's name. [The details page of the subscription](#view-subscription-details) will be displayed.
 
@@ -53,7 +53,7 @@ To view a specific subscription, click the subscription's name. [The details pag
 
 The details page displays detailed information about a subscription:
 
-1. All the information in the [Subscriptions page](#view-subscriptions) is displayed.
+1. All the information in the [subscriptions](#view-subscriptions) page.
 2. Different tabs are provided to view the related information of the subscription:
 
    - [**Metrics**](#view-subscription-metrics): View the metrics of the subscription.
