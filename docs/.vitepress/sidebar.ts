@@ -24,7 +24,9 @@ async function getFirstLine(file: string): Promise<string> {
 async function* getFiles(dir: string, rootDir = dir) {
   const originalDir = dir
   const dirents = await fsp.readdir(dir, { withFileTypes: true })
-  const order = JSON.parse(await fsp.readFile(join(dir, 'list.json'), 'utf8')).reduce((acc, cur, i) => {
+  // Get frontmatter.
+  const _index = matter(await fsp.readFile(join(dir, '_index.md'), 'utf8'))
+  const order = (_index.data.order as string[]).reduce((acc, cur, i) => {
     acc[cur] = i
 
     return acc
@@ -63,6 +65,7 @@ async function* getFiles(dir: string, rootDir = dir) {
         items.push(f)
       }
 
+      // Get frontmatter.
       const _index = matter(await fsp.readFile(join(res, '_index.md'), 'utf8'))
       const title = _index.data.title ? _index.data.title : _index.content
 

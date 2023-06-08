@@ -8,7 +8,6 @@ The next generation of documentation for HStreamDB.
   - [Normal markdown files](#normal-markdown-files)
   - [`index.md`](#indexmd)
   - [\_index.md](#_indexmd)
-  - [list.json](#listjson)
   - [About sidebar](#about-sidebar)
   - [Special markdown syntaxes](#special-markdown-syntaxes)
 - [Release a new version](#release-a-new-version)
@@ -24,11 +23,9 @@ pnpm run dev
 
 The rest of the time after that you will most likely be editing the following files:
 
-- `docs/**/*.md`
-  - [Normal markdown files](#normal-markdown-files)
-  - [`index.md`](#indexmd)
-  - [`_index.md`](#_indexmd)
-- [`docs/**/list.json`](#listjson)
+- [Normal markdown files](#normal-markdown-files)
+- [`index.md`](#indexmd)
+- [`_index.md`](#_indexmd)
 
 We'll talk about what these files do later.
 
@@ -49,6 +46,7 @@ Currently, it supports the following metadata:
 ```markdown
 ---
 title: <title>
+order: <order>
 collapsed: <collapsed:true|false>
 ---
 
@@ -63,26 +61,38 @@ collapsed: <collapsed:true|false>
 
 - `<collapsed>` is used to control whether the group is collapsed by default. If it is not present, the group will be collapsed by default.
 
-### list.json
+- `<order>` is used to generate the [sidebar](#about-sidebar). It's a array of strings to specify the order of the items in a group. Every string in the array can be a file name or a folder name.
 
-`list.json` is also a special file that is used to generate the [sidebar](#about-sidebar). It includes a array of strings to specify the order of the items in a group. Every string in the array can be a file name or a folder name.
+  Below is an example of the `order` field:
 
-For example, the content of `docs/list.json` is:
+  ```yaml
+  order:
+    [
+      'overview',
+      'start',
+      'write',
+      'receive',
+      'process',
+      'ingest-and-distribute',
+      'deploy',
+      'security',
+      'reference',
+      'release-notes.md',
+    ]
+  ```
 
-```json
-["index.md", "concepts.md", "quickstart-with-docker.md", "guides", "io", "operation", "reference", "release-notes.md"]
-```
+  So the group will be rendered as:
 
-So the group `docs` (the root group) will be rendered as:
-
-- index.md
-- concepts.md
-- quickstart-with-docker.md
-- guides
-- io
-- operation
-- reference
-- release-notes.md
+  - overview
+  - start
+  - write
+  - receive
+  - process
+  - ingest-and-distribute
+  - deploy
+  - security
+  - reference
+  - release-notes.md
 
 ### About sidebar
 
