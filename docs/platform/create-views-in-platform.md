@@ -6,7 +6,7 @@ This page describes how to create materialized views in HStream Platform.
 
 Create a view is similar to create a query. The main difference is that the SQL is a `CREATE VIEW` statement.
 
-Please refer to [Create a query](../process/create-queries-in-platform.md#create-a-query) for more details.
+Please refer to [Create a query](./create-queries-in-platform.md#create-a-query) for more details.
 
 ## View views
 

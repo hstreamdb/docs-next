@@ -1,5 +1,5 @@
 ---
-order: ["subscription.md", "subscription-in-platform.md", "consume.md", "read.md"]
+order: ['subscription.md', 'consume.md', 'read.md']
 collapsed: false
 ---
 

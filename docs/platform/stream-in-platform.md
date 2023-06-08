@@ -4,7 +4,7 @@ This tutorial guides you on how to create and manage streams in HStream Platform
 
 ## Preparation
 
-1. If you do not have an account, please [apply for a trial](../start/try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Streams** on the left sidebar to enter the streams page.
+1. If you do not have an account, please [apply for a trial](./try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Streams** on the left sidebar to enter the streams page.
 
 2. If you have already logged in, click **Streams** on the left sidebar to enter the **Streams** page.
 
@@ -14,11 +14,11 @@ This tutorial guides you on how to create and manage streams in HStream Platform
 
 After clicking the **New stream** button, you will be directed to the **New Stream** page. You need to set some necessary properties for your stream and create it:
 
-1. Specify the **stream name**. You can refer to [Guidelines to name a resource](./stream.md#guidelines-to-name-a-resource) to name a stream.
+1. Specify the **stream name**. You can refer to [Guidelines to name a resource](../write/stream.md#guidelines-to-name-a-resource) to name a stream.
 
 2. Fill in with the number of **shards** you want this stream to have. The default value is **1**.
 
-   > Shard is the primary storage unit for the stream. For more details, please refer to [Sharding in HStreamDB](./shards.md#sharding-in-hstreamdb).
+   > Shard is the primary storage unit for the stream. For more details, please refer to [Sharding in HStreamDB](../write/shards.md#sharding-in-hstreamdb).
 
 3. Fill in with the number of **replicas** for each stream. The default value is **3**.
 
@@ -27,7 +27,7 @@ After clicking the **New stream** button, you will be directed to the **New Stre
 5. Click the **Confirm** button to create a stream.
 
 ::: tip
-For more details about **replicas** and **retention**, please refer to [Attributes of a Stream](./stream.md#attributes-of-a-stream).
+For more details about **replicas** and **retention**, please refer to [Attributes of a Stream](../write/stream.md#attributes-of-a-stream).
 :::
 
 ::: warning
@@ -89,9 +89,9 @@ The metrics of the stream include (with last 5 minutes as an example), from left
 
 After clicking the **Subscriptions** tab, you can view the subscriptions of the stream.
 
-To create a new subscription, please refer to [Create a Subscription](../receive/subscription-in-platform.md#create-a-subscription).
+To create a new subscription, please refer to [Create a Subscription](./subscription-in-platform.md#create-a-subscription).
 
-For more details about the subscription, please refer to [Subscription Details](../receive/subscription-in-platform.md#subscription-details)
+For more details about the subscription, please refer to [Subscription Details](./subscription-in-platform.md#subscription-details)
 
 ### View stream shards
 
