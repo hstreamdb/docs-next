@@ -23,6 +23,7 @@ export default defineConfig({
   ],
   lastUpdated: true,
   ignoreDeadLinks: true,
+  srcExclude: ['**/_index.md'],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/logo.svg',

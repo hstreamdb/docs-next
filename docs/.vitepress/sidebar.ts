@@ -67,7 +67,7 @@ async function* getFiles(dir: string, rootDir = dir) {
 
       // Get frontmatter.
       const _index = matter(await fsp.readFile(join(res, '_index.md'), 'utf8'))
-      const title = _index.data.title ? _index.data.title : _index.content
+      const title: string = _index.data.title ? _index.data.title : _index.content
 
       const hasIndex = await fsp
         .access(join(res, 'index.md'), fsConstants.F_OK)
@@ -83,7 +83,7 @@ async function* getFiles(dir: string, rootDir = dir) {
       }
 
       yield {
-        text: title,
+        text: title.trim(),
         ...(hasIndex && { link: join(res.replace(rootDir, ''), 'index.md') }),
         items: items.sort((a, b) => a.order - b.order),
         collapsed: _index.data.collapsed !== undefined ? _index.data.collapsed : true,
