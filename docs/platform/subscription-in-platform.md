@@ -4,7 +4,7 @@ This tutorial guides you on how to create and manage subscriptions in HStream Pl
 
 ## Preparation
 
-1. If you do not have an account, please [apply for a trial](../start/try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Subscriptions** on the left sidebar to enter the subscriptions page.
+1. If you do not have an account, please [apply for a trial](./try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Subscriptions** on the left sidebar to enter the subscriptions page.
 
 2. If you have already logged in, click **Subscriptions** on the left sidebar to enter the **Subscriptions** page.
 
@@ -25,7 +25,7 @@ After clicking the **New subscription** button, you will be directed to the **Ne
 5. Click the **Confirm** button to create a subscription.
 
 ::: tip
-For more details about **ACK timeout** and **max unacked records**, please refer to [Attributes of a Subscription](./subscription.md#attributes-of-a-subscription).
+For more details about **ACK timeout** and **max unacked records**, please refer to [Attributes of a Subscription](../receive/subscription.md#attributes-of-a-subscription).
 :::
 
 ::: warning
@@ -37,7 +37,7 @@ Currently, the number of **ACK timeout** and **max unacked records** are fixed f
 The **Subscriptions** page lists all the subscriptions in your account with a high-level overview. For each subscription, you can view the following information:
 
 - The subscription's **ID**.
-- The name of the **stream** source. You can click on the stream name to navigate the [stream details](../write/stream-in-platform.md#view-stream-details) page.
+- The name of the **stream** source. You can click on the stream name to navigate the [stream details](./stream-in-platform.md#view-stream-details) page.
 - The **ACK timeout** of the subscription.
 - The **Max unacked records** of the subscription.
 - The **Creation time** of the subscription.

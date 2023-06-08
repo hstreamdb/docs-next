@@ -50,7 +50,7 @@ Once you finish writing the query, click the **Save & Run** button to create the
 
 After creating the query, the **Query Result** area will display the query result in real time.
 
-The query result is displayed in a table. Each row represents a record in the stream. You can refer to [Get Records](../write/write-in-platform.md#get-records) to learn more about the record.
+The query result is displayed in a table. Each row represents a record in the stream. You can refer to [Get Records](./write-in-platform.md#get-records) to learn more about the record.
 
 If you want to stop viewing the query result, you can click the **Cancel** button to stop it. For re-viewing the query result, you can click the **View Live Result** button to view again.
 

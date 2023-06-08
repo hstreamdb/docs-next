@@ -1,5 +1,5 @@
 ---
-order: ['overview.md', 'user_guides.md', 'connectors.md', 'create-connectors-in-platform.md']
+order: ['overview.md', 'user_guides.md', 'connectors.md']
 collapsed: false
 ---
 

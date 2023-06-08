@@ -1,5 +1,5 @@
 ---
-order: ['sql.md', 'create-queries-in-platform.md', 'create-views-in-platform.md']
+order: ['sql.md']
 collapsed: false
 ---
 

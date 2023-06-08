@@ -1,5 +1,5 @@
 ---
-order: ['stream.md', 'stream-in-platform.md', 'shards.md', 'write.md', 'write-in-platform.md']
+order: ['stream.md', 'shards.md', 'write.md']
 collapsed: false
 ---
 

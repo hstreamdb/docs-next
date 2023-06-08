@@ -2,6 +2,7 @@
 order:
   [
     'overview',
+    'platform',
     'start',
     'write',
     'receive',
