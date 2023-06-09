@@ -1,6 +1,5 @@
 ---
 order:
-  - try-out-hstream-platform.md
   - stream-in-platform.md
   - write-in-platform.md
   - subscription-in-platform.md

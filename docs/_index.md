@@ -2,8 +2,8 @@
 order:
   [
     'overview',
-    'platform',
     'start',
+    'platform',
     'write',
     'receive',
     'process',

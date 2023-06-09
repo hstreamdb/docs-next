@@ -1,4 +1,4 @@
-# Try out HStream Platform
+# Get Started on HStream Platform
 
 This page guides you on how to try out the HStream Platform quickly from scratch.
 You will learn how to create a stream, write records to the stream, and query records from the stream.
