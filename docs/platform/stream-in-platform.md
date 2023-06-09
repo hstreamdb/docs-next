@@ -4,7 +4,7 @@ This tutorial guides you on how to create and manage streams in HStream Platform
 
 ## Preparation
 
-1. If you do not have an account, please [apply for a trial](./try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Streams** on the left sidebar to enter the streams page.
+1. If you do not have an account, please [apply for a trial](../start/try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Streams** on the left sidebar to enter the streams page.
 
 2. If you have already logged in, click **Streams** on the left sidebar to enter the **Streams** page.
 

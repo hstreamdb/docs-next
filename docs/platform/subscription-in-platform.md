@@ -4,7 +4,7 @@ This tutorial guides you on how to create and manage subscriptions in HStream Pl
 
 ## Preparation
 
-1. If you do not have an account, please [apply for a trial](./try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Subscriptions** on the left sidebar to enter the subscriptions page.
+1. If you do not have an account, please [apply for a trial](../start/try-out-hstream-platform.md#apply-for-a-trial) first and log in. After logging in, click **Subscriptions** on the left sidebar to enter the subscriptions page.
 
 2. If you have already logged in, click **Subscriptions** on the left sidebar to enter the **Subscriptions** page.
 

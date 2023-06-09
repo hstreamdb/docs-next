@@ -46,7 +46,7 @@ To create a new stream, follow the steps below:
 The stream will be created immediately, and you will see the stream listed on the **Streams** page.
 
 ::: tip
-For more information about how to create a stream, see [Create a Stream](./stream-in-platform.md#create-a-stream).
+For more information about how to create a stream, see [Create a Stream](../platform/stream-in-platform.md#create-a-stream).
 :::
 
 ## Write records to the stream
@@ -68,7 +68,7 @@ of the request.
 Next, we can query this record from the stream.
 
 ::: tip
-For more information about how to write records to a stream, see [Write Records to Streams](./write-in-platform.md).
+For more information about how to write records to a stream, see [Write Records to Streams](../platform/write-in-platform.md).
 :::
 
 ## Get records from the stream
@@ -80,6 +80,6 @@ Click the **Get records** button, and then the record written in the previous st
 
 ## Next steps
 
-- Explore the [stream in details](./stream-in-platform.md#view-stream-details).
-- [Create a subscription](./subscription-in-platform.md#create-a-subscription) to consume records from the stream.
-- [Query records](./write-in-platform.md#query-records) from streams.
+- Explore the [stream in details](../platform/stream-in-platform.md#view-stream-details).
+- [Create a subscription](../platform/subscription-in-platform.md#create-a-subscription) to consume records from the stream.
+- [Query records](../platform/write-in-platform.md#query-records) from streams.
