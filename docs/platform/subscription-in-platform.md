@@ -1,4 +1,4 @@
-# Create and Manage Subscriptions in HStream Platform
+# Create and Manage Subscriptions
 
 This tutorial guides you on how to create and manage subscriptions in HStream Platform.
 

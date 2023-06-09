@@ -1,4 +1,4 @@
-# Create and Manage Streams in HStream Platform
+# Create and Manage Streams
 
 This tutorial guides you on how to create and manage streams in HStream Platform.
 

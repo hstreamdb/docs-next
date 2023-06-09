@@ -1,6 +1,6 @@
-# Create Connectors in HStream Platform
+# Create and Manage Connectors
 
-This page describes how to create connectors in HStream Platform.
+This page describes how to create and manage connectors in HStream Platform.
 
 ## Create a connector
 

@@ -1,4 +1,4 @@
-# Write Records to Streams in HStream Platform
+# Write Records to Streams
 
 After creating a stream, you can write records to it according to the needs of your application.
 This page describes how to write and get records in HStream Platform.

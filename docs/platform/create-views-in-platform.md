@@ -1,6 +1,6 @@
-# Creating Materialized Views in HStream Platform
+# Create and Manage Materialized Views
 
-This page describes how to create materialized views in HStream Platform.
+This page describes how to create and manage materialized views in HStream Platform.
 
 ## Create a view
 

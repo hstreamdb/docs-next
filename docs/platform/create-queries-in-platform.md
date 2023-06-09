@@ -1,6 +1,6 @@
-# Create Streaming Queries in HStream Platform
+# Create and Manage Streaming Queries
 
-This page describes how to create streaming queries in HStream Platform.
+This page describes how to create and manage streaming queries in HStream Platform.
 
 ## Create a query
 
