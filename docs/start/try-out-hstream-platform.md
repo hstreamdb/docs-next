@@ -16,7 +16,7 @@ If you already have an account, you can skip this step.
 By creating an account, you agree to the [Terms of Service](https://www.emqx.com/en/policy/terms-of-use) and [Privacy Policy](https://www.emqx.com/en/policy/privacy-policy).
 :::
 
-To create a new account, please fill in the required information on the form provided on the [Sign Up](https://platform.hstream.io/app/signup) page, all fields are shown below:
+To create a new account, please fill in the required information on the form provided on the [Sign Up](https://platform.hstream.io/console/signup) page, all fields are shown below:
 
 - **Username**: Your username.
 - **Email**: Your email address. This email address will be used for the HStream Platform login.
@@ -27,7 +27,7 @@ After completing the necessary fields, click the **Sign Up** button to proceed w
 
 ### Log in to the HStream Platform
 
-To log in to the HStream Platform after creating an account, please fill in the required information on the form provided on the [Log In](https://platform.hstream.io/app/login) page, all fields are shown below:
+To log in to the HStream Platform after creating an account, please fill in the required information on the form provided on the [Log In](https://platform.hstream.io/console/login) page, all fields are shown below:
 
 - **Email**: Your email address.
 - **Password**: Your password.

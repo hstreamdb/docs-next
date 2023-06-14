@@ -1,6 +1,6 @@
 # 创建和管理 Subscription
 
-Subscription 的属性
+## Subscription 的属性
 
 - ackTimeoutSeconds
 

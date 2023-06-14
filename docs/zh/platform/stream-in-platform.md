@@ -14,7 +14,7 @@ This tutorial guides you on how to create and manage streams in HStream Platform
 
 After clicking the **New stream** button, you will be directed to the **New Stream** page. You need to set some necessary properties for your stream and create it:
 
-1. Specify the **stream name**. You can refer to [Guidelines to name a resource](../write/stream.md#guidelines-to-name-a-resource) to name a stream.
+1. Specify the **stream name**. You can refer to [Guidelines to name a resource](../write/stream.md#命名资源准则) to name a stream.
 
 2. Fill in with the number of **shards** you want this stream to have. The default value is **1**.
 
@@ -27,7 +27,7 @@ After clicking the **New stream** button, you will be directed to the **New Stre
 5. Click the **Confirm** button to create a stream.
 
 ::: tip
-For more details about **replicas** and **retention**, please refer to [Attributes of a Stream](../write/stream.md#attributes-of-a-stream).
+For more details about **replicas** and **retention**, please refer to [Attributes of a Stream](../write/stream.md#stream-的属性).
 :::
 
 ::: warning

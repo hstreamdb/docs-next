@@ -14,7 +14,7 @@ This tutorial guides you on how to create and manage subscriptions in HStream Pl
 
 After clicking the **New subscription** button, you will be directed to the **New subscription** page. You need to set some necessary properties for your stream and create it:
 
-1. Specify the **Subscription ID**. You can refer to [Guidelines to name a resource](../write/stream.md#guidelines-to-name-a-resource) to name a subscription.
+1. Specify the **Subscription ID**. You can refer to [Guidelines to name a resource](../write/stream.md#命名资源准则) to name a subscription.
 
 2. Select a stream as the source from the dropdown list.
 
@@ -25,7 +25,7 @@ After clicking the **New subscription** button, you will be directed to the **Ne
 5. Click the **Confirm** button to create a subscription.
 
 ::: tip
-For more details about **ACK timeout** and **max unacked records**, please refer to [Attributes of a Subscription](../receive/subscription.md#attributes-of-a-subscription).
+For more details about **ACK timeout** and **max unacked records**, please refer to [Attributes of a Subscription](../receive/subscription.md#subscription-的属性).
 :::
 
 ::: warning
