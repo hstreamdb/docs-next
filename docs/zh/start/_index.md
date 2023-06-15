@@ -1,5 +1,7 @@
 ---
-order: ["quickstart-with-docker.md"]
+order:
+  - try-out-hstream-platform.md
+  - quickstart-with-docker.md
 collapsed: false
 ---
 

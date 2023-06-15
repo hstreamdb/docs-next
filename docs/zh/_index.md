@@ -3,6 +3,7 @@ order:
   [
     'overview',
     'start',
+    'platform',
     'write',
     'receive',
     'process',
