@@ -80,39 +80,35 @@ A boolean value is either `TRUE` or `FALSE`.
 
 ### String
 
-Strings are arbitrary character series surrounded by double quotes (`"`), such
-as `"JSON"`.
+Strings are arbitrary character series surrounded by single quotes (`'`), such
+as `'anyhow'`.
 
 ### Date
 
 Dates represent a date exact to a day in the form of
-`DATE <year>-<month>-<day>`, where `<year>`, `<month>` and `<day>` are all
+`DATE '<year>-<month>-<day>'`, where `<year>`, `<month>` and `<day>` are all
 integer constants. Note that the leading `DATE` should not be omitted.
 
-Example: `DATE 2021-01-02`
+Example: `DATE '2021-01-02'`
 
 ### Time
 
 Time constants represent time exact to a second or a microsecond in the form of
-`TIME <hour>-<minute>-<second>` or
-`TIME <hour>-<minute>-<second>.<microsecond>`, where `<hour>`, `<minute>`,
+`TIME '<hour>-<minute>-<second>'` or
+`TIME '<hour>-<minute>-<second>.<microsecond>'`, where `<hour>`, `<minute>`,
 `<second>` and `<microsecond>` are all integer constants. Note that the leading
 `TIME` should not be omitted.
 
-Example: `TIME 11:45:14`, `TIME 01:02:03.456`
+Example: `TIME '10:41:03'`, `TIME '01:02:03.456'`
 
 ### Timestamp
 
 Timestamp constants represent values that contain both date and time parts. It
 can also contain an optional timezone part for convenience. A timestamp is in
-the form of `TIMESTAMP <date_str> <time_str>` or
-`TIMESTAMP <date_str> T <time_str> <timezone>`, where `<date_str>` and
-`time_str` are described above and `<timezone>` is like `Z`, `+<hour>:<minute>`
-or `-<hour>:<minute>`. For more information, please refer to
+the form of `TIMESTAMP '<timestamp_str>'`. For more information, please refer to
 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 
-Example: `TIMESTAMP 2022-10-28 12:00:00`,
-`TIMESTAMP 1980-01-01 T 01:02:03 +08:00`
+Example: `TIMESTAMP '2023-06-30T12:30:45+02:00'`
 
 ### Interval
 
@@ -120,14 +116,7 @@ Intervals represent a time section in the form of
 `INTERVAL <time_str> <time_unit>` or. Note that the leading `INTERVAL` should
 not be omitted.
 
-Example: `INTERVAL '5' SECOND`(5 seconds)
-
-### Map
-
-Maps represent a set of key-value pairs, where keys and values are valid
-expressions. It is in the form of `{<expr_key>: <expr_value>, ...}`.
-
-Example: `{"id": 1, "temp": 30.5}`
+Example: `INTERVAL 5 SECOND`(5 seconds)
 
 ### Array
 
@@ -142,10 +131,10 @@ A column(or a field) represents a part of a value in a stream or materialized
 view. It is similar to column of a table in traditional relational databases. A
 column is in the form of `<identifier>` or
 `<identifier_stream>.<identifier_column>`. When a column name is ambiguous(for
-example it has the same name as a function application) the back quote `` ` ``
+example it has the same name as a function application) the double quote `` " ``
 can be used.
 
-Example: `temperature`, `stream_test.humidity`, `` `SUM(a)` ``
+Example: `temperature`, `stream_test.humidity`, `` "SUM(a)" ``
 
 ### Subquery
 
@@ -158,7 +147,7 @@ An expression can also be formed by other expressions by applying functions or
 operators on them. The details of function and operator can be found in the
 following parts.
 
-Example: `SUM(stream_test.cnt)`, (`raw_stream::jsonb)->>"value"`
+Example: `SUM(stream_test.cnt)`, (`raw_stream::jsonb)->>'value'`
 
 ## Operators and Functions
 
@@ -183,12 +172,12 @@ There are some special characters in the SQL syntax with particular meanings:
   `SELECT * FROM my_stream;`.
 - The period (`.`) is used for accessing a field in a stream, such as
   `my_stream.humidity`.
-- The back quote (`` ` ``) represents an "raw column name" in the `SELECT`
+- The double quote (`` " ``) represents an "raw column name" in the `SELECT`
   clause to distinguish a column name with functions from actual function
   applications. For example, `SELECT SUM(a) FROM s;` means applying `SUM`
   function on the column `a` from stream `s`. However if the stream `s` actually
   contains a column called `SUM(a)` and you want to take it out, you can use
-  back quotes like `` SELECT `SUM(a)` FROM s; ``.
+  back quotes like `` SELECT "SUM(a)" FROM s; ``.
 
 ## Comments
 
