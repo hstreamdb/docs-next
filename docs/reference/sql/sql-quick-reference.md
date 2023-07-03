@@ -41,8 +41,10 @@ See [INSERT](statements/insert.md).
 
 ```sql
 INSERT INTO stream_name (field_name [, ...]) VALUES (field_value [, ...]);
-INSERT INTO stream_name VALUES 'json_value';
-INSERT INTO stream_name VALUES "binary_value";
+INSERT INTO stream_name VALUES CAST ('json_value'   AS JSONB);
+INSERT INTO stream_name VALUES CAST ('binary_value' AS BYTEA);
+INSERT INTO stream_name VALUES 'json_value'   :: JSONB;
+INSERT INTO stream_name VALUES 'binary_value' :: BYTEA;
 ```
 
 ## DROP

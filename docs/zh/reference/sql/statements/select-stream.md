@@ -21,7 +21,7 @@ SELECT <* | identifier.* | expression [ AS field_alias ] [, ...]>
 
 `expression` can be any expression described
 [here](../sql-overview.md#Expressions), such as `temperature`,
-`weather.humidity`, `114514`, `1 + 2`, `SUM(productions)`, `` `COUNT(*)` `` and
+`weather.humidity`, `42`, `1 + 2`, `SUM(productions)`, `` `COUNT(*)` `` and
 even subquery `SELECT * FROM stream_test WHERE a > 1`. In `WHERE` and `HAVING`
 clauses, `expression` should have a value of boolean type.
 

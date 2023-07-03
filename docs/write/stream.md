@@ -8,8 +8,7 @@ requirements:
 
 - Start with a letter
 - Length must be no longer than 255 characters
-- Contain only the following characters: Letters `[A-Za-z]`, numbers `[0-9]`,
-  dashes `-`, underscores `_`
+- Contain only the following characters: Letters `[A-Za-z]`, numbers `[0-9]`, underscores `_`
 
 \*For the cases where the resource name is used as a part of a SQL statement,
 such as in [HStream SQL Shell](../reference/cli.md#hstream-sql-shell), there
