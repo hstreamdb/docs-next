@@ -18,7 +18,6 @@ Appendix
 | INTERVAL  | INTERVAL 00:00:10                      |
 | JSON      | {"a": 1, "b": 2}                       |
 | ARRAY     | [1, 2, 3]                              |
-| MAP       | {1: "aa", 2: "bb"}                     |
 
 ## Keywords
 
@@ -70,7 +69,6 @@ Appendix
 | `IS_DATE`         | to determine if the given value is a date value                                          |
 | `IS_FLOAT`        | to determine if the given value is a float                                               |
 | `IS_INT`          | to determine if the given value is an integer                                            |
-| `IS_MAP`          | to determine if the given value is a map of values                                       |
 | `IS_NUM`          | to determine if the given value is a number                                              |
 | `IS_STR`          | to determine if the given value is a string                                              |
 | `IS_TIME`         | to determine if the given value is a time value                                          |
@@ -176,7 +174,6 @@ Appendix
 | `IS_DATE`         | to determine if the given value is a date value                                          |
 | `IS_FLOAT`        | to determine if the given value is a float                                               |
 | `IS_INT`          | to determine if the given value is an integer                                            |
-| `IS_MAP`          | to determine if the given value is a map of values                                       |
 | `IS_NUM`          | to determine if the given value is a number                                              |
 | `IS_STR`          | to determine if the given value is a string                                              |
 | `IS_TIME`         | to determine if the given value is a time value                                          |
