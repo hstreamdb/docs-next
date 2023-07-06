@@ -31,12 +31,11 @@ To use JSON data conveniently, we support the following functions:
 - `<json> #> <array_of_text/int>`, which gets the corresponded field in the specified path and return as JSON format.
 - `<json> #>> <array_of_text/int>`, which gets the corresponded field in the specified path and return as text format.
 
-### Array and Map Accessing Functions
+### Array Accessing Functions
 
-To access fields of arrays and maps, we support the following functions:
+To access fields of arrays, we support the following functions:
 
 - `<array> [<index>]`, `<array> [<start_index>:]`, `<array> [:<end_index>]` and `<array> [<start_index>:<end_index>]`
-- `<map> => <key_expr>`
 
 ### Trigonometric Functions
 
@@ -118,7 +117,6 @@ IS_FLOAT(val_expr)
 IS_NUM(val_expr)
 IS_BOOL(val_expr)
 IS_STR(val_expr)
-IS_MAP(val_expr)
 IS_ARRAY(val_expr)
 IS_DATE(val_expr)
 IS_TIME(val_expr)
@@ -205,7 +203,7 @@ IFNULL(val_expr, val_expr)
 
 The function application `IFNULL(x, y)` returns `y` if `x` is `NULL`, otherwise `x`.
 
-When the argument type is a complex type, for example, `ARRAY` or `MAP`, the contents of the complex type are not inspected.
+When the argument type is a complex type, for example, `ARRAY`, the contents of the complex type are not inspected.
 
 ```sql
 NULLIF(val_expr, val_expr)
@@ -213,7 +211,7 @@ NULLIF(val_expr, val_expr)
 
 The function application `NULLIF(x, y)` returns `NULL` if `x` is equal to `y`, otherwise `x`.
 
-When the argument type is a complex type, for example, `ARRAY` or `MAP`, the contents of the complex type are not inspected.
+When the argument type is a complex type, for example, `ARRAY`, the contents of the complex type are not inspected.
 
 ### Time and Date Functions
 
