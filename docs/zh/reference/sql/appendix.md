@@ -131,7 +131,6 @@ Appendix
 | `*`      | multiplication               |
 | `.`      | access field of a stream     |
 | `[]`     | access item of an array      |
-| `=>`     | access item of a map         |
 | `AND`    | logical and operator         |
 | `OR`     | logical or operator          |
 | `::`     | type casting                 |
