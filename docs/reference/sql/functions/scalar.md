@@ -21,7 +21,6 @@ Our SQL supports explicit type casting in the form of `CAST(expr, type)` or `exp
 - `INTERVAL`
 - `JSONB`
 - `<type>[]` (array)
-- `MAP[<key_type> => <value_type>]` (map)
 
 ### JSON Functions
 
