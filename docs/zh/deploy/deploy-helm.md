@@ -52,8 +52,10 @@ my-hstream-zookeeper-2                               1/1     Running   0        
 
 你可以通过 `hadmin server` 命令来检查 HStreamDB 集群的状态。
 
-```
+```sh
 kubectl exec -it hstream-1 -- bash -c "hadmin server status"
+```
+```
 +---------+---------+------------------+
 | node_id |  state  |     address      |
 +---------+---------+------------------+
@@ -65,16 +67,13 @@ kubectl exec -it hstream-1 -- bash -c "hadmin server status"
 
 ## 管理存储集群
 
-现在你可以运行 `hadmin store` **来管理这个集群**：
-
-```
-kubectl exec -it my-hstream-0 -- bash -c "hadmin store --help"
-```
-
-要检查 store 集群的状态，你可以运行：
+现在你可以运行 `hadmin store` **来管理这个集群**，
+例如要检查 store 集群的状态，你可以运行：
 
 ```sh
 kubectl exec -it my-hstream-0 -- bash -c "hadmin store --host my-hstream-logdevice-admin-server status"
+```
+```
 +----+------------------------+----------+-------+--------------+----------+
 | ID |        NAME            | PACKAGE  | STATE |    UPTIME    | LOCATION |
 +----+------------------------+----------+-------+--------------+----------+

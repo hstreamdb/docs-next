@@ -3,21 +3,21 @@ Appendix
 
 ## Data Types
 
-| type      | examples                               |
-|-----------|----------------------------------------|
-| NULL      | NULL                                   |
-| INTEGER   | 1, -1, 1234567                         |
-| FLOAT     | 2.3, -3.56, 232.4                      |
-| NUMERIC   | 1, 2.3                                 |
-| BOOLEAN   | TRUE, FALSE                            |
-| BYTEA     | '0xaa0xbb'                             |
-| STRING    | "deadbeef"                             |
-| DATE      | DATE 2020-06-10                        |
-| TIME      | TIME 11:18:30                          |
-| TIMESTAMP | TIMESTAMP 2022-01-01 T 12:00:00 +08:00 |
-| INTERVAL  | INTERVAL 00:00:10                      |
-| JSON      | {"a": 1, "b": 2}                       |
-| ARRAY     | [1, 2, 3]                              |
+| type      | examples                              |
+|-----------|---------------------------------------|
+| NULL      | NULL                                  |
+| INTEGER   | 1, -1, 1234567                        |
+| FLOAT     | 2.3, -3.56, 232.4                     |
+| NUMERIC   | 1, 2.3                                |
+| BOOLEAN   | TRUE, FALSE                           |
+| BYTEA     | '0xaa0xbb' :: BYTEA                   |
+| STRING    | "deadbeef"                            |
+| DATE      | DATE '2020-06-10'                     |
+| TIME      | TIME '11:18:30'                       |
+| TIMESTAMP | TIMESTAMP '2022-01-01T12:00:00+08:00' |
+| INTERVAL  | INTERVAL 10 SECOND                    |
+| JSON      | '{"a": 1, "b": 2}' :: JSONB           |
+| ARRAY     | [1, 2, 3]                             |
 
 ## Keywords
 

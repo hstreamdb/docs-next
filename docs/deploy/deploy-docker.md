@@ -212,7 +212,7 @@ docker exec storeAdmin hadmin store nodes-config bootstrap --metadata-replicate-
 
 And you should see something like this:
 
-```shell
+```
 Successfully bootstrapped the cluster, new nodes configuration version: 7
 Took 0.019s
 ```
@@ -225,7 +225,7 @@ docker exec storeAdmin hadmin store status
 
 And the result should be:
 
-```shell
+```
 +----+---------+----------+-------+-----------+---------+---------------+
 | ID |  NAME   | PACKAGE  | STATE |  UPTIME   |  SEQ.   | HEALTH STATUS |
 +----+---------+----------+-------+-----------+---------+---------------+

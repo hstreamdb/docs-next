@@ -97,15 +97,21 @@ cd hstream/deploy/k8s
 它应该看起来像这样：
 
 ```sh
-$ cat config.json | grep -A 2 zookeeper
+cat config.json | grep -A 2 zookeeper
+```
+```
   "zookeeper": {
     "zookeeper_uri": "ip://zookeeper-0.zookeeper-headless:2181,zookeeper-1.zookeeper-headless:2181,zookeeper-2.zookeeper-headless:2181",
     "timeout": "30s"
   }
+```
 
-$ cat hstream-server.yaml | grep -A 1 metastore-uri
-            - "--metastore-uri"
-            - "zk://zookeeper-0.zookeeper-headless:2181,zookeeper-1.zookeeper-headless:2181,zookeeper-2.zookeeper-headless:2181"
+```sh
+cat hstream-server.yaml | grep -A 1 metastore-uri
+```
+```
+- "--metastore-uri"
+- "zk://zookeeper-0.zookeeper-headless:2181,zookeeper-1.zookeeper-headless:2181,zookeeper-2.zookeeper-headless:2181"
 ```
 
 ::: tip

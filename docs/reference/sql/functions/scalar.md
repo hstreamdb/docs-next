@@ -7,7 +7,7 @@ Scalar functions are divided into serval kinds.
 
 ### Type Casting Functions
 
-Our SQL supports explicit type casting in the form of `CAST(expr, type)` or `expr :: type`. Target type can be one of the follows:
+Our SQL supports explicit type casting in the form of `CAST(expr AS type)` or `expr :: type`. Target type can be one of the follows:
 
 - `INTEGER`
 - `FLOAT`
