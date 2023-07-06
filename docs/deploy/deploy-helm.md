@@ -64,8 +64,10 @@ my-hstream-zookeeper-2                               1/1     Running   0        
 You can check the status of the HStreamDB cluster with the `hadmin server`
 command.
 
-```
+```sh
 kubectl exec -it hstream-1 -- bash -c "hadmin server status"
+```
+```
 +---------+---------+------------------+
 | node_id |  state  |     address      |
 +---------+---------+------------------+
@@ -77,16 +79,13 @@ kubectl exec -it hstream-1 -- bash -c "hadmin server status"
 
 ## Manage HStore Cluster
 
-Now you can run `hadmin store` to manage the hstore cluster:
-
-```
-kubectl exec -it my-hstream-0 -- bash -c "hadmin store --help"
-```
-
+Now you can run `hadmin store` to manage the hstore cluster.
 To check the state of the cluster, you can then run:
 
 ```sh
 kubectl exec -it my-hstream-0 -- bash -c "hadmin store --host my-hstream-logdevice-admin-server status"
+```
+```
 +----+------------------------+----------+-------+--------------+----------+
 | ID |     NAME               | PACKAGE  | STATE |    UPTIME    | LOCATION |
 +----+------------------------+----------+-------+--------------+----------+

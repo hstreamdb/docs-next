@@ -1,9 +1,12 @@
 # SELECT (Stream)
 
 Get records from a materialized view or a stream. Note that `SELECT` from
-streams can only be used as a part of `CREATE STREAM` or `CREATE VIEW`. Unless
-when there are cases you would want to run an interactive query from the command
+streams can only be used as a part of `CREATE STREAM` or `CREATE VIEW`.
+
+::: tip
+Unless when there are cases you would want to run an interactive query from the command
 shell, you could add `EMIT CHANGES` at the end of the following examples.
+:::
 
 ## Synopsis
 
@@ -21,7 +24,7 @@ SELECT <* | identifier.* | expression [ AS field_alias ] [, ...]>
 
 `expression` can be any expression described
 [here](../sql-overview.md#Expressions), such as `temperature`,
-`weather.humidity`, `42`, `1 + 2`, `SUM(productions)`, `` `COUNT(*)` `` and
+`weather.humidity`, `42`, `1 + 2`, `SUM(productions)`, `'COUNT(*)'` and
 even subquery `SELECT * FROM stream_test WHERE a > 1`. In `WHERE` and `HAVING`
 clauses, `expression` should have a value of boolean type.
 
@@ -108,11 +111,11 @@ SELECT temperature, humidity FROM weather WHERE temperature > 10 AND humidity < 
 - Joining streams:
 
 ```sql
-SELECT stream1.temperature, stream2.humidity FROM stream1 JOIN stream2 USING(humidity) WITHIN (INTERVAL '1' HOUR);
+SELECT stream1.temperature, stream2.humidity FROM stream1 JOIN stream2 USING(humidity) WITHIN (INTERVAL 1 HOUR);
 ```
 
 - Grouping records:
 
 ```sql
-SELECT COUNT(*) FROM TUMBLE(weather, INTERVAL '10' SECOND) GROUP BY cityId;
+SELECT COUNT(*) FROM TUMBLE(weather, INTERVAL 10 SECOND) GROUP BY cityId;
 ```

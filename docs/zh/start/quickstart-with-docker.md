@@ -69,18 +69,18 @@ hserver_1    | [INFO][2021-11-22T09:15:18+0000][app/server.hs:146:3][thread#67]*
 ```
 
 ::: tip
-当然，你也可以选择在后台启动
-:::
-
+当然，你也可以选择在后台启动：
 ```sh
 docker-compose -f quick-start.yaml up -d
 ```
+:::
 
-并且可以通过以下命令展示 logs ：
-
+:::tip
+可以通过以下命令展示 logs：
 ```sh
 docker-compose -f quick-start.yaml logs -f hserver
 ```
+:::
 
 ## 启动 HStreamDB 的 SQL 命令行界面
 
@@ -161,11 +161,11 @@ INSERT INTO demo (temperature, humidity) VALUES (28, 86);
 
 不出意外的话，你将看到以下的结果。
 
-```
-{"temperature":22,"humidity":80}
-{"temperature":31,"humidity":76}
-{"temperature":27,"humidity":82}
-{"temperature":28,"humidity":86}
+```json
+{"humidity":{"$numberLong":"80"},"temperature":{"$numberLong":"22"}}
+{"humidity":{"$numberLong":"76"},"temperature":{"$numberLong":"31"}}
+{"humidity":{"$numberLong":"82"},"temperature":{"$numberLong":"27"}}
+{"humidity":{"$numberLong":"86"},"temperature":{"$numberLong":"28"}}
 ```
 
 [non-root-docker]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user

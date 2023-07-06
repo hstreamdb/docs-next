@@ -13,8 +13,7 @@ requirements:
 \*For the cases where the resource name is used as a part of a SQL statement,
 such as in [HStream SQL Shell](../reference/cli.md#hstream-sql-shell), there
 will be situations where the resource name cannot be parsed properly (such as
-conflicts with Keywords etc.), enclose the resource name with backticks `` ` ``.
-With the enhancements of the SQL parser, the constriction may be removed in the future.
+conflicts with Keywords etc.), enclose the resource name with double quotes `"`.
 
 ## Attributes of a Stream
 

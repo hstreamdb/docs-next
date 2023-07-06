@@ -74,18 +74,18 @@ hserver_1    | [INFO][2021-11-22T09:15:18+0000][app/server.hs:146:3][thread#67]*
 ```
 
 ::: tip
-You can also run in background.
-:::
-
+You can also run in background:
 ```sh
 docker-compose -f quick-start.yaml up -d
 ```
+:::
 
-And if you want to show logs of server, run:
-
+::: tip
+If you want to show logs of server, run:
 ```sh
 docker-compose -f quick-start.yaml logs -f hserver
 ```
+:::
 
 ## Start HStreamDB's interactive SQL CLI
 
@@ -172,10 +172,10 @@ If everything works fine, the continuous query will output matching records in
 real time:
 
 ```json
-{"temperature":22,"humidity":80}
-{"temperature":31,"humidity":76}
-{"temperature":27,"humidity":82}
-{"temperature":28,"humidity":86}
+{"humidity":{"$numberLong":"80"},"temperature":{"$numberLong":"22"}}
+{"humidity":{"$numberLong":"76"},"temperature":{"$numberLong":"31"}}
+{"humidity":{"$numberLong":"82"},"temperature":{"$numberLong":"27"}}
+{"humidity":{"$numberLong":"86"},"temperature":{"$numberLong":"28"}}
 ```
 
 [non-root-docker]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user

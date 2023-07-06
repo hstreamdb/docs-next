@@ -35,13 +35,22 @@ We have mentioned that we have two streams, `info` and `visit` in the
 the following statements:
 
 ```sql
-> CREATE STREAM info;
+CREATE STREAM info;
+```
+
+```
 +-------------+---------+----------------+-------------+
 | Stream Name | Replica | Retention Time | Shard Count |
 +-------------+---------+----------------+-------------+
 | info        | 1       | 604800 seconds | 1           |
 +-------------+---------+----------------+-------------+
-> CREATE STREAM visit;
+```
+
+```sql
+CREATE STREAM visit;
+```
+
+```
 +-------------+---------+----------------+-------------+
 | Stream Name | Replica | Retention Time | Shard Count |
 +-------------+---------+----------------+-------------+
@@ -59,7 +68,7 @@ Let's create a trivial query that fetches data from stream `info` and outputs
 them:
 
 ```sql
-> SELECT * FROM info EMIT CHANGES;
+SELECT * FROM info EMIT CHANGES;
 ```
 
 The query will keep running until you interrupt it. Next, we can just leave it
@@ -68,7 +77,7 @@ outputs the maximum length of time of each product. Start a new SQL shell and
 run
 
 ```sql
-> SELECT product, MAX(length) AS max_len FROM visit GROUP BY product EMIT CHANGES;
+SELECT product, MAX(length) AS max_len FROM visit GROUP BY product EMIT CHANGES;
 ```
 
 Neither of the queries will print any results since we have not inserted any
@@ -85,29 +94,29 @@ For consistency and ease of demonstration, we would use SQL statements.
 Start a new SQL shell and run:
 
 ```sql
-> INSERT INTO info (product, category) VALUES ('Apple', 'Fruit');
-Done.
-> INSERT INTO visit (product, user, length) VALUES ('Apple', 'Alice', 10);
-Done.
-> INSERT INTO visit (product, user, length) VALUES ('Apple', 'Bob', 20);
-Done.
-> INSERT INTO visit (product, user, length) VALUES ('Apple', 'Caleb', 10);
-Done.
+INSERT INTO info  (product, category)     VALUES ('Apple', 'Fruit');
+INSERT INTO visit (product, user, length) VALUES ('Apple', 'Alice', 10);
+INSERT INTO visit (product, user, length) VALUES ('Apple', 'Bob', 20);
+INSERT INTO visit (product, user, length) VALUES ('Apple', 'Caleb', 10);
 ```
 
 Switch to the shells with running queries You should be able to see the expected
 outputs as follows:
 
 ```sql
-> SELECT * FROM info EMIT CHANGES;
-{"product":"Apple","category":"Fruit"}
+SELECT * FROM info EMIT CHANGES;
+```
+```
+{"category":"Fruit","product":"Apple"}
 ```
 
 ```sql
-> SELECT product, MAX(length) AS max_len FROM visit GROUP BY product EMIT CHANGES;
-{"product":"Apple","max_len":10.0}
-{"product":"Apple","max_len":20.0}
-{"product":"Apple","max_len":20.0}
+SELECT product, MAX(length) AS max_len FROM visit GROUP BY product EMIT CHANGES;
+```
+```
+{"max_len":{"$numberLong":"10"},"product":"Apple"}
+{"max_len":{"$numberLong":"20"},"product":"Apple"}
+{"max_len":{"$numberLong":"20"},"product":"Apple"}
 ```
 
 Note that `max_len` changes from `10` to `20`, which is expected.
@@ -126,40 +135,34 @@ any extra computation. Thus getting results from a view is very fast.
 Here we can create a view like
 
 ```sql
-> CREATE VIEW result AS SELECT info.category, MAX(visit.length) as max_length FROM info JOIN visit ON info.product = visit.product WITHIN (INTERVAL 1 HOUR) GROUP BY info.category;
-+--------------------------+---------+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Query ID                 | Status  | Created Time             | SQL Text                                                                                                                                                                          |
-+--------------------------+---------+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| cli_generated_ifgzzxdvng | RUNNING | 2023-07-06T07:18:18+0000 | CREATE VIEW result AS SELECT info.category, MAX(visit.length) as max_length FROM info JOIN visit ON info.product = visit.product WITHIN (INTERVAL 1 HOUR) GROUP BY info.category; |
-+--------------------------+---------+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+CREATE VIEW result AS SELECT info.category, MAX(visit.length) as max_length FROM info JOIN visit ON info.product = visit.product WITHIN (INTERVAL 1 HOUR) GROUP BY info.category;
+```
+```
++--------------------------+---------+--------------------------+---------------------------+
+| Query ID                 | Status  | Created Time             | SQL Text                  |
++--------------------------+---------+--------------------------+---------------------------+
+| cli_generated_xbexrdhwgz | RUNNING | 2023-07-06T07:46:13+0000 | CREATE VIEW result AS ... |
++--------------------------+---------+--------------------------+---------------------------+
 ```
 
 Note the query ID will be different from the one shown above. Now let's try to
 get something from the view:
 
 ```sql
-> SELECT * FROM result;
-Done.
+SELECT * FROM result;
 ```
 
 It outputs no data because we have not inserted any data into the streams since
 **after** the view is created. Let's do it now:
 
 ```sql
-> INSERT INTO info (product, category) VALUES ('Apple', 'Fruit');
-Done.
-> INSERT INTO info (product, category) VALUES ('Banana', 'Fruit');
-Done.
-> INSERT INTO info (product, category) VALUES ('Carrot', 'Vegetable');
-Done.
-> INSERT INTO info (product, category) VALUES ('Potato', 'Vegetable');
-Done.
-> INSERT INTO visit (product, user, length) VALUES ('Apple', 'Alice', 10);
-Done.
-> INSERT INTO visit (product, user, length) VALUES ('Apple', 'Bob', 20);
-Done.
-> INSERT INTO visit (product, user, length) VALUES ('Carrot', 'Bob', 50);
-Done.
+INSERT INTO info (product, category) VALUES ('Apple', 'Fruit');
+INSERT INTO info (product, category) VALUES ('Banana', 'Fruit');
+INSERT INTO info (product, category) VALUES ('Carrot', 'Vegetable');
+INSERT INTO info (product, category) VALUES ('Potato', 'Vegetable');
+INSERT INTO visit (product, user, length) VALUES ('Apple', 'Alice', 10);
+INSERT INTO visit (product, user, length) VALUES ('Apple', 'Bob', 20);
+INSERT INTO visit (product, user, length) VALUES ('Carrot', 'Bob', 50);
 ```
 
 ## Step 5: Get results from views
@@ -167,21 +170,28 @@ Done.
 Now let's find out what is in our view:
 
 ```sql
-> SELECT * FROM result;
-{"max_length":20.0,"info.category":"Fruit"}
-{"max_length":50.0,"info.category":"Vegetable"}
+SELECT * FROM result;
+```
+```
+{"category":"Fruit","max_length":{"$numberLong":"20"}}
+{"category":"Vegetable","max_length":{"$numberLong":"50"}}
 ```
 
 It works. Now insert more data and repeat the inspection:
 
 ```sql
-> INSERT INTO visit (product, user, length) VALUES ('Banana', 'Alice', 40);
-Done.
-> INSERT INTO visit (product, user, length) VALUES ('Potato', 'Eve', 60);
-Done.
-> SELECT * FROM result;
-{"max_length":40.0,"info.category":"Fruit"}
-{"max_length":60.0,"info.category":"Vegetable"}
+INSERT INTO visit (product, user, length) VALUES ('Banana', 'Alice', 40);
+INSERT INTO visit (product, user, length) VALUES ('Potato', 'Eve', 60);
+```
+
+And query again:
+
+```sql
+SELECT * FROM result;
+```
+```
+{"category":"Fruit","max_length":{"$numberLong":"40"}}
+{"category":"Vegetable","max_length":{"$numberLong":"60"}}
 ```
 
 The result is updated right away.
