@@ -61,6 +61,16 @@
 - Fix json related operation not work
 - Fix mark the state as TERMINATED if a source is missing on resuming
 
+### Connector
+- Add sink-las connector
+- Add sink-elasticsearch connector
+- Add Connection, Primary Keys checking for sink-jdbc
+- Add retry for sink connectors
+- Add Batch Receiver for sinks
+- Add full-featured JSON-schema for `source-generator
+- Replace Subscription with StreamShardReader
+- Fix source-debezium offsets
+
 ## v0.15.0 [2023-04-28]
 
 ### HServer
