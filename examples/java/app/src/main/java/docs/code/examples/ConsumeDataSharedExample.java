@@ -35,7 +35,7 @@ public class ConsumeDataSharedExample {
       HStreamClient client, String subscription, String consumerName) {
     HRecordReceiver receiver =
         ((hRecord, responder) -> {
-          System.out.println("Received a record :" + hRecord.getHRecord());
+          System.out.printf("[%s]: Received a record : %s", consumerName, hRecord.getHRecord());
           responder.ack();
         });
     Consumer consumer =
@@ -45,13 +45,13 @@ public class ConsumeDataSharedExample {
             .name(consumerName)
             .hRecordReceiver(receiver)
             .build();
+    consumer.startAsync().awaitRunning();
     try {
       // sleep 5s for consuming records
-      consumer.startAsync().awaitRunning();
-      consumer.awaitTerminated(5, SECONDS);
-    } catch (TimeoutException e) {
-      // stop consumer
-      consumer.stopAsync().awaitTerminated();
+      Thread.sleep(5000L);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
     }
+    consumer.stopAsync().awaitTerminated();
   }
 }

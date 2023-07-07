@@ -66,6 +66,8 @@ public class WriteDataBufferedExample {
 
     // close a producer, it will call flush() first
     producer.close();
-    System.out.println("Wrote message IDs: " + recordIds.stream().map(CompletableFuture::join));
+    for (CompletableFuture<String> recordId : recordIds) {
+      System.out.println("Wrote message ID: " + recordId.join());
+    }
   }
 }

@@ -14,6 +14,8 @@ public class App {
     System.out.println("WriteDataBufferedExample Done");
     WriteDataWithKeyExample.main(null);
     System.out.println("WriteDataWithKeyExample Done");
+    ReadShardExample.main(null);
+    System.out.println("ReadShardExample Done");
     CreateSubscriptionExample.main(null);
     ListSubscriptionsExample.main(null);
     System.out.println("CreateSubscriptionExample Done");

@@ -4,7 +4,7 @@ version: "3.5"
 
 services:
   hserver0:
-    image: hstreamdb/hstream:v0.10.0
+    image: hstreamdb/hstream:v0.16.0
     depends_on:
       - zookeeper
       - hstore
@@ -25,19 +25,20 @@ services:
         set -e
         /usr/local/script/wait-for-storage.sh hstore 6440 zookeeper 2181 600 \
         /usr/local/bin/hstream-server \
-        --host 0.0.0.0 --port 6570 \
+        --bind-address 0.0.0.0 --port 6570 \
         --internal-port 6571 \
         --server-id 100 \
         --seed-nodes "$$(hostname -I | awk '{print $$1}'):6571,hserver1:6573" \
-        --address $$(hostname -I | awk '{print $$1}') \
+        --advertised-address $$(hostname -I | awk '{print $$1}') \
         --metastore-uri zk://zookeeper:2181 \
         --store-config /data/store/logdevice.conf \
         --store-admin-host hstore --store-admin-port 6440 \
         --io-tasks-path /tmp/io/tasks \
-        --io-tasks-network hstream-quickstart
+        --io-tasks-network hstream-quickstart \
+        --log-level debug
 
   hserver1:
-    image: hstreamdb/hstream:v0.10.0
+    image: hstreamdb/hstream:v0.16.0
     depends_on:
       - zookeeper
       - hstore
@@ -58,19 +59,20 @@ services:
         set -e
         /usr/local/script/wait-for-storage.sh hstore 6440 zookeeper 2181 600 \
         /usr/local/bin/hstream-server \
-        --host 0.0.0.0 --port 6572 \
+        --bind-address 0.0.0.0 --port 6572 \
         --internal-port 6573 \
         --server-id 101 \
         --seed-nodes "hserver0:6571,$$(hostname -I | awk '{print $$1}'):6573" \
-        --address $$(hostname -I | awk '{print $$1}') \
+        --advertised-address $$(hostname -I | awk '{print $$1}') \
         --metastore-uri zk://zookeeper:2181 \
         --store-config /data/store/logdevice.conf \
         --store-admin-host hstore --store-admin-port 6440 \
         --io-tasks-path /tmp/io/tasks \
-        --io-tasks-network hstream-quickstart
+        --io-tasks-network hstream-quickstart \
+        --log-level debug
 
   hserver-init:
-    image: hstreamdb/hstream:v0.10.0
+    image: hstreamdb/hstream:v0.16.0
     depends_on:
       - hserver0
       - hserver1
@@ -93,7 +95,7 @@ services:
         /usr/local/bin/hadmin server --host hserver0 init
 
   hstore:
-    image: hstreamdb/hstream:v0.10.0
+    image: hstreamdb/hstream:v0.16.0
     networks:
       - hstream-quickstart
     volumes:

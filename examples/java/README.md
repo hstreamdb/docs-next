@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-- hstreamdb server v0.10.0
-- hstreamdb-java v0.10.0
+- hstreamdb server v0.16.0
+- hstreamdb-java v0.16.0
 
 ## Examples
 
@@ -30,3 +30,6 @@
 - [ConsumeDataSimpleExample.java](app/src/main/java/docs/code/examples/ConsumeDataSimpleExample.java) - How to consume records
 - [ConsumeDataSharedExample.java](app/src/main/java/docs/code/examples/ConsumeDataSharedExample.java) - How to consume records with multiple consumers
 - [ConsumeDataWithErrorListenerExample](app/src/main/java/docs/code/examples/ConsumeDataWithErrorListenerExample.java) - How to handle a failed consumer
+
+### ShardReader
+- [ShardReaderExample.java](app/src/main/java/docs/code/examples/ReadShardExample.java) - How to read records from a specific shard

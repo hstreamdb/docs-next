@@ -49,7 +49,9 @@ public class WriteDataWithKeyExample {
       CompletableFuture<String> recordId = producer.write(record);
       recordIds.add(recordId);
     }
-    System.out.println("Wrote message IDs: " + recordIds.stream().map(CompletableFuture::join));
     producer.close();
+    for (CompletableFuture<String> recordId : recordIds) {
+      System.out.println("Wrote message ID: " + recordId.join());
+    }
   }
 }

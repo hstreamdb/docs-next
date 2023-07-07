@@ -42,12 +42,14 @@ public class ConsumeDataWithErrorListenerExample {
           }
         },
         threadPool);
+    consumer.startAsync().awaitRunning();
     try {
-      consumer.startAsync().awaitRunning();
-      consumer.awaitTerminated(5, SECONDS);
-    } catch (TimeoutException e) {
-      consumer.stopAsync().awaitTerminated();
-      threadPool.shutdown();
+      // sleep 5s for consuming records
+      Thread.sleep(5000L);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
     }
+    consumer.stopAsync().awaitTerminated();
+    threadPool.shutdown();
   }
 }
