@@ -43,7 +43,7 @@ public class WriteDataSimpleExample {
             .put("name", "hRecord-example")
             .build();
 
-    for (int i = 0; i <= 3000; i++) {
+    for (int i = 0; i <= 10; i++) {
       Record record = Record.newBuilder().hRecord(hRecord).build();
       // If the data is written successfully, returns a server-assigned record id
       CompletableFuture<String> recordId = producer.write(record);

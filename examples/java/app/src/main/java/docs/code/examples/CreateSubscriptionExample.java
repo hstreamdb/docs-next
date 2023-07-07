@@ -21,8 +21,12 @@ public class CreateSubscriptionExample {
     String subscriptionId = "your_subscription_id";
     Subscription subscription =
         Subscription.newBuilder().subscription(subscriptionId).stream(streamName)
-            .ackTimeoutSeconds(600) // The default setting is 600 seconds
-            .maxUnackedRecords(10000) // The default setting is 10000 records
+             // The default setting is 600 seconds
+            .ackTimeoutSeconds(600)
+            // The default setting is 10000 records
+            .maxUnackedRecords(10000)
+            // Set Subscription offset to EARLIEST, default setting is LATEST
+            .offset(Subscription.SubscriptionOffset.EARLIEST)
             .build();
     client.createSubscription(subscription);
   }

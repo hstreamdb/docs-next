@@ -14,8 +14,8 @@ public class CreateStreamExample {
     String streamName2 = "your_raw_records_stream_name";
 
     HStreamClient client = HStreamClient.builder().serviceUrl(serviceUrl).build();
-    createStreamExample(client, streamName1);
-    createStreamWithAttrsExample(client, streamName2);
+    createStreamWithAttrsExample(client, streamName1);
+    createStreamExample(client, streamName2);
     client.close();
   }
 
