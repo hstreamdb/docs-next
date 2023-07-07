@@ -1,42 +1,113 @@
 # Release Notes
 
+## v0.16.0 [2023-07-07]
+
+### HServer
+
+- Add ReadStream and ReadSingleShardStream RPC to read data from a stream
+- Add a new RPC for get tail recordId of specific shard
+- Add validation when lookup resource
+- Add readShardStream RPC for grpc-haskell
+- Add `meta`, `lookup`, `query`, `connector` subcommand for hadmin
+- Add command for cli to get hstream version
+- Add benchmark for logdevice create LogGroups
+- Add dockerfile for arm64 build
+- Add readShard command in hstream cli
+- Add stats command for connector, query and view in hadmin cli
+- Improve readShardStream RPC to accept max read records nums and until offset
+- Improve read-shard cli command to support specify max read records nums and until offset
+- Improve sql cli help info
+- Improve dockerfile to speed up build
+- Improve error messages in case of cli errors
+- Improve the output of cli
+- Imporve add more logs in streaming fetch handler
+- Improve delete resource relaed stats in deleteHandlers
+- Improve change some connector log level
+- Refactor data structures of inflight recordIds in subscription
+- Refactor replace SubscriptionOnDifferentNode exception to WrongServer exception
+- Fix hs-grpc memory leak and core dump problem
+- Fix error handling in streaming fetch handler
+- Fix checking waitingConsumer list when invalid a consumer
+- Fix redundant recordIds deletion
+- Fix remove stream when deleting a query
+- Fix check whether query exists before creating a new query
+- Fix stop related threads after a subscription is deleted
+- Fix bug that can cause CheckedRecordIds pile
+- Fix check meta store when listConsumer
+- Fix subscription created by query can be never acked
+- Fix getSubscription with non-existent checkpoint logId
+
+### SQL && Processing Engine
+
+- Add `BETWEEN`、`NOT` operators
+- Add `HAVING` clause in views
+- Add `INSERT INTO SELECT` statement
+- Add extra label for JSON data
+- Add syntax tests
+- Add planner tests
+- Improve syntax for quotes
+- Improve remove duplicate aggregates
+- Improve restore with refined AST
+- Refactor remove _view postfix of a view
+- Refactor create connector syntax
+- Fix alias problems in aggregates and `GROUP BY` statements
+- Fix refine string literal
+- Fix grammar conflicts
+- Fix `IFNULL` operator not work
+- Fix runtime error caused by no aggregate with group by
+- Fix batched messaged stuck
+- Fix incorrect view name && aggregate result
+- Fix cast operation
+- Fix json related operation not work
+- Fix mark the state as TERMINATED if a source is missing on resuming
+
+### Connector
+- Add sink-las connector
+- Add sink-elasticsearch connector
+- Add Connection, Primary Keys checking for sink-jdbc
+- Add retry for sink connectors
+- Add Batch Receiver for sinks
+- Add full-featured JSON-schema for source-generator
+- Replace Subscription with StreamShardReader
+- Fix source-debezium offsets
+
 ## v0.15.0 [2023-04-28]
 
-### HServer 
+### HServer
 
 - Add support for automatic recovery of computing tasks(query, connector) on other nodes when a node in the cluster fails
 - Add support for reading data from a given timestamp
-- Add support for reconnecting nodes that were previously determined to have failed  in the cluster 
+- Add support for reconnecting nodes that were previously determined to have failed  in the cluster
 - Add a new RPC for reading stream shards
 - Add metrics for query, view, connector
-- Add support for fetching logs of connectors 
+- Add support for fetching logs of connectors
 - Add retry read from hstore when the subscription do resend
 - Improve the storage of checkpoints for subscriptions
 - Improve read performance of hstore reader
-- Improve error handling of RPC methods 
+- Improve error handling of RPC methods
 - Improve the process of nodes restart
 - Improve requests validation in handlers
 - Imporve the timestamp of records
 - Improve the deletion of queries
-- Refactor logging modules 
+- Refactor logging modules
 - Fix the load distribution logic in case of cluster members change
 
-### SQL && Processing Engine 
+### SQL && Processing Engine
 
-- The v1 engine is used by default 
-- Add states saving and restoration of a query 
+- The v1 engine is used by default
+- Add states saving and restoration of a query
 - Add validation for select statements with group by clause
 - Add retention time option for ``create stream`` statement
 - Add a window_end column for aggregated results based on time window
-- Add time window columns to the result stream when using time windows 
-- Improve the syntax of time windows in SQL 
+- Add time window columns to the result stream when using time windows
+- Improve the syntax of time windows in SQL
 - Improve the syntax of time interval in SQL
-- Improve the process of creating the result stream of a query 
+- Improve the process of creating the result stream of a query
 - Fix `as` in `join` clause
 - Fix creating a view without a group by clause
 - Fix an issue which can cause incomplete aggregated columns
-- Fix alias of an aggregation expr not work 
-- Fix aggregation queries on views 
+- Fix alias of an aggregation expr not work
+- Fix aggregation queries on views
 - Fix errors when joining multiple streams (3 or more)
 - Disable subqueries temporarily
 
@@ -333,7 +404,7 @@ details.
 
 We provide a basic monitoring solution based on Prometheus and Grafana. Metrics
 collected by HStreamDB will be stored in Prometheus by the exporter and
-displayed on the Grafana board. 
+displayed on the Grafana board.
 
 #### Deployment on K8s with Helm
 
