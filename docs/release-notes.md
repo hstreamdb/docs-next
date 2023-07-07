@@ -4,6 +4,7 @@
 
 ### HServer
 
+- Add ReadStream and ReadSingleShardStream RPC to read data from a stream
 - Add a new RPC for get tail recordId of specific shard
 - Add validation when lookup resource
 - Add internal subscription checklist_size stats
@@ -15,6 +16,7 @@
 - Add readShard command in hstream cli
 - Add stats command for connector, query and view in hadmin cli
 - Improve readShardStream RPC to accept max read records nums and until offset
+- Improve read-shard cli command to support specify max read records nums and until offset
 - Improve sql cli help info
 - Improve dockerfile to speed up build
 - Improve error messages in case of cli errors
@@ -40,13 +42,15 @@
 
 - Add `BETWEEN`、`NOT` operators
 - Add `HAVING` clause in views
+- Add `INSERT INTO SELECT` statement
 - Add extra label for JSON data
 - Add syntax tests
 - Add planner tests
 - Improve syntax for quotes
 - Improve remove duplicate aggregates
 - Improve restore with refined AST
-- Refector remove _view postfix of a view
+- Refactor remove _view postfix of a view
+- Refactor create connector syntax
 - Fix alias problems in aggregates and `GROUP BY` statements
 - Fix refine string literal
 - Fix grammar conflicts
