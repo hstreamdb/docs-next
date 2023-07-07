@@ -7,7 +7,6 @@
 - Add ReadStream and ReadSingleShardStream RPC to read data from a stream
 - Add a new RPC for get tail recordId of specific shard
 - Add validation when lookup resource
-- Add internal subscription checklist_size stats
 - Add readShardStream RPC for grpc-haskell
 - Add `meta`, `lookup`, `query`, `connector` subcommand for hadmin
 - Add command for cli to get hstream version
