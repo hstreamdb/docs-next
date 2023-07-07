@@ -67,7 +67,7 @@
 - Add Connection, Primary Keys checking for sink-jdbc
 - Add retry for sink connectors
 - Add Batch Receiver for sinks
-- Add full-featured JSON-schema for `source-generator
+- Add full-featured JSON-schema for source-generator
 - Replace Subscription with StreamShardReader
 - Fix source-debezium offsets
 
