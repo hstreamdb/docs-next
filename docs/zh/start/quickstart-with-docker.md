@@ -52,7 +52,7 @@ docker-compose -v
 
 创建一个 quick-start.yaml, 可以直接[下载][quick-start.yaml]或者复制以下内容:
 
-<<< @/../assets/quick-start.yaml{yaml-vue}
+<<< @/../assets/quick-start.yaml.template{yaml-vue}
 
 在同一个文件夹中运行：
 
@@ -169,4 +169,4 @@ INSERT INTO demo (temperature, humidity) VALUES (28, 86);
 ```
 
 [non-root-docker]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
-[quick-start.yaml]: https://raw.githubusercontent.com/hstreamdb/docs-next/main/assets/quick-start-latest.yaml
+[quick-start.yaml]: https://raw.githubusercontent.com/hstreamdb/docs-next/main/assets/quick-start.yaml
