@@ -57,7 +57,7 @@ Do NOT use this configuration in your production environment!
 Create a docker-compose.yaml file for docker compose, you can
 [download][quick-start.yaml] or paste the following contents:
 
-<<< @/../assets/quick-start.yaml{yaml-vue}
+<<< @/../assets/quick-start.yaml.template{yaml-vue}
 
 then run:
 
@@ -179,4 +179,4 @@ real time:
 ```
 
 [non-root-docker]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
-[quick-start.yaml]: https://raw.githubusercontent.com/hstreamdb/docs-next/main/assets/quick-start-latest.yaml
+[quick-start.yaml]: https://raw.githubusercontent.com/hstreamdb/docs-next/main/assets/quick-start.yaml
