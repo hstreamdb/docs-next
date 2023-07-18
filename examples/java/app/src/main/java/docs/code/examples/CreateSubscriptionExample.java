@@ -21,7 +21,7 @@ public class CreateSubscriptionExample {
     String subscriptionId = "your_subscription_id";
     Subscription subscription =
         Subscription.newBuilder().subscription(subscriptionId).stream(streamName)
-             // The default setting is 600 seconds
+            // The default setting is 600 seconds
             .ackTimeoutSeconds(600)
             // The default setting is 10000 records
             .maxUnackedRecords(10000)

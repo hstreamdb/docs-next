@@ -1,12 +1,9 @@
 package docs.code.examples;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 import com.google.common.util.concurrent.Service;
 import io.hstream.HRecordReceiver;
 import io.hstream.HStreamClient;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeoutException;
 
 public class ConsumeDataWithErrorListenerExample {
   public static void main(String[] args) throws Exception {
