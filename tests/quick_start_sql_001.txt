@@ -1,0 +1,4 @@
+{"humidity":{"$numberLong":"80"},"temperature":{"$numberLong":"22"}}
+{"humidity":{"$numberLong":"76"},"temperature":{"$numberLong":"31"}}
+{"humidity":{"$numberLong":"82"},"temperature":{"$numberLong":"27"}}
+{"humidity":{"$numberLong":"86"},"temperature":{"$numberLong":"28"}}

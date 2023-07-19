@@ -1,0 +1,127 @@
+name: ci
+
+on:
+  push:
+    branches: [main, release*]
+
+  pull_request:
+    branches: [main, release*]
+
+  repository_dispatch:
+    branches: [main]
+    types: image_updated
+
+jobs:
+  quick-start:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: pull images
+        run: docker-compose -f assets/quick-start.yaml pull
+
+      - name: quick start a hstream cluster
+        run: ./tests/start_cluster.sh
+
+      - name: test simple sql
+        run: ./tests/test_quick_start.sh
+
+      - name: Post result to Slack channel (succeed)
+        if: ${{ success() && github.event_name == 'repository_dispatch' }}
+        run: |
+          curl -X POST -H 'Content-Type: application/json' \
+            ${{ secrets.SLACK_TEST_RESULTS_HOOK_URL }} \
+            --data "{\"data\": \"GitHub Action build result: ${{ job.status }} :white_check_mark: \n\
+              Commit info: https://github.com/hstreamdb/hstream/commit/${{ github.event.client_payload.commit_sha }}\n\
+              Action summary: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"}"
+
+      - name: Post result to Slack channel (failed)
+        if: ${{ failure() && github.event_name == 'repository_dispatch' }}
+        run: |
+          curl -X POST -H 'Content-Type: application/json' \
+            ${{ secrets.SLACK_FIXME_HOOK_URL }} \
+            --data "{\"data\": \"GitHub Action build result: ${{ job.status }} :x: \n\
+              Commit info: https://github.com/hstreamdb/hstream/commit/${{ github.event.client_payload.commit_sha }}\n\
+              Action summary: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"}"
+
+  test-java-examples:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./examples/java
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: "11"
+          distribution: "adopt"
+
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - run: ./gradlew spotlessJavaCheck
+
+      - name: Start cluster
+        run: |
+          docker compose -f ../../assets/quick-start.yaml up -d
+          sleep 5
+          ../../tests/wait_hserver.sh
+          sleep 5
+
+      - run: ./gradlew run
+
+  test-go-examples:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./examples/go
+    strategy:
+      matrix:
+        go-version: ["1.19"]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+
+      - uses: actions/setup-go@v3
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: check go fmt
+        run: |
+          go fmt ./... && \
+          git diff-index --exit-code HEAD
+
+      - name: check go build
+        run: |
+          go build github.com/hstreamdb/hstreamdb-go-examples
+
+      - name: Start cluster
+        run: |
+          docker compose -f ../../assets/quick-start.yaml up -d
+          sleep 5
+          ../../tests/wait_hserver.sh
+          sleep 5
+
+      - name: test
+        run: ./hstreamdb-go-examples
+
+  test-python-examples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Start cluster
+        run: |
+          docker compose -f ./assets/quick-start.yaml up -d
+          sleep 5
+          ./tests/wait_hserver.sh
+          sleep 5
+
+      - name: Run examples
+        run: |
+          python3 -m pip install hstreamdb
+          python3 examples/py/snippets/guides.py

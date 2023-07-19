@@ -1,11 +1,8 @@
 package docs.code.examples;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 import io.hstream.Consumer;
 import io.hstream.HRecordReceiver;
 import io.hstream.HStreamClient;
-import java.util.concurrent.TimeoutException;
 
 public class ConsumeDataSharedExample {
   public static void main(String[] args) throws Exception {
