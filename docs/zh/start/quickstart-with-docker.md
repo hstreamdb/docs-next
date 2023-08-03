@@ -82,6 +82,80 @@ docker-compose -f quick-start.yaml logs -f hserver
 ```
 :::
 
+## 使用 HStream CLI 连接 HStreamDB
+
+可以直接使用 `hstream` 命令行接口（CLI）来管理 HStreamDB，该接口包含在 `hstreamdb/hstream` 镜像中。
+
+使用 Docker 启动 `hstreamdb/hstream` 实例：
+
+```sh-vue
+docker run -it --rm --name some-hstream-cli --network host hstreamdb/hstream:{{ $version() }} bash
+```
+
+## 创建 stream
+
+使用 `hstream stream create` 命令来创建 stream。现在我们将创建一个包含2个 shard 的 stream。
+
+```sh
+hstream stream create demo --shards 2
+```
+
+```sh
++-------------+---------+----------------+-------------+
+| Stream Name | Replica | Retention Time | Shard Count |
++-------------+---------+----------------+-------------+
+| demo        | 1       | 604800 seconds | 2           |
++-------------+---------+----------------+-------------+
+```
+
+## 向 stream 中写入数据
+
+`hstream stream append` 命令会启动一个交互式 shell，可以通过它来向 stream 中写入数据
+```sh
+hstream stream append demo --separator "@"
+```
+-- `--separator` 选项可以指定 key 分隔符，默认为 “@”。通过分隔符，可以为每条 record 设置一个 key。具有相同 key 的 record
+会被写入到 stream 的同一个 shard 中。
+
+```sh
+key1@{"temperature": 22, "humidity": 80}
+key1@{"temperature": 32, "humidity": 21, "tag": "tes1"}
+hello world!
+```
+这里我们写入了 3 条数据。前两条是 json 格式，且被关联到 key1 上，第三条没有设置 key
+
+如需更多信息，可以使用 `hstream stream append -h`。
+
+## 从 stream 中读取数据
+
+要从特定的 stream 中读取数据，可以使用 `hstream stream read-stream` 命令。
+
+```sh
+hstream stream read-stream demo
+```
+
+```sh
+timestamp: "1692774821444", id: 1928822601796943-8589934593-0, key: "key1", record: {"humidity":80.0,"temperature":22.0}
+timestamp: "1692774844649", id: 1928822601796943-8589934594-0, key: "key1", record: {"humidity":21.0,"tag":"test1","temperature":32.0}
+timestamp: "1692774851017", id: 1928822601796943-8589934595-0, key: "", record: hello world!
+```
+
+`read-stream` 命令 可以设置读取偏移量，可以有以下三种类型：
+
+- `earliest`：寻找到 stream 的第一条记录。
+- `latest`：寻找到 stream 的最后一条记录。
+- `timestamp`：寻找到指定创建时间戳的记录。
+
+例如：
+
+```sh
+hstream stream read-stream demo --from 1692774844649 --total 1
+```
+
+```sh
+timestamp: "1692774844649", id: 1928822601796943-8589934594-0, key: "key1", record: {"humidity":21.0,"tag":"test1","temperature":32.0}
+```
+
 ## 启动 HStreamDB 的 SQL 命令行界面
 
 ```sh-vue
@@ -113,14 +187,6 @@ SQL STATEMENTS:
     INSERT INTO stream_name (field1, field2) VALUES (1, 2);
 
 >
-```
-
-## 创建一个 stream
-
-首先，我们可以用 `CREATE STREAM` 语句创建一个名为 demo 的 stream.
-
-```sql
-CREATE STREAM demo;
 ```
 
 ## 对这个 stream 执行一个持久的查询操作
