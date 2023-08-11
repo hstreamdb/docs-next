@@ -22,7 +22,7 @@ export default defineConfig({
     ],
   ],
   lastUpdated: true,
-  ignoreDeadLinks: false,
+  ignoreDeadLinks: 'localhostLinks',
   srcExclude: ['**/_index.md'],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
