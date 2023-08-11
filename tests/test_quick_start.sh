@@ -14,7 +14,7 @@ cleanup() {
 echo "Docker image: $IMAGE"
 
 docker run -t --rm --name some-hstream-cli --network host \
-    $IMAGE hstream --port 6570 sql -e "CREATE STREAM $STREAM_NAME;"
+    $IMAGE hstream --port 6570 sql -e "CREATE STREAM $STREAM_NAME (temperature INTEGER, humidity INTEGER);"
 
 docker run -td --rm --name some-hstream-cli --network host \
   $IMAGE hstream --port 6570 sql -e \
@@ -39,7 +39,7 @@ echo "-> write results to $OUTPUT..."
 docker logs some-hstream-cli > $OUTPUT
 
 echo "-> results: "
-cat $OUTPUT
+cat -e $OUTPUT
 
 echo "-> compare results..."
 cmp --silent $OUTPUT tests/quick_start_sql_001.txt || \
