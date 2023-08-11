@@ -58,7 +58,7 @@ You can change them to get records from other streams.
 :::
 
 ::: info
-We default to showing at most **100 records** after getting. If you want to get more records,
+We default to showing at most **1000 records** after getting. If you want to get more records,
 please specify a recent record ID in the **Start record ID** field or a recent date in the **Start date** field.
 :::
 
