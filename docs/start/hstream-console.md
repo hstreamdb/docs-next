@@ -36,4 +36,4 @@ Check out [HStream IO Overview](../ingest-and-distribute/overview.md) to learn m
 To learn more about HStreamDB's resources, follow the links below:
 
 - [Streams](../write/stream.md)
-- [Subscriptions](../write/subscription.md)
+- [Subscriptions](../receive/subscription.md)
