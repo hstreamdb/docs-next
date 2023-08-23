@@ -17,23 +17,13 @@ It can also help you to search for resources in the cluster, and provide a detai
 
 ### Monitor resources in the cluster
 
-In every resource view, HStream Console provides a metrics panel to monitor the resource status in real time. With the metrics panel,
+In every resource view, HStream Console provides a metrics panel to monitor the resource status in real-time. With the metrics panel,
 you can intuitively visualize the resource status, and easily find out the bottleneck of the cluster.
 
 ### Data synchronization
 
 With connectors in HStream Console, you can gain the ability to synchronize data between HStreamDB and other data sources, such as MySQL, PostgreSQL, and Elasticsearch.
 Check out [HStream IO Overview](../ingest-and-distribute/overview.md) to learn more about connectors.
-
-## Configuration
-
-### Authentication
-
-## Start HStream Console
-
-![HStream Console Login](./hstream-console-login.png)
-
-Fill in the username and password that configured before, and click the `Sign in` button to get started.
 
 ## Next steps
 
