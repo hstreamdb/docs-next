@@ -89,7 +89,7 @@ services:
     depends_on:
       hserver-init:
         condition: service_completed_successfully
-    image: hstreamdb/hstream-exporter
+    image: hstreamdb/hstream-exporter:{{ $exporterVersion() }}
     networks:
       - hstream-quickstart
     command:
@@ -138,7 +138,7 @@ services:
       - data_prom_config:/etc/prometheus
 
   console:
-    image: hstreamdb/hstream-console
+    image: hstreamdb/hstream-console:{{ $consoleVersion() }}
     depends_on:
       hserver-init:
         condition: service_completed_successfully
