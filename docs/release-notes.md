@@ -27,7 +27,6 @@
 - Refactor hstream configuration
 - Refactor use deriving instead of template-haskell to deriving Aeson instance
 - Refactor cli ShardOffset parser
-- Refactor update generated Message structures
 - Fix redirect stderr to stdout for iotask
 - Fix modify default store replication factor to 1
 - Fix correctly handle the SubscribeStateStopped state in the sendRecords method
