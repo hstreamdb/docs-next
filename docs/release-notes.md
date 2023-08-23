@@ -1,5 +1,83 @@
 # Release Notes
 
+## v0.17.0 [2023-08-23]
+
+### HServer
+
+- Add read-stream command for cli to read data from specific stream
+- Add append command for cli to write data to specific stream
+- Add ZookeeperSlotAlloc
+- Add trimStream and trimShard RPC
+- Add stream-v2 experimental feature
+- Add doesStreamPartitionValExist to check if a shard is belong to a stream
+- Add checkpointStore benchmark
+- Add readStreamByKey RPC
+- Add LookupKey RPC
+- Add support for ASan
+- Add basic Kafka message types
+- Add support encoding Kafka primitive types
+- Add support generic deriving for Serializable Kafka types
+- Add support internal admin command
+- Add read stream metrics
+- Add Kafka ErrorCode constants
+- Add trimShards RPC
+- Add supportedApiVersions for Kafka
+- Improve call trim concurrently in trimShards and trimStream rpcs
+- Improve free disk space in ci
+- Improve docker-compose.yaml to use a zk cluster
+- Improve reduce memory usage in reader services
+- Improve bump third-part dependency version
+- Improve ensure enable-tls take effect consistently across all scenarios
+- Refactor the format of ReceivedRecord
+- Refactor hstream configuration
+- Refactor use deriving instead of template-haskell to deriving Aeson instance
+- Refactor cli ShardOffset parser
+- Refactor update generated Message structures
+- Fix redirect stderr to stdout for iotask
+- Fix modify default store replication factor to 1
+- Fix correctly handle the SubscribeStateStopped state in the sendRecords method
+- Fix getShardId method may cause cache inconsistency issue
+- Fix interrupt all consumers when a subscription is deleting or failed
+- Fix invalid consumer properly
+- Fix wrong ShardReader exit status code for grpc-haskell
+- Fix wrong behavior of LATEST OFFSET for shardReader
+- Fix incorrect number of record entries delivered by readStreamByKey
+- Fix memory leak in logIdHasGroup
+- Fix incorrect encode HRecord by cli append
+- Fix the main server should wait all AdvertisedListeners
+- Fix readStream rpc can not consume multi-shard stream
+- Fix zoovisitor memory leak
+- Fix dead lock when client send init before server already bootstrap
+- Fix incorrect calculateShardId function
+- Fix make PEER_UNAVAILABLE a retryable exception
+- Fix ci build with hstream_enable_asan
+- Fix Ord instance for Rid
+
+### SQL && Processing Engine
+
+- Add schema with hstream_enable_schema flag
+- Add support creating stream with schema
+- Add support matastore-based schema
+- Add support schema when creating stream by select & creating view
+- Add support window_start and window_end in binder and planner
+- Add Unknown type in binder
+- Improve display BoundDataType
+- Improve use column name to lookupColumn in planner
+- Improve polish type check
+- Improve schema not found error message
+- Fix refine array syntax
+- Fix clean up processing threads properly on exceptions
+- Fix stream.column in binder & planner
+- Fix errors caused by SomeSQLException
+- Fix incorrect catalog id in planner
+- Fix incorrect result on joining after group by
+- Fix a bug may produce incorrect view result
+
+### Connector
+- Add sink-elasticsearch connector image in hstream config file
+- Add extra-docker-args option
+- Improve connector robustness
+
 ## v0.16.0 [2023-07-07]
 
 ### HServer
