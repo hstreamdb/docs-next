@@ -14,14 +14,9 @@
 - Add readStreamByKey RPC
 - Add LookupKey RPC
 - Add support for ASan
-- Add basic Kafka message types
-- Add support encoding Kafka primitive types
-- Add support generic deriving for Serializable Kafka types
 - Add support internal admin command
 - Add read stream metrics
-- Add Kafka ErrorCode constants
 - Add trimShards RPC
-- Add supportedApiVersions for Kafka
 - Improve call trim concurrently in trimShards and trimStream rpcs
 - Improve free disk space in ci
 - Improve docker-compose.yaml to use a zk cluster
@@ -76,6 +71,15 @@
 ### Connector
 - Add sink-elasticsearch connector image in hstream config file
 - Add extra-docker-args option
++ Add ui:group, ui:condition schema options
++ Add error stream for error handling
++ Add skip strategy for error handling
++ Add retry strategy for error handling
++ Add normal table support for sink-las
++ Add extra datetime field for sink-las
++ Add LATEST offset option
++ Add parallel writing
++ Add buffer options
 - Improve connector robustness
 
 ## v0.16.0 [2023-07-07]
