@@ -14,7 +14,7 @@ cleanup() {
 echo "Docker image: $IMAGE"
 
 docker run -t --rm --name some-hstream-cli --network host \
-    $IMAGE hstream --port 6570 sql -e "CREATE STREAM $STREAM_NAME (temperature INTEGER, humidity INTEGER);"
+    $IMAGE hstream --port 6570 sql -e "CREATE STREAM $STREAM_NAME;"
 
 docker run -td --rm --name some-hstream-cli --network host \
   $IMAGE hstream --port 6570 sql -e \

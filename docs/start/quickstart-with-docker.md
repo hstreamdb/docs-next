@@ -180,3 +180,11 @@ real time:
 
 [non-root-docker]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 [quick-start.yaml]: https://raw.githubusercontent.com/hstreamdb/docs-next/main/assets/quick-start.yaml
+
+## Start Discovery HStreamDB using CONSOLE
+
+The HStreamDB Console is the management panel for HStreamDB. You can use it to manage most resources of HStreamDB, perform data reading and writing, execute SQL queries, and more.
+
+You can open the Console panel by entering http://localhost:5177 into your browser. 
+
+Now, you can start exploring HStreamDB with joy.
