@@ -31,6 +31,10 @@ Check out [HStream IO Overview](../ingest-and-distribute/overview.md) to learn m
 
 ## Start HStream Console
 
+![HStream Console Login](./hstream-console-login.png)
+
+Fill in the username and password that configured before, and click the `Sign in` button to get started.
+
 ## Next steps
 
 To learn more about HStreamDB's resources, follow the links below:
