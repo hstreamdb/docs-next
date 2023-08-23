@@ -185,6 +185,6 @@ real time:
 
 The HStreamDB Console is the management panel for HStreamDB. You can use it to manage most resources of HStreamDB, perform data reading and writing, execute SQL queries, and more.
 
-You can open the Console panel by entering http://localhost:5177 into your browser, for more details about the Console, please check [Get Started on HStream Console](./docs/start/hstream-console). 
+You can open the Console panel by entering http://localhost:5177 into your browser, for more details about the Console, please check [Get Started on HStream Console](./hstream-console.md). 
 
 Now, you can start exploring HStreamDB with joy.
