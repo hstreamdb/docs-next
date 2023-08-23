@@ -87,6 +87,79 @@ docker-compose -f quick-start.yaml logs -f hserver
 ```
 :::
 
+## Connect HStreamDB with HSTREAM CLI
+
+HStreamDB can be directly managed using the `hstream` command-line interface (CLI), which is included in the `hstreamdb/hstream` image.
+
+Start an instance of `hstreamdb/hstream` using Docker:
+
+```sh-vue
+docker run -it --rm --name some-hstream-cli --network host hstreamdb/hstream:{{ $version() }} bash
+```
+
+## Create stream
+
+To create a stream, you can use `hstream stream create` command. Now we will create a stream with 2 shard
+
+```sh
+hstream stream create demo --shards 2
+```
+
+```sh
++-------------+---------+----------------+-------------+
+| Stream Name | Replica | Retention Time | Shard Count |
++-------------+---------+----------------+-------------+
+| demo        | 1       | 604800 seconds | 2           |
++-------------+---------+----------------+-------------+
+```
+
+## Write data to streams
+
+The `hstream stream append` command can be used to write data to a stream in a interactive shell.
+```sh
+hstream stream append demo --separator "@"
+```
+- With the `--separator` option, you can specify the separator for key. The default separator is "@". Using the separator, you can assign a key to each record. Record with same key will be append into same shard of the stream.
+
+```sh
+key1@{"temperature": 22, "humidity": 80}
+key1@{"temperature": 32, "humidity": 21, "tag": "test1"}
+hello world!
+```
+Here we have written three pieces of data. The first two are in JSON format and are associated with key1. The last one does not specify a key.
+
+For additional information, you can use `hstream stream append -h`.
+
+## Read data from a stream
+
+To read data from a particular stream, the `hstream stream read-stream` command is used.
+
+```sh
+hstream stream read-stream demo
+```
+
+```sh
+timestamp: "1692774821444", id: 1928822601796943-8589934593-0, key: "key1", record: {"humidity":80.0,"temperature":22.0}
+timestamp: "1692774844649", id: 1928822601796943-8589934594-0, key: "key1", record: {"humidity":21.0,"tag":"test1","temperature":32.0}
+timestamp: "1692774851017", id: 1928822601796943-8589934595-0, key: "", record: hello world!
+```
+
+You can also set a read offset, which can be one of the following types：
+
+- `earliest`: This seeks to the first record of the stream.
+- `latest`: This seeks to the end of the stream.
+- `timestamp`: This seeks to a record with a specific creation timestamp.
+
+For instance:
+
+```sh
+hstream stream read-stream demo --from 1692774844649 --total 1
+```
+
+```sh
+timestamp: "1692774844649", id: 1928822601796943-8589934594-0, key: "key1", record: {"humidity":21.0,"tag":"test1","temperature":32.0}
+```
+
 ## Start HStreamDB's interactive SQL CLI
 
 ```sh-vue
@@ -119,14 +192,6 @@ SQL STATEMENTS:
     INSERT INTO stream_name (field1, field2) VALUES (1, 2);
 
 >
-```
-
-## Create a stream
-
-What we are going to do first is create a stream by `CREATE STREAM` statement.
-
-```sql
-CREATE STREAM demo;
 ```
 
 ## Run a continuous query over the stream
@@ -185,6 +250,6 @@ real time:
 
 The HStreamDB Console is the management panel for HStreamDB. You can use it to manage most resources of HStreamDB, perform data reading and writing, execute SQL queries, and more.
 
-You can open the Console panel by entering http://localhost:5177 into your browser, for more details about the Console, please check [Get Started on HStream Console](./hstream-console.md). 
+You can open the Console panel by entering http://localhost:5177 into your browser, for more details about the Console, please check [Get Started on HStream Console](./hstream-console.md).
 
 Now, you can start exploring HStreamDB with joy.
