@@ -2,7 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import GitPod from './GitPod.vue'
 import './custom.css'
-import { usePickVersion } from './pickVersion'
+import { usePickConsoleVersion, usePickExporterVersion, usePickVersion } from './pickVersion'
 
 export default {
   ...DefaultTheme,
@@ -13,5 +13,7 @@ export default {
   },
   enhanceApp({ app }) {
     app.config.globalProperties.$version = usePickVersion
+    app.config.globalProperties.$consoleVersion = usePickConsoleVersion
+    app.config.globalProperties.$exporterVersion = usePickExporterVersion
   },
 }
