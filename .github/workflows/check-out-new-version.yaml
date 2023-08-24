@@ -17,7 +17,7 @@ jobs:
           git push origin release-${{ github.ref_name }}
 
       - name: Check out new version
-        run: ./check-out-version.sh --version ${{ github.ref_name }}
+        run: ./check-out-version.sh --version ${{ github.ref_name }} --force
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
