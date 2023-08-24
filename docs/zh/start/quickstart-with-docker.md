@@ -241,4 +241,4 @@ INSERT INTO demo (temperature, humidity) VALUES (28, 86);
 
 Console 是 HStreamDB 的图形管理面板。使用 Console 你可以方便的管理绝大部分 HStreamDB 的资源，执行数据读写，执行 SQL 查询等。
 
-在浏览器中输入 http://localhost:5177 即可打开 Console 面板，然后就可以开始探索 HStreamDB 啦。
+在浏览器中输入 http://localhost:5177 即可打开 Console 面板，更多信息请参考 [在 HStream Console 上开始](./hstream-console.md)
