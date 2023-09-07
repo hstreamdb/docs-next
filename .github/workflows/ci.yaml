@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: pull images
-        run: docker-compose -f assets/quick-start.yaml pull
+        run: docker-compose -f assets/quick-start-lite.yaml pull
 
       - name: quick start a hstream cluster
         run: ./tests/start_cluster.sh
@@ -66,7 +66,7 @@ jobs:
 
       - name: Start cluster
         run: |
-          docker compose -f ../../assets/quick-start.yaml up -d
+          docker compose -f ../../assets/quick-start-lite.yaml up -d
           sleep 5
           ../../tests/wait_hserver.sh
           sleep 5
@@ -101,7 +101,7 @@ jobs:
 
       - name: Start cluster
         run: |
-          docker compose -f ../../assets/quick-start.yaml up -d
+          docker compose -f ../../assets/quick-start-lite.yaml up -d
           sleep 5
           ../../tests/wait_hserver.sh
           sleep 5
@@ -116,7 +116,7 @@ jobs:
 
       - name: Start cluster
         run: |
-          docker compose -f ./assets/quick-start.yaml up -d
+          docker compose -f ./assets/quick-start-lite.yaml up -d
           sleep 5
           ./tests/wait_hserver.sh
           sleep 5

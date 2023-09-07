@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-IMAGE=$(cat assets/quick-start.yaml | grep "image:.*hstreamdb/hstream" | head -n 1 | awk '{print $2}')
+IMAGE=$(cat assets/quick-start-lite.yaml | grep "image:.*hstreamdb/hstream" | head -n 1 | awk '{print $2}')
 # XXX: Github action seems hang up when read string from /dev/urandom
 #STREAM_NAME="demo_$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 6 | head -n 1)"
 STREAM_NAME="demo_$RANDOM"
@@ -43,6 +43,6 @@ cat -e $OUTPUT
 
 echo "-> compare results..."
 cmp --silent $OUTPUT tests/quick_start_sql_001.txt || \
-    (docker-compose -f assets/quick-start.yaml logs ; cleanup ; exit 1)
+    (docker-compose -f assets/quick-start-lite.yaml logs ; cleanup ; exit 1)
 
 cleanup
