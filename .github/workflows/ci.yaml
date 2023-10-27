@@ -13,13 +13,25 @@ on:
 
 jobs:
   quick-start:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+    name: quick-start on ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v2
 
+      - uses: docker-practice/actions-setup-docker@master
+        if: runner.os == 'macOS'
+        timeout-minutes: 12
+
+      - run: |
+          set -x
+          docker version
+
       - name: pull images
-        run: docker-compose -f assets/quick-start-lite.yaml pull
+        run: docker compose -f assets/quick-start-lite.yaml pull
 
       - name: quick start a hstream cluster
         run: ./tests/start_cluster.sh
