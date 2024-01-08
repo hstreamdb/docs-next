@@ -81,9 +81,9 @@ that users would have consumers from different clients.
 
 ::: code-group
 
-<<< @/../../examples/java/app/src/main/java/docs/code/examples/ConsumeDataSharedExample.java [Java]
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ConsumeDataSharedExample.java [Java]
 
-<<< @/../../examples/go/examples/ExampleConsumerGroup.go [Go]
+<<< @/../examples/go/examples/ExampleConsumerGroup.go [Go]
 
 :::
 
