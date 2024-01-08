@@ -28,9 +28,9 @@ The name of a reader should also follow the format specified by the [guidelines]
 
 ::: code-group
 
-<<< @/../../examples/java/app/src/main/java/docs/code/examples/ReadDataWithReaderExample.java [Java]
+<<< @/../examples/java/app/src/main/java/docs/code/examples/ReadDataWithReaderExample.java [Java]
 
-<<< @/../../examples/go/examples/ExampleReadDataWithReader.go [Go]
+<<< @/../examples/go/examples/ExampleReadDataWithReader.go [Go]
 
 @snippet examples/py/snippets/guides.py common read-reader
 
