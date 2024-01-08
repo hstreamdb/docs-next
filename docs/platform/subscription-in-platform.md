@@ -14,7 +14,7 @@ This tutorial guides you on how to create and manage subscriptions in HStream Pl
 
 After clicking the **New subscription** button, you will be directed to the **New subscription** page. You need to set some necessary properties for your stream and create it:
 
-1. Specify the **Subscription ID**. You can refer to [Guidelines to name a resource](../develope/write/stream.md#guidelines-to-name-a-resource) to name a subscription.
+1. Specify the **Subscription ID**. You can refer to [Guidelines to name a resource](../develop/write/stream.md#guidelines-to-name-a-resource) to name a subscription.
 
 2. Select a stream as the source from the dropdown list.
 

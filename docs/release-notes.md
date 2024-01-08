@@ -440,7 +440,7 @@ In particular, this release provides connectors listed below:
   - [sink-mysql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_mysql_spec.md)
   - [sink-postgresql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_postgresql_spec.md)
 
-You can refer to [the documentation](./develope/ingest-and-distribute/overview.md) to learn more about
+You can refer to [the documentation](./develop/ingest-and-distribute/overview.md) to learn more about
 HStream IO.
 
 #### New Stream Processing Engine
