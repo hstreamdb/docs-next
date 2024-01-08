@@ -39,9 +39,9 @@ acknowledged one at a time, as shown in the example below.
 
 ::: code-group
 
-<<< @/../../examples/java/app/src/main/java/docs/code/examples/ConsumeDataSimpleExample.java [Java]
+<<< @/examples/java/app/src/main/java/docs/code/examples/ConsumeDataSimpleExample.java [Java]
 
-<<< @/../../examples/go/examples/ExampleConsumer.go [Go]
+<<< @/examples/go/examples/ExampleConsumer.go [Go]
 
 @snippet examples/py/snippets/guides.py common subscribe-records
 
