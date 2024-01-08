@@ -11,7 +11,7 @@ requirements:
 - Contain only the following characters: Letters `[A-Za-z]`, numbers `[0-9]`, underscores `_`
 
 \*For the cases where the resource name is used as a part of a SQL statement,
-such as in [HStream SQL Shell](../reference/cli.md#hstream-sql-shell), there
+such as in [HStream SQL Shell](../../reference/cli.md#hstream-sql-shell), there
 will be situations where the resource name cannot be parsed properly (such as
 conflicts with Keywords etc.), enclose the resource name with double quotes `"`.
 

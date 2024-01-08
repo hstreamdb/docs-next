@@ -23,11 +23,11 @@ you can intuitively visualize the resource status, and easily find out the bottl
 ### Data synchronization
 
 With connectors in HStream Console, you can gain the ability to synchronize data between HStreamDB and other data sources, such as MySQL, PostgreSQL, and Elasticsearch.
-Check out [HStream IO Overview](../ingest-and-distribute/overview.md) to learn more about connectors.
+Check out [HStream IO Overview](../develop/ingest-and-distribute/overview.md) to learn more about connectors.
 
 ## Next steps
 
 To learn more about HStreamDB's resources, follow the links below:
 
-- [Streams](../write/stream.md)
-- [Subscriptions](../receive/subscription.md)
+- [Streams](../develop/write/stream.md)
+- [Subscriptions](../develop/receive/subscription.md)

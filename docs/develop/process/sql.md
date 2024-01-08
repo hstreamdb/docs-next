@@ -25,7 +25,7 @@ streams to get some useful information.
 ## Requirements
 
 Ensure you have deployed HStreamDB successfully. The easiest way is to follow
-[quickstart](../start/quickstart-with-docker.md) to start a local cluster. Of
+[quickstart](../../start/quickstart-with-docker.md) to start a local cluster. Of
 course, you can also try other methods mentioned in the Deployment part.
 
 ## Step 1: Create related streams
@@ -199,4 +199,4 @@ The result is updated right away.
 ## Related Pages
 
 For a detailed introduction to the SQL, see
-[HStream SQL](../reference/sql/sql-overview.md).
+[HStream SQL](../../reference/sql/sql-overview.md).
