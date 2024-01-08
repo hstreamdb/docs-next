@@ -3,7 +3,7 @@
 This page shows how to use [Apache Kafka Java Client](https://github.com/apache/kafka) to interact with HStream.
 
 
-::: tip
+::: note
 Replace the variables in the following code according to your setup.
 :::
 
