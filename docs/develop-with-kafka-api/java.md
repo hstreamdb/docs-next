@@ -1,4 +1,4 @@
-# Develope with Java Kafka client
+# Develop with Java Kafka client
 
 This page shows how to use [Apache Kafka Java Client](https://github.com/apache/kafka) to interact with HStream.
 
