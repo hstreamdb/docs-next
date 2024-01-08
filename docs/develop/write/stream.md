@@ -11,7 +11,7 @@ requirements:
 - Contain only the following characters: Letters `[A-Za-z]`, numbers `[0-9]`, underscores `_`
 
 \*For the cases where the resource name is used as a part of a SQL statement,
-such as in [HStream SQL Shell](../reference/cli.md#hstream-sql-shell), there
+such as in [HStream SQL Shell](../../reference/cli.md#hstream-sql-shell), there
 will be situations where the resource name cannot be parsed properly (such as
 conflicts with Keywords etc.), enclose the resource name with double quotes `"`.
 
@@ -45,9 +45,9 @@ Create a stream before you write records or create a subscription.
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/CreateStreamExample.java [Java]
+<<< @/../../examples/java/app/src/main/java/docs/code/examples/CreateStreamExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleCreateStream.go [Go]
+<<< @/../..//examples/go/examples/ExampleCreateStream.go [Go]
 
 @snippet examples/py/snippets/guides.py common create-stream
 
@@ -69,9 +69,9 @@ stream.
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/DeleteStreamExample.java [Java]
+<<< @/../../examples/java/app/src/main/java/docs/code/examples/DeleteStreamExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleDeleteStream.go [Go]
+<<< @/../../examples/go/examples/ExampleDeleteStream.go [Go]
 
 @snippet examples/py/snippets/guides.py common delete-stream
 
@@ -83,9 +83,9 @@ To get all streams in HStreamDB:
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/ListStreamsExample.java [Java]
+<<< @/../../examples/java/app/src/main/java/docs/code/examples/ListStreamsExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleListStreams.go [Go]
+<<< @/../../examples/go/examples/ExampleListStreams.go [Go]
 
 @snippet examples/py/snippets/guides.py common list-streams
 

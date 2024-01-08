@@ -24,9 +24,9 @@ this:
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/CreateSubscriptionExample.java [Java]
+<<< @/../../examples/java/app/src/main/java/docs/code/examples/CreateSubscriptionExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleCreateSubscription.go [Go]
+<<< @/../../examples/go/examples/ExampleCreateSubscription.go [Go]
 
 @snippet examples/py/snippets/guides.py common create-subscription
 
@@ -50,9 +50,9 @@ the deleted subscription.
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/DeleteSubscriptionExample.java [Java]
+<<< @/../../examples/java/app/src/main/java/docs/code/examples/DeleteSubscriptionExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleDeleteSubscription.go [Go]
+<<< @/../../examples/go/examples/ExampleDeleteSubscription.go [Go]
 
 @snippet examples/py/snippets/guides.py common delete-subscription
 
@@ -64,9 +64,9 @@ To list all subscriptions in HStream
 
 ::: code-group
 
-<<< @/../examples/java/app/src/main/java/docs/code/examples/ListSubscriptionsExample.java [Java]
+<<< @/../../examples/java/app/src/main/java/docs/code/examples/ListSubscriptionsExample.java [Java]
 
-<<< @/../examples/go/examples/ExampleListSubscriptions.go [Go]
+<<< @/../../examples/go/examples/ExampleListSubscriptions.go [Go]
 
 @snippet examples/py/snippets/guides.py common list-subscription
 
