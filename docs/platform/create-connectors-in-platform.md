@@ -24,7 +24,7 @@ After filling in the configuration, click the **Create** button to create the so
 
 ::: tip
 
-For more details about the configuration of each source connector, please refer to [Connectors](../ingest-and-distribute/connectors.md).
+For more details about the configuration of each source connector, please refer to [Connectors](../develop/ingest-and-distribute/connectors.md).
 
 :::
 

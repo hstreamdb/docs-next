@@ -20,7 +20,7 @@ A record is like a piece of JSON data. You can add arbitrary fields to a record,
 A record also ships with a partition key, which is used to determine which shard the record will be allocated to and improve the read/write performance.
 
 ::: tip
-For more details about the partition key, please refer to [Partition Key](../write/write.md#write-records-with-partition-keys).
+For more details about the partition key, please refer to [Partition Key](../develope/write/write.md#write-records-with-partition-keys).
 :::
 
 Take the following steps to write records to a stream:

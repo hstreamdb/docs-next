@@ -440,7 +440,7 @@ In particular, this release provides connectors listed below:
   - [sink-mysql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_mysql_spec.md)
   - [sink-postgresql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_postgresql_spec.md)
 
-You can refer to [the documentation](./ingest-and-distribute/overview.md) to learn more about
+You can refer to [the documentation](./develope/ingest-and-distribute/overview.md) to learn more about
 HStream IO.
 
 #### New Stream Processing Engine
@@ -451,7 +451,7 @@ magnificently. The new engine also supports **multi-way join**, **sub-queries**,
 and **more** general materialized views.
 
 The feature is still experimental. For try-outs, please refer to
-[the SQL guides](./process/sql.md).
+[the SQL guides](./develop/process/sql.md).
 
 #### Gossip-based HServer Clusters
 
