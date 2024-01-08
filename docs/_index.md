@@ -8,6 +8,7 @@ order:
     'receive',
     'process',
     'ingest-and-distribute',
+    'develop-with-kafka-api',
     'deploy',
     'security',
     'reference',
