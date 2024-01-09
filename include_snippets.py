@@ -2,10 +2,10 @@
 
 import os
 
-FILE_TYPES = {".py": "python", "cpp": "cpp"}
+FILE_TYPES = {".py": ("python", "[Python]"), ".cpp": ("cpp", "[C++]")}
 
 
-def run_snippet_cmd(snippets_root, snippet_file, *labels):
+def run_snippet_cmd(snippets_root, snippet_file, *labels, code_group=None):
     lines = [[] for _ in labels]
     with open(os.path.join(snippets_root, snippet_file), "r") as f:
         idx = None
@@ -24,12 +24,22 @@ def run_snippet_cmd(snippets_root, snippet_file, *labels):
                     lines[idx].append(line)
     # TODO: strip indent
     extension = os.path.splitext(snippet_file)[1]
-    ft = FILE_TYPES[extension]
+    (ft, _code_group) = FILE_TYPES[extension]
+    code_group = _code_group if code_group is None else code_group
     blocks = "\n\n\n".join("".join(xs).strip() for xs in lines)
-    return f"```{ft} [Python]\n{blocks}\n```\n"
+    return f"```{ft} {code_group}\n{blocks}\n```\n"
 
 
-support_commands = [("@snippet", run_snippet_cmd)]
+def run_snippet_cmd_group(snippets_root, snippet_file, group, *labels):
+    return run_snippet_cmd(
+        snippets_root, snippet_file, *labels, code_group=group
+    )
+
+
+support_commands = [
+    ("@snippet", run_snippet_cmd),
+    ("@snippet_group", run_snippet_cmd_group),
+]
 
 
 def parse_commands(lines):
