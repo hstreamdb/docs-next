@@ -121,7 +121,27 @@ jobs:
           ./tests/wait_hserver.sh
           sleep 5
 
-      - name: Run examples
+      - name: Run hstream examples
         run: |
           python3 -m pip install hstreamdb
           python3 examples/py/snippets/guides.py
+
+  test-python-kafka-examples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Start cluster
+        run: |
+          docker compose -f ./assets/quick-start-kafka-lite.yaml up -d
+          sleep 5
+          ./tests/wait_hstream_kafka.sh
+          sleep 5
+
+      - name: Run hstream kafka examples
+        run: |
+          python3 -m pip install kafka-python
+          python3 kafka-examples/python/snippets/kafka_python.py
+
+          python3 -m pip install confluent-kafka
+          python3 kafka-examples/python/snippets/confluent_kafka_python.py
