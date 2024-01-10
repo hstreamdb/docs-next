@@ -5,13 +5,13 @@
 HStream also supports Kafka API since 0.19.0, so users can connect to HStream
 using Kafka clients. HStream implements
 [Kafka protocol](https://kafka.apache.org/protocol.html) underly, so you do not
-need to change any code in your current Kafka applications, just updating the
-Kafka URLs in your configurations to point to a HStream cluster, and that is it,
-then you can start streaming from your Kafka applications to a HStream cluster.
+need to change any code in your current Kafka applications; just update the
+Kafka URLs in your configurations to point to an HStream cluster, and that is it;
+then you can start streaming from your Kafka applications to an HStream cluster.
 
 ::: tip
 
-Refer to [get started with Kafka API](../start/get-started-with-kafka-api.md) to
+Refer to [Get Started with Kafka API](../start/get-started-with-kafka-api.md) to
 learn how to enable HStream'support of Kafka API.
 
 :::
@@ -21,7 +21,7 @@ learn how to enable HStream'support of Kafka API.
 HStream supports Apache Kafka version 0.11 and later, and most Kafka clients
 should be able to auto-negotiate protocol versions.
 
-Currenty, the clients below are tested by HStream.
+Currently, the clients below are tested by HStream.
 
 | Language | Kafka Client                                                |
 | -------- | ----------------------------------------------------------- |
@@ -46,8 +46,8 @@ later version):
 
 ::: tip
 
-The configuration of Kafka brokers is not applicable to HStream, as HStream is a
-completely different implementation.
+The configuration of Kafka brokers is not applicable to HStream, as HStream is an
+entirely different implementation.
 
 :::
 
