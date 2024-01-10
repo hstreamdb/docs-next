@@ -38,7 +38,7 @@ Recommand using the latest version of each Kafka client
 
 ## Features not supported in Apache Kafka
 
-HStream do not support below Kafka features now(we plan to support them in the
+HStream does not support below Kafka features now(we plan to support them in the
 later version):
 
 - Kafka transactions
@@ -46,7 +46,7 @@ later version):
 
 ::: tip
 
-The configuration of Kafka brokers is not applicable to HStream, as HStream is an
+The configuration of Kafka brokers does not apply to HStream, as HStream is an
 entirely different implementation.
 
 :::
