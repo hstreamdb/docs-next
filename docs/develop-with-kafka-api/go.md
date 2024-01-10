@@ -1,13 +1,7 @@
 # Develop with Go Kafka client
 
-This page shows how to use [Sarama Go Client](https://github.com/IBM/sarama) to interact with HStream.
+This page shows how to use [Kafka-go Client](https://github.com/segmentio/kafka-go) to interact with HStream.
 
-
-::: warning
-
-Currently only support kafka version between v0.11.0 to v1.0.2
-
-:::
 
 ## Create a Topic
 

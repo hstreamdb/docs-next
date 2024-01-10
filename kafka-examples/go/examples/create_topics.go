@@ -1,29 +1,40 @@
 package examples
 
 import (
+	"context"
+	"errors"
 	"log"
+	"time"
 
-	"github.com/IBM/sarama"
+	"github.com/segmentio/kafka-go"
 )
 
 func CreateTopics() {
-  brokers := []string{"localhost:9092"}
-	config := sarama.NewConfig()
-	config.Version = KafkaVersion
-	validateOnly := false
+	host := "localhost:9092"
+	client := &kafka.Client{
+		Addr:    kafka.TCP(host),
+		Timeout: 10 * time.Second,
+	}
 
-	admin, err := sarama.NewClusterAdmin(brokers, config)
+	request := &kafka.CreateTopicsRequest{
+		Topics: []kafka.TopicConfig{
+			{
+				Topic:             "test-topic",
+				NumPartitions:     1,
+				ReplicationFactor: 1,
+			},
+		},
+		ValidateOnly: false,
+	}
+
+	resp, err := client.CreateTopics(context.Background(), request)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer admin.Close()
 
-	topicDetail := &sarama.TopicDetail{
-		NumPartitions:     1,
-		ReplicationFactor: 1,
-	}
-
-	if err = admin.CreateTopic("test-topic", topicDetail, validateOnly); err != nil {
-		log.Fatal(err)
+	for _, err = range resp.Errors {
+		if err != nil && !errors.Is(err, kafka.TopicAlreadyExists) {
+			log.Fatal(err)
+		}
 	}
 }
