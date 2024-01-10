@@ -1,5 +1,5 @@
 ---
-order: ['compatibility.md', 'java.md']
+order: ['compatibility.md', 'java.md', 'python.md']
 collapsed: false
 ---
 
