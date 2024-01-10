@@ -4,62 +4,52 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"time"
+	"sync"
 
-	"github.com/IBM/sarama"
+	"github.com/segmentio/kafka-go"
 )
 
 func Produce() {
-  brokers := []string{"localhost:9092"}
-	config := sarama.NewConfig()
-	config.Version = KafkaVersion
-	config.Producer.RequiredAcks = sarama.WaitForAll
-	config.Producer.Return.Successes = true
-	config.Producer.Return.Errors = true
+	host := "localhost:9092"
 
-	producer, err := sarama.NewAsyncProducer(brokers, config)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	totalReceived := 0
-	doneChan := make(chan struct{})
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
-	go func() {
-		for {
-			select {
-			case <-ctx.Done():
-				close(doneChan)
-				return
-			case err := <-producer.Errors():
+	wg := &sync.WaitGroup{}
+	wg.Add(totalMesssages)
+	writer := &kafka.Writer{
+		Addr:         kafka.TCP(host),
+		Topic:        "test-topic",
+		Balancer:     &kafka.RoundRobin{},
+		RequiredAcks: kafka.RequireAll,
+		Async:        true,
+		Completion: func(messages []kafka.Message, err error) {
+			if err != nil {
+				wg.Done()
 				log.Printf("produce err: %s\n", err.Error())
-			case msg := <-producer.Successes():
+				return
+			}
+
+			for _, msg := range messages {
+				wg.Done()
 				log.Printf("write date to partition %d, offset %d\n", msg.Partition, msg.Offset)
 			}
-			totalReceived += 1
-			if totalReceived >= totalMesssages {
-				close(doneChan)
-				return
-			}
+		},
+	}
+
+	defer func() {
+		if err := writer.Close(); err != nil {
+			log.Fatal("Failed to close writer:", err)
 		}
 	}()
 
 	for i := 0; i < totalMesssages; i++ {
-		msg := &sarama.ProducerMessage{
-			Topic: "test-topic",
-			Key:   sarama.StringEncoder(fmt.Sprintf("key-%d", i)),
-			Value: sarama.StringEncoder(fmt.Sprintf("value-%d", i)),
+		msg := kafka.Message{
+			Key:   []byte(fmt.Sprintf("key-%d", i)),
+			Value: []byte(fmt.Sprintf("value-%d", i)),
 		}
-		select {
-		case <-ctx.Done():
-		case producer.Input() <- msg:
+		if err := writer.WriteMessages(context.Background(), msg); err != nil {
+			log.Fatal("Failed to write messages:", err)
 		}
 	}
 
-	<-doneChan
-	if err = producer.Close(); err != nil {
-		log.Fatal(err)
-	}
+	wg.Wait()
+	log.Println("Write messages done.")
 }

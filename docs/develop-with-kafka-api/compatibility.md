@@ -27,7 +27,7 @@ Currenty, the clients below are tested by HStream.
 | -------- | ----------------------------------------------------------- |
 | Java     | [Apache Kafka Java Client](https://github.com/apache/kafka) |
 | Python   | [kafka-python], [confluent-kafka-python]                    |
-| Go       | [sarama](https://github.com/IBM/sarama)                     |
+| Go       | [kafka-go](https://github.com/segmentio/kafka-go)           |
 | C/C++    | [librdkafka](https://github.com/confluentinc/librdkafka)    |
 
 ::: tip
