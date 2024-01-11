@@ -490,7 +490,7 @@ displayed on the Grafana board.
 #### Deployment on K8s with Helm
 
 We provide a helm chart to support deploying HStreamDB on k8s using Helm. You
-can refer to [the documentation](./deploy/deploy-helm.md) for
+can refer to [the documentation](./deploy/running-on-k8s.md) for
 details.
 
 ### Java Client

@@ -1,5 +1,9 @@
 ---
-order: ["deploy-helm", "deploy-k8s", "deploy-docker", "quick-deploy-ssh"]
+order:
+  - deploy-helm.md
+  - deploy-k8s.md
+  - deploy-docker.md
+  - quick-deploy-ssh.md
 collapsed: false
 ---
 
