@@ -1,0 +1,14 @@
+---
+order:
+  [
+    'overview',
+    'start',
+    'platform',
+    'develop',
+    'develop-with-kafka-api',
+    'deploy',
+    'security',
+    'reference',
+    'release-notes.md',
+  ]
+---
