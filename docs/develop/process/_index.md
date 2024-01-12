@@ -1,6 +1,6 @@
 ---
 order: ['sql.md']
-collapsed: false
+collapsed: true
 ---
 
 Process data
