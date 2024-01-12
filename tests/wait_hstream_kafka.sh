@@ -5,7 +5,7 @@ timeout=120
 container_name=wait_hserver
 
 docker run -td --rm --name $container_name --network host hstreamdb/hstream bash
-until (docker exec -t $container_name hstream-kafka-cli --port 9092 node status); do
+until (docker exec -t $container_name hstream-kafka --port 9092 node status); do
     >&2 echo "Waiting for 127.0.0.1:9092 ..."
     sleep 1
     timeout=$((timeout - 1))
