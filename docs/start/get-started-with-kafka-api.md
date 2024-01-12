@@ -115,7 +115,7 @@ hstream-kafka topic create demo --partitions 3
 
 The `hstream-kafka produce` command can be used to produce data to a topic in a interactive shell.
 ```sh
-hstream stream-kafka produce demo --separator "@" -i
+hstream-kafka produce demo --separator "@" -i
 ```
 - With the `--separator` option, you can specify the separator for key. The default separator is "@". Using the separator, you can assign a key to each record. Record with same key will be append into same partition of the topic.
 - Using `-i` option to enter the interactive mode.
@@ -123,7 +123,7 @@ hstream stream-kafka produce demo --separator "@" -i
 ```sh
 info@This is a info level log.
 warn@This is a warn level log.
-hello kafka!
+hello hstream!
 ```
 Here we have written three pieces of data. The first two are associated with specified key. The last one does not specify a key.
 
@@ -140,11 +140,13 @@ hstream-kafka consume --group-id test-group --topic demo --earliest --verbose --
 
 ```sh
 CreateTimestamp: 1705026820718   Key: info                 This is a info level log.
-CreateTimestamp: 1705026912306   Key:                      hello kafka!
+CreateTimestamp: 1705026912306   Key:                      hello hstream!
 CreateTimestamp: 1705026833287   Key: warn                 This is a warn level log.
 EOF reached for all 3 partition(s)
 Consumed 3 messages (62 bytes)
 ```
+
+For additional information, you can use `hstream-kafka consume -h`.
 
 [non-root-docker]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 [kafka-quick-start.yaml]: https://raw.githubusercontent.com/hstreamdb/docs-next/main/assets/kafka-quick-start.yaml
