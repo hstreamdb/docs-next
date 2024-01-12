@@ -7,11 +7,11 @@ docker run -it --rm --name cli-demo --network host hstreamdb/hstream:{{ $version
 ```
 
 ```shell
-hstream-kafka-cli --help
+hstream-kafka --help
 ```
 
 ```shell
-Usage: hstream-kafka-cli [--host HOST] [--port PORT] COMMAND
+Usage: hstream-kafka [--host HOST] [--port PORT] COMMAND
 
 Available options:
   --host HOST              Server host
@@ -42,10 +42,10 @@ Alias:
 ## Check Cluster Status
 
 ```shell
-hstream-kafka-cli node --help
+hstream-kafka node --help
 ```
 ```shell
-Usage: hstream-kafka-cli node COMMAND
+Usage: hstream-kafka node COMMAND
   node command
 
 Available options:
@@ -60,7 +60,7 @@ Available commands:
 `list` subcommand is used to list all nodes in the cluster
 
 ```shell
-hstream-kafka-cli node list
+hstream-kafka node list
 ```
 ```shell
 +----+---------------------+------------+
@@ -75,7 +75,7 @@ hstream-kafka-cli node list
 `status`  subcommand is used to retrieve the status of each node in the cluster.
 
 ```shell
-hstream-kafka-cli node status
+hstream-kafka node status
 ```
 ```shell
 +---------+---------+---------------------+
@@ -92,10 +92,10 @@ hstream-kafka-cli node status
 We can also manage kafka topics through the command line tool.
 
 ```shell
-hstream-kafka-cli topic --help
+hstream-kafka topic --help
 ```
 ```shell
-Usage: hstream-kafka-cli topic COMMAND
+Usage: hstream-kafka topic COMMAND
   topic command
 
 Available options:
@@ -111,16 +111,16 @@ Available commands:
 ### Create a topic
 
 ```sh
-Usage: hstream-kafka-cli topic create TopicName [-p|--num-partitions Int32]
+Usage: hstream-kafka topic create TopicName [-p|--num-partitions Int32]
                                       [-r|--replication-factor Int16]
                                       [-t|--timeout Int32]
   Create a topic
 
 Available options:
   TopicName                Topic name
-  -p,--num-partitions Int32
+  -p,--num-partitions      Int32
                            Number of partitions (default: 1)
-  -r,--replication-factor Int16
+  -r,--replication-factor  Int16
                            Topic replication factor (default: 1)
   -t,--timeout Int32       Request timeout in milliseconds (default: 5000)
   -h,--help                Show this help text
@@ -129,10 +129,10 @@ Available options:
 Example: Create a demo topic with 3 partitions
 
 ```shell
-hstream-kafka-cli topic create test-topic -p 3
+hstream-kafka topic create test-topic -p 3
 ```
 ```shell
-hstream-kafka-cli topic create test-topic -p 3
+hstream-kafka topic create test-topic -p 3
 +------------+------------+--------------------+
 |    Name    | Partitions | Replication-factor |
 +------------+------------+--------------------+
@@ -143,7 +143,7 @@ hstream-kafka-cli topic create test-topic -p 3
 ### List topics
 
 ```shell
-hstream-kafka-cli topic list
+hstream-kafka topic list
 ```
 ```shell
 +-------------------------+------------+
@@ -156,7 +156,7 @@ hstream-kafka-cli topic list
 ### Describe a topic
 
 ```shell
-hstream-kafka-cli topic describe test-topic
+hstream-kafka topic describe test-topic
 ```
 
 ```shell
@@ -172,7 +172,7 @@ hstream-kafka-cli topic describe test-topic
 ### Delete a topic
 
 ```shell
-Usage: hstream-kafka-cli topic delete (TopicName | --all) [-y|--yes]
+Usage: hstream-kafka topic delete (TopicName | --all) [-y|--yes]
   Delete a topic
 
 Available options:
@@ -184,7 +184,7 @@ Available options:
 Example: Delete a topic
 
 ```shell
-hstream-kafka-cli topic delete test-topic
+hstream-kafka topic delete test-topic
 ```
 
 ```shell
@@ -196,10 +196,10 @@ DONE
 We can also manage consumer group through the command line tool.
 
 ```shell
-hstream-kafka-cli group --help
+hstream-kafka group --help
 ```
 ```shell
-Usage: hstream-kafka-cli group COMMAND
+Usage: hstream-kafka group COMMAND
   group command
 
 Available options:
@@ -213,7 +213,7 @@ Available commands:
 ### List consumer groups
 
 ```shell
-hstream-kafka-cli group list
+hstream-kafka group list
 ```
 ```shell
 +-------------+-----------+--------------+
@@ -228,7 +228,7 @@ hstream-kafka-cli group list
 ### Show topic info of specific group
 
 ```sh
-hstream-kafka-cli group show sub-000-w6
+hstream-kafka group show sub-000-w6
 ```
 ```shell
 ◎ sub-000-w6
@@ -255,11 +255,11 @@ hstream-kafka-cli group show sub-000-w6
 Use `produce` subcommand to write data to HStream Kafka server
 
 ```shell
-hstream-kafka-cli produce --help
+hstream-kafka produce --help
 ```
 ```shell
-Usage: hstream-kafka-cli produce TopicName [-p|--partition Int32] 
-                                 [--timeout Int32] [-s|--separator String] 
+Usage: hstream-kafka produce TopicName [-p|--partition Int32]
+                                 [--timeout Int32] [-s|--separator String]
                                  ((-d|--data Text) | (-i|--interactive))
   Produce messages to topics
 
@@ -276,7 +276,7 @@ Available options:
 Example: write data in interactive mode
 
 ```shell
-hstream-kafka-cli produce test-topic -i
+hstream-kafka produce test-topic -i
 ```
 
 ```shell
@@ -295,12 +295,12 @@ Message delivered to topic test-topic [0] at offset 2
 Use `consume` subcommand to consume data from HStream Kafka server
 
 ```shell
-hstream-kafka-cli consume -h
+hstream-kafka consume -h
 ```
 
 ```shell
 Up to date
-Usage: hstream-kafka-cli consume [-g|--group-id Text] (-t|--topic Text)
+Usage: hstream-kafka consume [-g|--group-id Text] (-t|--topic Text)
                                  [--earliest | --latest] [-e|--eof]
                                  [--no-auto-commit] [-v|--verbose]
   Consume messages from topics
@@ -320,7 +320,7 @@ Available options:
 Example: consume data from `test-topic`
 
 ```shell
-hstream-kafka-cli --port 9092 consume -g test-consume-group -t test-topic --earliest -e -v
+hstream-kafka --port 9092 consume -g test-consume-group -t test-topic --earliest -e -v
 ```
 
 ```shell
