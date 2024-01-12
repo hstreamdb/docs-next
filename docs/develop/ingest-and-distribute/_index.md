@@ -1,6 +1,6 @@
 ---
 order: ['overview.md', 'user_guides.md', 'connectors.md']
-collapsed: false
+collapsed: true
 ---
 
 Ingest and Distribute data

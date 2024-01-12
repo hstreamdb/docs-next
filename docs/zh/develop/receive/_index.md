@@ -1,6 +1,6 @@
 ---
 order: ["subscription.md", "consume.md", "read.md"]
-collapsed: false
+collapsed: true
 ---
 
 Receive data
