@@ -22,7 +22,7 @@ and other interfaces to work with shards like Reader.
 
 To decide the number of shards which a stream should have, an attribute
 shardCount is provided when creating a
-[stream](./stream.md#attributes-of-a-stream).
+[stream](stream.md#attributes-of-a-stream).
 
 ## List Shards
 

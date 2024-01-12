@@ -23,11 +23,11 @@ HStream Console 提供了一个图形用户界面，用于直接管理 HStreamDB
 ### 数据同步
 
 借助 HStream Console 中的连接器，您可以实现在 HStreamDB 和其他数据源（如 MySQL、PostgreSQL 和 Elasticsearch）之间同步数据的能力。
-请查看 [HStream IO 概览](../ingest-and-distribute/overview.md) 以了解有关连接器的更多信息。
+请查看 [HStream IO 概览](../develop/ingest-and-distribute/overview.md) 以了解有关连接器的更多信息。
 
 ## 下一步操作
 
 要了解有关 HStreamDB 资源的更多信息，请点击以下链接：
 
-- [流 (Streams)](../write/stream.md)
-- [订阅 (Subscriptions)](../receive/subscription.md)
+- [流 (Streams)](../develop/write/stream.md)
+- [订阅 (Subscriptions)](../develop/receive/subscription.md)

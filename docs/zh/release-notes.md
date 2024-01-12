@@ -1,5 +1,128 @@
 # Release Notes
 
+## v0.19.0 [2024-01-12]
+
+HStream v0.19.0 introduces support for [Kafka API](https://kafka.apache.org/protocol.html#protocol_api_keys), so users can interact with HStream using Kafka clients now.
+
+### New Features
+
+- Add support for [Kafka API](https://kafka.apache.org/protocol.html#protocol_api_keys), compatible with Apache Kafka 0.11 or later.
+- Add a new `hstream-kafka` command line tool for working with HStream Kafka API.
+
+### Enhancements
+
+- Add support for configuring gRPC channel settings. [#1659](https://github.com/hstreamdb/hstream/pull/1659)
+- Add support for logging to files. [#1708](https://github.com/hstreamdb/hstream/pull/1708)
+- Add `isAlive` metric for connectors. [#1593](https://github.com/hstreamdb/hstream/pull/1593)
+- Support GHC 9.4. [#1698](https://github.com/hstreamdb/hstream/pull/1698)
+- cli(hadmin-store): Add support for updating `replicate-across` attribute. [#1608](https://github.com/hstreamdb/hstream/pull/1608)
+
+### Changes and Bug fixes
+
+- Set read timeout for ldreader in readStreamByKey. [#1575](https://github.com/hstreamdb/hstream/pull/1575)
+- Ignore `Earliest` position in trimShards. [#1579](https://github.com/hstreamdb/hstream/pull/1579)
+- Fix unary handler may block in hs-grpc. [#1585](https://github.com/hstreamdb/hstream/pull/1585)
+- Fix destroyed lambda ref in hstore FFI stubs. [#1642](https://github.com/hstreamdb/hstream/pull/1642)
+- Fix build for HStreamUseGrpcHaskell. [#1670](https://github.com/hstreamdb/hstream/pull/1670)
+- Fix a parsing issue with multiple AdvertisedListeners. [#1671](https://github.com/hstreamdb/hstream/pull/1671)
+- Wait for the cluster epoch to sync before making a new assignment. [#1676](https://github.com/hstreamdb/hstream/pull/1676)
+- Handle errors in trimShards. [#1707](https://github.com/hstreamdb/hstream/pull/1707)
+- Handle unrecoverable gaptype for shardReader. [#1713](https://github.com/hstreamdb/hstream/pull/1713)
+- Avoid log flushing when no logging is present. [#1701](https://github.com/hstreamdb/hstream/pull/1701)
+- Dockerfile: upgrade base image to ubuntu jammy. [#1664](https://github.com/hstreamdb/hstream/pull/1664)
+- Add a `--log-flush-immediately` option to flush logs immediately. [#1654](https://github.com/hstreamdb/hstream/pull/1654)
+- connector: Recover tasks from listRecoverableResources. [#1612](https://github.com/hstreamdb/hstream/pull/1612)
+- connector: Recover connectors without checking. [#1644](https://github.com/hstreamdb/hstream/pull/1644)
+- connector: Handle zk exception. [#1624](https://github.com/hstreamdb/hstream/pull/1624)
+- connector: Init ioTaskKvs table. [#1673](https://github.com/hstreamdb/hstream/pull/1673)
+- sql: Fix `CREATE CONNECTOR` clauses. [#1588](https://github.com/hstreamdb/hstream/pull/1588)
+- query: Recover tasks from listRecoverableResources. [#1613](https://github.com/hstreamdb/hstream/pull/1613)
+- cli: Fix read-stream --from timestamp --until latest may fail. [#1595](https://github.com/hstreamdb/hstream/pull/1595)
+- cli: Fix wrong server version for the result of `hstream node status` command. [#1631](https://github.com/hstreamdb/hstream/pull/1631)
+- cli(hadmin-store): Fix formatting and handling of logReplicateAcross attribute display. [#1622](https://github.com/hstreamdb/hstream/pull/1622)
+
+
+## v0.17.0 [2023-08-23]
+
+### HServer
+
+- Add read-stream command for cli to read data from specific stream
+- Add append command for cli to write data to specific stream
+- Add ZookeeperSlotAlloc
+- Add trimStream and trimShard RPC
+- Add stream-v2 experimental feature
+- Add doesStreamPartitionValExist to check if a shard is belong to a stream
+- Add checkpointStore benchmark
+- Add readStreamByKey RPC
+- Add LookupKey RPC
+- Add support for ASan
+- Add support internal admin command
+- Add read stream metrics
+- Add trimShards RPC
+- Improve call trim concurrently in trimShards and trimStream rpcs
+- Improve free disk space in ci
+- Improve docker-compose.yaml to use a zk cluster
+- Improve reduce memory usage in reader services
+- Improve bump third-part dependency version
+- Improve ensure enable-tls take effect consistently across all scenarios
+- Refactor the format of ReceivedRecord
+- Refactor hstream configuration
+- Refactor use deriving instead of template-haskell to deriving Aeson instance
+- Refactor cli ShardOffset parser
+- Fix redirect stderr to stdout for iotask
+- Fix modify default store replication factor to 1
+- Fix correctly handle the SubscribeStateStopped state in the sendRecords method
+- Fix getShardId method may cause cache inconsistency issue
+- Fix interrupt all consumers when a subscription is deleting or failed
+- Fix invalid consumer properly
+- Fix wrong ShardReader exit status code for grpc-haskell
+- Fix wrong behavior of LATEST OFFSET for shardReader
+- Fix incorrect number of record entries delivered by readStreamByKey
+- Fix memory leak in logIdHasGroup
+- Fix incorrect encode HRecord by cli append
+- Fix the main server should wait all AdvertisedListeners
+- Fix readStream rpc can not consume multi-shard stream
+- Fix zoovisitor memory leak
+- Fix dead lock when client send init before server already bootstrap
+- Fix incorrect calculateShardId function
+- Fix make PEER_UNAVAILABLE a retryable exception
+- Fix ci build with hstream_enable_asan
+- Fix Ord instance for Rid
+
+### SQL && Processing Engine
+
+- Add schema with hstream_enable_schema flag
+- Add support creating stream with schema
+- Add support matastore-based schema
+- Add support schema when creating stream by select & creating view
+- Add support window_start and window_end in binder and planner
+- Add Unknown type in binder
+- Improve display BoundDataType
+- Improve use column name to lookupColumn in planner
+- Improve polish type check
+- Improve schema not found error message
+- Fix refine array syntax
+- Fix clean up processing threads properly on exceptions
+- Fix stream.column in binder & planner
+- Fix errors caused by SomeSQLException
+- Fix incorrect catalog id in planner
+- Fix incorrect result on joining after group by
+- Fix a bug may produce incorrect view result
+
+### Connector
+- Add sink-elasticsearch connector image in hstream config file
+- Add extra-docker-args option
++ Add ui:group, ui:condition schema options
++ Add error stream for error handling
++ Add skip strategy for error handling
++ Add retry strategy for error handling
++ Add normal table support for sink-las
++ Add extra datetime field for sink-las
++ Add LATEST offset option
++ Add parallel writing
++ Add buffer options
+- Improve connector robustness
+
 ## v0.16.0 [2023-07-07]
 
 ### HServer
@@ -359,7 +482,7 @@ In particular, this release provides connectors listed below:
   - [sink-mysql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_mysql_spec.md)
   - [sink-postgresql](https://github.com/hstreamdb/hstream-connectors/blob/main/docs/specs/sink_postgresql_spec.md)
 
-You can refer to [the documentation](./ingest-and-distribute/overview.md) to learn more about
+You can refer to [the documentation](develop/ingest-and-distribute/overview.md) to learn more about
 HStream IO.
 
 #### New Stream Processing Engine
@@ -370,7 +493,7 @@ magnificently. The new engine also supports **multi-way join**, **sub-queries**,
 and **more** general materialized views.
 
 The feature is still experimental. For try-outs, please refer to
-[the SQL guides](./process/sql.md).
+[the SQL guides](develop/process/sql.md).
 
 #### Gossip-based HServer Clusters
 
@@ -409,7 +532,7 @@ displayed on the Grafana board.
 #### Deployment on K8s with Helm
 
 We provide a helm chart to support deploying HStreamDB on k8s using Helm. You
-can refer to [the documentation](./deploy/deploy-helm.md) for
+can refer to [the documentation](./deploy/running-on-k8s.md) for
 details.
 
 ### Java Client
