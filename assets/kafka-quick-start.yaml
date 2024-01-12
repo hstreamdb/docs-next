@@ -73,14 +73,14 @@ services:
       - |
         timeout=60
         until ( \
-            /usr/local/bin/hstream-kafka-cli --host hserver --port 9092 node status \
+            /usr/local/bin/hstream-kafka --host hserver --port 9092 node status \
         ) >/dev/null 2>&1; do
             >&2 echo 'Waiting for servers ...'
             sleep 1
             timeout=$$((timeout - 1))
             [ $$timeout -le 0 ] && echo 'Timeout!' && exit 1;
         done; \
-        /usr/local/bin/hstream-kafka-cli --host hserver --port 9092 node init
+        /usr/local/bin/hstream-kafka --host hserver --port 9092 node init
 
 networks:
   hstream-kafka-quickstart:
