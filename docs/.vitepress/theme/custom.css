@@ -16,16 +16,16 @@
   --vp-c-brand-darker: #613eda;
 }
 
-.VPNavBar {
-  border-bottom-color: var(--vp-c-divider) !important;
-}
-
-.VPNavBar .curtain:before {
-  display: none !important;
+.VPNav {
+  border-bottom: 1px solid var(--vp-c-divider);
 }
 
 .VPNavBarTitle .title {
   border-bottom: none;
+}
+
+.VPNavBar.has-sidebar .divider {
+  display: none;
 }
 
 .VPSidebar:after {
