@@ -121,8 +121,8 @@ hstream-kafka produce demo --separator "@" -i
 - Using `-i` option to enter the interactive mode.
 
 ```sh
-info@This is a info level log.
-warn@This is a warn level log.
+fruit@apple
+animal@cat
 hello hstream!
 ```
 Here we have written three pieces of data. The first two are associated with specified key. The last one does not specify a key.
@@ -139,9 +139,9 @@ hstream-kafka consume --group-id test-group --topic demo --earliest --verbose --
 - Using the `--verbose` option will print the creation timestamp and the key of the record. The `--eof` option will tell the consumer to exit after receiving the last message in the partition.
 
 ```sh
-CreateTimestamp: 1705026820718   Key: info                 This is a info level log.
+CreateTimestamp: 1705026820718   Key: fruit                apple
 CreateTimestamp: 1705026912306   Key:                      hello hstream!
-CreateTimestamp: 1705026833287   Key: warn                 This is a warn level log.
+CreateTimestamp: 1705026833287   Key: animal               cat
 EOF reached for all 3 partition(s)
 Consumed 3 messages (62 bytes)
 ```
