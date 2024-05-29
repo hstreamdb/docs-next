@@ -23,7 +23,7 @@ else
   exit 1
 fi
 
-LANG=$LANG pnpm build
+LANG=$LANG npm run build
 
 if [[ $LANG == "en" ]]; then
   mv ./zh-backup ./docs/zh
