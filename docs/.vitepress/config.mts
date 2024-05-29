@@ -2,8 +2,9 @@ import { defineConfig } from 'vitepress'
 
 import { genSidebarAndVersions } from './sidebar'
 
-const { sidebar: sidebarEn, versions: versionsEn } = await genSidebarAndVersions('docs')
-const { sidebar: sidebarZh, versions: versionsZh } = await genSidebarAndVersions('docs/zh', 'docs')
+const lang = process.env.LANG
+
+const { sidebar, versions } = await genSidebarAndVersions('docs')
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -12,14 +13,15 @@ export default defineConfig({
   description: 'HStream Documentation.',
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
-    [
-      'script',
-      {
-        defer: 'defer',
-        src: 'https://static.cloudflareinsights.com/beacon.min.js',
-        'data-cf-beacon': '{"token": "bbd21181c54745aabcb72e188c333ccc"}',
-      },
-    ],
+    // TODO: remove below analytics code
+    // [
+    //   'script',
+    //   {
+    //     defer: 'defer',
+    //     src: 'https://static.cloudflareinsights.com/beacon.min.js',
+    //     'data-cf-beacon': '{"token": "bbd21181c54745aabcb72e188c333ccc"}',
+    //   },
+    // ],
   ],
   lastUpdated: true,
   ignoreDeadLinks: 'localhostLinks',
@@ -28,14 +30,14 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     logo: '/logo.svg',
 
-    sidebar: sidebarEn,
+    sidebar: sidebar,
 
     nav: [
       {
         text: 'hstream.io',
         link: 'https://hstream.io/',
       },
-      versionsEn,
+      versions,
     ],
     search: {
       provider: 'local',
@@ -47,26 +49,14 @@ export default defineConfig({
   },
   locales: {
     root: {
-      label: 'English',
-      lang: 'en',
-    },
-    zh: {
-      label: 'Chinese',
-      lang: 'zh',
-      title: 'HStream 文档',
-      titleTemplate: ':title | HStream 文档',
-      description: 'HStream 文档。',
-      themeConfig: {
-        sidebar: sidebarZh,
-
-        nav: [
-          {
-            text: 'hstream.io',
-            link: 'https://hstream.io/',
-          },
-          versionsZh,
-        ],
-      },
+      ...((lang === undefined || lang === 'en') && { label: 'English', lang: 'en' }),
+      ...(lang === 'zh' && {
+        label: 'Chinese',
+        lang: 'zh',
+        title: 'HStream 文档',
+        titleTemplate: ':title | HStream 文档',
+        description: 'HStream 文档。',
+      }),
     },
   },
 })
